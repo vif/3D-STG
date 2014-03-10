@@ -2,5 +2,50 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="Game\main.cpp" />
+    <ClCompile Include="Game\game\gameintegrator.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\game\gamerenderer.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\game\gamestate.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="game">
+      <UniqueIdentifier>{e3ac216d-2ac9-4617-a2d5-9da185943de3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="environment">
+      <UniqueIdentifier>{71c978b9-b48e-4330-8e55-d2e02ecbf6b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="player">
+      <UniqueIdentifier>{de3bdf07-c171-465d-a945-0e4e184234a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="enemies">
+      <UniqueIdentifier>{2334ee23-6d6a-4118-bf17-5a4019a8669b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Game\common.hpp" />
+    <ClInclude Include="Game\typedefs.hpp" />
+    <ClInclude Include="Game\enemies\enemy.hpp">
+      <Filter>enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\player\ship.hpp">
+      <Filter>player</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\environment\tunnel.hpp">
+      <Filter>environment</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\game\gameintegrator.hpp">
+      <Filter>game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\game\gamerenderer.hpp">
+      <Filter>game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\game\gamestate.hpp">
+      <Filter>game</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
