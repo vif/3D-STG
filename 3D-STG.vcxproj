@@ -39,13 +39,13 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDirectory)Game;$(SolutionDirectory)ThirdParty\oglplus-0.42.0\include;$(SolutionDirectory)ThirdParty\bullet-2.82-r2704\src;$(SolutionDirectory)ThirdParty\glm;$(SolutionDirectory)ThirdParty\glew-1.10.0\include;$(SolutionDirectory)ThirdParty\glfw-3.0.4\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDirectory)ThirdParty\bullet-2.82-r2704\lib;$(SolutionDirectory)ThirdParty\glew-1.10.0\lib;$(SolutionDirectory)ThirdParty\glfw-3.0.4\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDirectory)ThirdParty\assimp--3.0.1270-sdk\include;$(SolutionDirectory)ThirdParty\oglplus-0.42.0\include;$(SolutionDirectory)ThirdParty\bullet-2.82-r2704\src;$(SolutionDirectory)ThirdParty\glm;$(SolutionDirectory)ThirdParty\glew-1.10.0\include;$(SolutionDirectory)ThirdParty\glfw-3.0.4\include;$(SolutionDirectory)Game;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDirectory)ThirdParty\assimp--3.0.1270-sdk\lib\assimp_debug-dll_win32;$(SolutionDirectory)ThirdParty\bullet-2.82-r2704\lib;$(SolutionDirectory)ThirdParty\glew-1.10.0\lib;$(SolutionDirectory)ThirdParty\glfw-3.0.4\lib;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)bin\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDirectory)Game;$(SolutionDirectory)ThirdParty\oglplus-0.42.0\include;$(SolutionDirectory)ThirdParty\bullet-2.82-r2704\src;$(SolutionDirectory)ThirdParty\glm;$(SolutionDirectory)ThirdParty\glew-1.10.0\include;$(SolutionDirectory)ThirdParty\glfw-3.0.4\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDirectory)ThirdParty\bullet-2.82-r2704\lib;$(SolutionDirectory)ThirdParty\glew-1.10.0\lib;$(SolutionDirectory)ThirdParty\glfw-3.0.4\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDirectory)ThirdParty\assimp--3.0.1270-sdk\include;$(SolutionDirectory)ThirdParty\oglplus-0.42.0\include;$(SolutionDirectory)ThirdParty\bullet-2.82-r2704\src;$(SolutionDirectory)ThirdParty\glm;$(SolutionDirectory)ThirdParty\glew-1.10.0\include;$(SolutionDirectory)ThirdParty\glfw-3.0.4\include;$(SolutionDirectory)Game;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDirectory)ThirdParty\assimp--3.0.1270-sdk\lib\assimp_debug-dll_win32;$(SolutionDirectory)ThirdParty\bullet-2.82-r2704\lib;$(SolutionDirectory)ThirdParty\glew-1.10.0\lib;$(SolutionDirectory)ThirdParty\glfw-3.0.4\lib;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)bin\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -58,7 +58,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>BulletDynamics.lib;BulletCollision.lib;glew32s.lib;glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>assimp.lib;BulletDynamics.lib;BulletCollision.lib;glew32s.lib;glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -75,7 +75,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>BulletDynamics.lib;BulletCollision.lib;glew32s.lib;glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>assimp.lib;BulletDynamics.lib;BulletCollision.lib;glew32s.lib;glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
