@@ -39,14 +39,16 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDirectory)ThirdParty\assimp--3.0.1270-sdk\include;$(SolutionDirectory)ThirdParty\oglplus-0.42.0\include;$(SolutionDirectory)ThirdParty\bullet-2.82-r2704\src;$(SolutionDirectory)ThirdParty\glm;$(SolutionDirectory)ThirdParty\glew-1.10.0\include;$(SolutionDirectory)ThirdParty\glfw-3.0.4\include;$(SolutionDirectory)Game;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDirectory)ThirdParty\assimp--3.0.1270-sdk\lib\assimp_debug-dll_win32;$(SolutionDirectory)ThirdParty\bullet-2.82-r2704\lib;$(SolutionDirectory)ThirdParty\glew-1.10.0\lib;$(SolutionDirectory)ThirdParty\glfw-3.0.4\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDirectory)ThirdParty\oglplus-develop\etc\msvc11\OGLplus;$(SolutionDirectory)ThirdParty\oglplus-develop\include;$(SolutionDirectory)ThirdParty\oglplus-develop\implement;$(SolutionDirectory)ThirdParty\assimp-3.0.1270\include;$(SolutionDirectory)ThirdParty\bullet-2.82-r2704\src;$(SolutionDirectory)ThirdParty\glm;$(SolutionDirectory)ThirdParty\glew-1.10.0\include;$(SolutionDirectory)ThirdParty\glfw-3.0.4\include;$(SolutionDirectory)Source\include;$(SolutionDirectory)Source;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDirectory)ThirdParty\assimp-3.0.1270\lib;$(SolutionDirectory)ThirdParty\bullet-2.82-r2704\lib;$(SolutionDirectory)ThirdParty\glew-1.10.0\lib;$(SolutionDirectory)ThirdParty\glfw-3.0.4\lib;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)bin\</OutDir>
+    <IntDir>$(SolutionDir)bin\obj\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDirectory)ThirdParty\assimp--3.0.1270-sdk\include;$(SolutionDirectory)ThirdParty\oglplus-0.42.0\include;$(SolutionDirectory)ThirdParty\bullet-2.82-r2704\src;$(SolutionDirectory)ThirdParty\glm;$(SolutionDirectory)ThirdParty\glew-1.10.0\include;$(SolutionDirectory)ThirdParty\glfw-3.0.4\include;$(SolutionDirectory)Game;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDirectory)ThirdParty\assimp--3.0.1270-sdk\lib\assimp_debug-dll_win32;$(SolutionDirectory)ThirdParty\bullet-2.82-r2704\lib;$(SolutionDirectory)ThirdParty\glew-1.10.0\lib;$(SolutionDirectory)ThirdParty\glfw-3.0.4\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDirectory)ThirdParty\oglplus-develop\etc\msvc11\OGLplus;$(SolutionDirectory)ThirdParty\oglplus-develop\include;$(SolutionDirectory)ThirdParty\oglplus-develop\implement;$(SolutionDirectory)ThirdParty\assimp-3.0.1270\include;$(SolutionDirectory)ThirdParty\bullet-2.82-r2704\src;$(SolutionDirectory)ThirdParty\glm;$(SolutionDirectory)ThirdParty\glew-1.10.0\include;$(SolutionDirectory)ThirdParty\glfw-3.0.4\include;$(SolutionDirectory)Source\include;$(SolutionDirectory)Source;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDirectory)ThirdParty\assimp-3.0.1270\lib;$(SolutionDirectory)ThirdParty\bullet-2.82-r2704\lib;$(SolutionDirectory)ThirdParty\glew-1.10.0\lib;$(SolutionDirectory)ThirdParty\glfw-3.0.4\lib;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)bin\</OutDir>
+    <IntDir>$(SolutionDir)bin\obj\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -79,20 +81,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Game\game\gameintegrator.cpp" />
-    <ClCompile Include="Game\game\gamerenderer.cpp" />
-    <ClCompile Include="Game\game\gamestate.cpp" />
-    <ClCompile Include="Game\main.cpp" />
+    <ClCompile Include="Source\main.cpp" />
+    <ClCompile Include="Source\model\model.cpp" />
+    <ClCompile Include="Source\player\ship.cpp" />
+    <ClCompile Include="Source\utilities\shaders.cpp" />
+    <ClCompile Include="Source\world\world.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Game\common.hpp" />
-    <ClInclude Include="Game\enemies\enemy.hpp" />
-    <ClInclude Include="Game\environment\tunnel.hpp" />
-    <ClInclude Include="Game\game\gameintegrator.hpp" />
-    <ClInclude Include="Game\game\gamerenderer.hpp" />
-    <ClInclude Include="Game\game\gamestate.hpp" />
-    <ClInclude Include="Game\player\ship.hpp" />
-    <ClInclude Include="Game\typedefs.hpp" />
+    <ClInclude Include="Source\environment\tunnel.hpp" />
+    <ClInclude Include="Source\include\interfaces.hpp" />
+    <ClInclude Include="Source\include\interfaces\drawableobject.hpp" />
+    <ClInclude Include="Source\include\interfaces\enemy.hpp" />
+    <ClInclude Include="Source\include\oglplus.hpp" />
+    <ClInclude Include="Source\include\typedefs.hpp" />
+    <ClInclude Include="Source\model\model.hpp" />
+    <ClInclude Include="Source\player\ship.hpp" />
+    <ClInclude Include="Source\utilities\shaders.hpp" />
+    <ClInclude Include="Source\world\world.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shaders\regular.frag" />
+    <None Include="Resources\shaders\regular.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

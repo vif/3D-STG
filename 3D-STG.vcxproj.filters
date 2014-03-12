@@ -1,21 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Game\main.cpp" />
-    <ClCompile Include="Game\game\gameintegrator.cpp">
-      <Filter>game</Filter>
+    <ClCompile Include="Source\main.cpp" />
+    <ClCompile Include="Source\player\ship.cpp">
+      <Filter>player</Filter>
     </ClCompile>
-    <ClCompile Include="Game\game\gamerenderer.cpp">
-      <Filter>game</Filter>
+    <ClCompile Include="Source\world\world.cpp">
+      <Filter>world</Filter>
     </ClCompile>
-    <ClCompile Include="Game\game\gamestate.cpp">
-      <Filter>game</Filter>
+    <ClCompile Include="Source\utilities\shaders.cpp">
+      <Filter>utilities\shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\model\model.cpp">
+      <Filter>model</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="game">
-      <UniqueIdentifier>{e3ac216d-2ac9-4617-a2d5-9da185943de3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="environment">
       <UniqueIdentifier>{71c978b9-b48e-4330-8e55-d2e02ecbf6b1}</UniqueIdentifier>
     </Filter>
@@ -25,27 +25,69 @@
     <Filter Include="enemies">
       <UniqueIdentifier>{2334ee23-6d6a-4118-bf17-5a4019a8669b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{60100b6c-5a4e-4fbe-95e6-7a0889c7861e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\interfaces">
+      <UniqueIdentifier>{f7e74bb4-db22-4803-97ce-268f846174ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="world">
+      <UniqueIdentifier>{46492a99-7153-49c0-8ff0-33b61525a2b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utilities">
+      <UniqueIdentifier>{94bb01b2-1539-4149-a901-6183b39a1120}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utilities\shaders">
+      <UniqueIdentifier>{bfede476-b57e-447a-babd-632c8fcf96f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="model">
+      <UniqueIdentifier>{f36c7451-ea31-4d30-8e9c-fe26ac5970e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shaders">
+      <UniqueIdentifier>{4fa90262-c684-44b3-881c-f5eb573085cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shaders\regular">
+      <UniqueIdentifier>{6fd509a7-4282-41c7-ab89-195427e5c6dd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Game\common.hpp" />
-    <ClInclude Include="Game\typedefs.hpp" />
-    <ClInclude Include="Game\enemies\enemy.hpp">
-      <Filter>enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\player\ship.hpp">
+    <ClInclude Include="Source\player\ship.hpp">
       <Filter>player</Filter>
     </ClInclude>
-    <ClInclude Include="Game\environment\tunnel.hpp">
+    <ClInclude Include="Source\environment\tunnel.hpp">
       <Filter>environment</Filter>
     </ClInclude>
-    <ClInclude Include="Game\game\gameintegrator.hpp">
-      <Filter>game</Filter>
+    <ClInclude Include="Source\include\interfaces.hpp">
+      <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="Game\game\gamerenderer.hpp">
-      <Filter>game</Filter>
+    <ClInclude Include="Source\include\typedefs.hpp">
+      <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="Game\game\gamestate.hpp">
-      <Filter>game</Filter>
+    <ClInclude Include="Source\include\interfaces\drawableobject.hpp">
+      <Filter>include\interfaces</Filter>
     </ClInclude>
+    <ClInclude Include="Source\include\oglplus.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\world\world.hpp">
+      <Filter>world</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\include\interfaces\enemy.hpp">
+      <Filter>include\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\utilities\shaders.hpp">
+      <Filter>utilities\shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\model\model.hpp">
+      <Filter>model</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shaders\regular.frag">
+      <Filter>shaders\regular</Filter>
+    </None>
+    <None Include="Resources\shaders\regular.vert">
+      <Filter>shaders\regular</Filter>
+    </None>
   </ItemGroup>
 </Project>
