@@ -1,16 +1,24 @@
-#version 150
-#extension GL_ARB_explicit_attrib_location : enable
+#version 330 core
 
-in vec3 out_position;
-in vec3 out_normal;
-in vec4 out_colour;
-in vec3 out_UV;
+uniform vec4 lightPosition = vec4(1.0, 1.0, 1.0, 0.0);
+uniform vec3 lightColour = vec3(1.0, 1.0, 1.0);
 
-layout (location = 0) out vec4 colour;
-layout (location = 1) out vec4 bs;
+
+uniform	vec4 materialDiffuse;
+uniform	vec4 materialSpecular;
+uniform	float materialShininess = 0.5;
+
+in vec4 frag_position;
+in vec4 frag_normal;
+in vec4 frag_colour;
+
+layout(location = 0) out vec4 colour;
+layout(location = 1) out vec4 bs;
 
 void main() 
 {
-	colour = vec4(1f, 1f, 1f, 1f);
-	bs = vec4(out_position + out_normal + out_UV, 0f) + out_colour;
+	float intensity = clamp( dot( normalize(lightPosition.xyz), frag_normal.xyz ), 0, 1);
+
+	colour = frag_colour * materialDiffuse * vec4(lightColour, 1.0) * intensity;
+	bs = materialSpecular + frag_position * frag_colour * materialShininess;
 }

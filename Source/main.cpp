@@ -1,10 +1,9 @@
-#define GLEW_STATIC
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <typedefs.hpp>
 
 std::unique_ptr<World> world;  //world can't be initialized here, must be initialized after glew
-std::unique_ptr<Shaders::Shaders> Shaders::SHADERS; //again, must be initialized after glew
+std::unique_ptr<Shaders::SharedShaders> Shaders::shared_shaders; //again, must be initialized after glew
 
 static void error_callback(int error, const char* description)
 {
@@ -19,15 +18,8 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
 
 static void window_size_callback(GLFWwindow* window, int width, int height)
 {
-	world->projectionMatrix = glm::infinitePerspective(60.0, (double)width / (double)height, 0.1);
-}
-
-void initWorld()
-{
-}
-
-void initShaders()
-{
+	double aspect_ratio = (double)width / (double)height;
+	world->projectionMatrix = glm::infinitePerspective<double>(glm::radians(60.0f), aspect_ratio, 0.1);
 }
 
 int main(void)
@@ -42,9 +34,9 @@ int main(void)
 	}
 
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
+	//glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 	glfwWindowHint(GLFW_SAMPLES, 4);
 	window = glfwCreateWindow(800, 640, "3D-STG", NULL, NULL);
 	if (!window)
@@ -65,28 +57,33 @@ int main(void)
 	glfwSetWindowSizeCallback(window, window_size_callback);
 
 
-	Shaders::SHADERS = std::make_unique<Shaders::Shaders>();
+	Shaders::shared_shaders = std::make_unique<Shaders::SharedShaders>();
 	world = std::make_unique<World>();
 
 	{   //do the window resize callback for the initial size
 		int height;
 		int width;
-		glfwGetWindowSize(window, &height, &width);
+		glfwGetWindowSize(window, &width, &height);
 		window_size_callback(window, width, height);
 	}
 
-	initShaders();
-	initWorld();
+	oglplus::Context::Enable(oglplus::Capability::DepthTest);
+	oglplus::Context::Enable(oglplus::Capability::CullFace);
 
 	while (!glfwWindowShouldClose(window))
 	{
 		oglplus::Context::ClearColor(0.5, 0, 1, 0.5);
-		oglplus::Context::Clear();
+		oglplus::Context::Clear().ColorBuffer().DepthBuffer();
 		world->integrate(0, 0);
-		//world->render(0, 0);
+		world->render(0, 0);
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
+
+	//WORKAROUND for oglplus not cleaning up properly if context destroyed
+	delete world.release();
+	delete Shaders::shared_shaders.release();
+
 	glfwDestroyWindow(window);
 	glfwTerminate();
 	return 0;

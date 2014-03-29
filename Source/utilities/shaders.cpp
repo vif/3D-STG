@@ -2,7 +2,7 @@
 
 namespace Shaders
 {
-	Shaders::Shaders()
+	SharedShaders::SharedShaders()
 	{
 		regular = CreateShader("Resources/shaders/regular.vert", "Resources/shaders/regular.frag");
 	}

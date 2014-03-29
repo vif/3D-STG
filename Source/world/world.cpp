@@ -16,6 +16,9 @@ void World::integrate(double t, double dt)
 
 void World::render(double t, double dt)
 {
+	glm::mat4 viewMatrix = glm::mat4_cast(camera.rotation);
+	viewMatrix = glm::translate(viewMatrix, camera.position);
+
 	ship.render(t, dt, viewMatrix, projectionMatrix);
 	for (auto& enemy : enemies)
 	{

@@ -5,13 +5,13 @@
 
 namespace Shaders
 {
-	struct Shaders
+	struct SharedShaders
 	{
-		Shaders();
+		SharedShaders();
 		oglplus::Program regular;
 	};
 
-	extern std::unique_ptr<Shaders> SHADERS;
+	extern std::unique_ptr<SharedShaders> shared_shaders;
 
 	oglplus::Program CreateShader(std::string vertexShaderFilePath, std::string fragmentShaderFilePath);
 }
