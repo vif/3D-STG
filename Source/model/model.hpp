@@ -1,29 +1,47 @@
 #pragma once
 
 #include <assimp/scene.h>
+#include <oglplus.hpp>
+#include <vector>
+#include <memory>
 
-class Model
+namespace Model
 {
-public:
-	Model(std::string filename, oglplus::Program* program);
-	void draw();
-	struct MeshVertex
-	{
-		glm::vec3 position;
-		glm::vec3 normal;
-		glm::vec4 colour;
-	};
 	struct Material
 	{
 		glm::vec4 diffuse;
 		glm::vec4 specular;
 		GLfloat shininess;
-	} material;
-private:
-	std::vector<MeshVertex> _vertices;
-	std::vector<GLuint> _indices;
-	oglplus::Buffer _faceBuffer;
-	oglplus::Buffer _vertexBuffer;
-	oglplus::VertexArray _vao;
-	const oglplus::Program* _program;
-};
+	};
+
+	struct Vertex
+	{
+		glm::vec3 position;
+		glm::vec3 normal;
+		glm::vec4 colour;
+	};
+
+	class Mesh
+	{
+	public:
+		Mesh(oglplus::Program* program, const std::vector<Vertex>& vertices, const std::vector<GLuint>& indices);
+		void draw();
+	private:
+		const oglplus::Program* _program;
+		std::vector<Vertex> _vertices;
+		std::vector<GLuint> _indices;
+		oglplus::Buffer _faceBuffer;
+		oglplus::Buffer _vertexBuffer;
+		oglplus::VertexArray _vao;
+	};
+
+	class Model
+	{
+	public:
+		Model(std::string filename, oglplus::Program* program);
+		void draw();
+	private:
+		const oglplus::Program* _program;
+		std::vector<std::unique_ptr<Mesh>> _meshes;
+	};
+}

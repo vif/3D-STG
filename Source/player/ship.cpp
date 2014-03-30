@@ -33,8 +33,8 @@ void Ship::render(double t, double dt, glm::mat4 viewMatrix, glm::mat4 projectio
 	normalMatrix_uniform.Set(normalMatrix);
 	modelViewProjectionMatrix_uniform.Set(modelViewProjectionMatrix);
 
-	materialDiffuse_uniform.Set(model.material.diffuse);
-	materialSpecular_uniform.Set(model.material.specular);
+	//materialDiffuse_uniform.Set(model.material.diffuse);
+	//materialSpecular_uniform.Set(model.material.specular);
 	//materialShininess_uniform.Set(model.material.shininess);
 
 	shader->UseNone();

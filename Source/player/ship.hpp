@@ -17,7 +17,7 @@ public:
 	oglplus::Uniform<oglplus::Vec4f> materialSpecular_uniform;
 	oglplus::Uniform<GLfloat> materialShininess_uniform;
 
-	Model model;
+	Model::Model model;
 	glm::vec3 position;
 	glm::quat rotation;
 
