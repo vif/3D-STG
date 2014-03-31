@@ -231,7 +231,6 @@
     <ClInclude Include="code\UnrealLoader.h" />
     <ClInclude Include="code\NDOLoader.h" />
     <ClInclude Include="code\OgreImporter.hpp" />
-    <ClInclude Include="code\OgreXmlHelper.h" />
     <ClInclude Include="code\OgreXmlHelper.hpp" />
     <ClInclude Include="code\MS3DLoader.h" />
     <ClInclude Include="code\COBLoader.h" />
@@ -325,7 +324,6 @@
     <ClInclude Include="code\TargetAnimation.h" />
     <ClInclude Include="code\VertexTriangleAdjacency.h" />
     <ClInclude Include="contrib\irrXML\CXMLReaderImpl.h" />
-    <ClInclude Include="contrib\irrXML\fast_atof.h" />
     <ClInclude Include="contrib\irrXML\heapsort.h" />
     <ClInclude Include="contrib\irrXML\irrArray.h" />
     <ClInclude Include="contrib\irrXML\irrString.h" />
@@ -371,7 +369,6 @@
     <ClInclude Include="code\STLExporter.h" />
     <ClInclude Include="code\PlyExporter.h" />
     <ClInclude Include="doc\dox.h" />
-    <ClInclude Include="code\res\resource.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="include\assimp\color4.inl" />
@@ -389,6 +386,7 @@
     <ClCompile Include="code\3DSLoader.cpp" />
     <ClCompile Include="code\ASELoader.cpp" />
     <ClCompile Include="code\ASEParser.cpp" />
+    <ClCompile Include="code\AssimpPCH.cpp" />
     <ClCompile Include="code\HMPLoader.cpp" />
     <ClCompile Include="code\LWOBLoader.cpp" />
     <ClCompile Include="code\LWOLoader.cpp" />
@@ -490,13 +488,6 @@
     <ClCompile Include="code\TextureTransform.cpp" />
     <ClCompile Include="code\TriangulateProcess.cpp" />
     <ClCompile Include="code\ValidateDataStructure.cpp" />
-    <ClCompile Include="code\AssimpPCH.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AssimpPCH.h</PrecompiledHeaderFile>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AssimpPCH.h</PrecompiledHeaderFile>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="code\MaterialSystem.cpp" />
     <ClCompile Include="code\StandardShapes.cpp" />
     <ClCompile Include="code\DefaultLogger.cpp" />
