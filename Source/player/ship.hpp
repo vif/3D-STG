@@ -24,5 +24,5 @@ public:
 	void IDrawableObject::render(double t, double dt, glm::mat4 viewMatrix, glm::mat4 projectionMatrix) override;
 	void IDrawableObject::integrate(double t, double dt) override;
 private:
-	Ship(const Ship&) = default;
+	Ship(const Ship&) = delete;
 };

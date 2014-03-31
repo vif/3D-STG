@@ -4,14 +4,6 @@ World::World()
 {
 }
 
-World::~World()
-{
-	for (auto e : enemies)
-	{
-		delete e;
-	}
-}
-
 void World::integrate(double t, double dt)
 {
 	//UPDATE PHYSICS WORLD

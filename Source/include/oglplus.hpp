@@ -7,3 +7,4 @@
 #include <gl/glew.h>
 #include <oglplus/all.hpp>
 #include <oglplus/interop/glm.hpp>
+#include <oglplus/images/load.hpp>

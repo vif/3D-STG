@@ -2,8 +2,8 @@
 #include <GLFW/glfw3.h>
 #include <typedefs.hpp>
 
-World* world;  //world can't be initialized here, must be initialized after glew
-Shaders::SharedShaders* Shaders::shared_shaders; //again, must be initialized after glew
+std::unique_ptr<World> world;  //world can't be initialized here, must be initialized after glew
+std::unique_ptr<Shaders::SharedShaders> Shaders::shared_shaders; //again, must be initialized after glew
 
 static void error_callback(int error, const char* description)
 {
@@ -57,8 +57,8 @@ int main(void)
 	glfwSetWindowSizeCallback(window, window_size_callback);
 
 
-	Shaders::shared_shaders = new Shaders::SharedShaders();
-	world = new World();
+	Shaders::shared_shaders = std::make_unique<Shaders::SharedShaders>();
+	world = std::make_unique<World>();
 
 	{   //do the window resize callback for the initial size
 		int height;
@@ -80,8 +80,9 @@ int main(void)
 		glfwPollEvents();
 	}
 
-	delete world;
-	delete Shaders::shared_shaders;
+	//WORKAROUND for oglplus not cleaning up properly if context destroyed
+	delete world.release();
+	delete Shaders::shared_shaders.release();
 
 	glfwDestroyWindow(window);
 	glfwTerminate();

@@ -3,10 +3,11 @@
 namespace Model
 {
 
-	Mesh::Mesh(oglplus::Program* program, const std::vector<Vertex>& vertices, const std::vector<GLuint>& indices) :
+	Mesh::Mesh(oglplus::Program* program, const std::vector<Vertex>& vertices, const std::vector<GLuint>& indices, Material* material) :
 		_program(program),
 		_vertices(vertices),
-		_indices(indices)
+		_indices(indices),
+		_material(material)
 	{
 		//UPLOAD the data onto the GPU
 		_vao.Bind();
@@ -16,6 +17,7 @@ namespace Model
 
 		_faceBuffer.Bind(oglplus::BufferOps::Target::ElementArray);
 		_faceBuffer.Data(oglplus::BufferOps::Target::ElementArray, _indices);
+		_material->texture.Bind(oglplus::TextureOps::Target::_2D);
 
 		//SETUP attributes
 #define make_vaa(name) \
@@ -32,6 +34,7 @@ namespace Model
 
 		oglplus::Buffer::Unbind(oglplus::BufferOps::Target::Array);
 		oglplus::Buffer::Unbind(oglplus::BufferOps::Target::ElementArray);
+		oglplus::Texture::Unbind(oglplus::TextureOps::Target::_2D);
 	}
 
 	void Mesh::draw()
@@ -61,6 +64,33 @@ namespace Model
 
 		assert(scene->mFlags); //assert no errors loading the file
 		assert(scene->mRootNode != nullptr); //assert that we actually loaded something
+
+		_materials.resize(scene->mNumMaterials);
+		//for each material
+		for (unsigned int matIndex = 0; matIndex < scene->mNumMaterials; ++matIndex)
+		{
+			auto material = scene->mMaterials[matIndex];
+
+			auto mat = new Material();
+			aiColor3D colour;
+			material->Get(AI_MATKEY_COLOR_DIFFUSE, colour);
+			mat->diffuse_colour = { colour.r, colour.g, colour.b };
+			material->Get(AI_MATKEY_COLOR_AMBIENT, colour);
+			mat->ambient_colour = { colour.r, colour.g, colour.b };
+			material->Get(AI_MATKEY_COLOR_SPECULAR, colour);
+			mat->specular_colour = { colour.r, colour.g, colour.b };
+			material->Get(AI_MATKEY_SHININESS, mat->shininess);
+
+			//we are going to assume one texture per mesh
+			aiString texture_path;
+			auto texture_found = material->GetTexture(aiTextureType_DIFFUSE, 0, &texture_path);
+			if (texture_found == AI_SUCCESS)
+			{
+				_materials[matIndex]->texture.Image2D(oglplus::TextureOps::Target::_2D, oglplus::images::LoadTexture(texture_path.C_Str()));
+			}
+
+			_materials[matIndex] = mat;
+		}
 
 		//for each mesh
 		for (unsigned int meshIndex = 0; meshIndex < scene->mNumMeshes; ++meshIndex)
@@ -115,12 +145,19 @@ namespace Model
 				indices[faceIndex * 3 + 2] = face.mIndices[2];
 			}
 
-			_meshes.push_back(new Mesh(program, vertices, indices));
+			_meshes.push_back(new Mesh(program, vertices, indices, _materials[mesh->mMaterialIndex]));
 		}
 	}
 
 	Model::~Model()
 	{
+		//delete the materials
+		for (auto m : _materials)
+		{
+			delete m;
+		}
+
+		//delete the meshes
 		for (auto m : _meshes)
 		{
 			delete m;
