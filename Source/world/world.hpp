@@ -4,16 +4,16 @@
 #include <player/ship.hpp>
 #include <oglplus.hpp>
 #include <glm/glm.hpp>
-#include <memory>
 #include <list>
 
 class World
 {
 public:
 	World();
+	~World();
 
 	Ship ship;
-	std::list<std::shared_ptr<IEnemy>> enemies;
+	std::list<IEnemy *> enemies;
 
 	glm::mat4 projectionMatrix;
 

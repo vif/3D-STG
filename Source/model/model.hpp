@@ -3,7 +3,6 @@
 #include <assimp/scene.h>
 #include <oglplus.hpp>
 #include <vector>
-#include <memory>
 
 namespace Model
 {
@@ -39,9 +38,10 @@ namespace Model
 	{
 	public:
 		Model(std::string filename, oglplus::Program* program);
+		~Model();
 		void draw();
 	private:
 		const oglplus::Program* _program;
-		std::vector<std::unique_ptr<Mesh>> _meshes;
+		std::vector<Mesh*> _meshes;
 	};
 }

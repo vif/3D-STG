@@ -115,15 +115,23 @@ namespace Model
 				indices[faceIndex * 3 + 2] = face.mIndices[2];
 			}
 
-			//_meshes.push_back(std::make_unique<Mesh>(program, vertices, indices));
+			_meshes.push_back(new Mesh(program, vertices, indices));
+		}
+	}
+
+	Model::~Model()
+	{
+		for (auto m : _meshes)
+		{
+			delete m;
 		}
 	}
 
 	void Model::draw()
 	{
-		//for (auto& mesh : _meshes)
-		//{
-		//	mesh->draw();
-		//}
+		for (auto& mesh : _meshes)
+		{
+			mesh->draw();
+		}
 	}
 }
