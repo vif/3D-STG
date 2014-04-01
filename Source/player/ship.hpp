@@ -9,19 +9,11 @@ public:
 	Ship();
 	~Ship() = default;
 
-	oglplus::Program* shader;
-	oglplus::Uniform<oglplus::Mat4f> modelViewMatrix_uniform;
-	oglplus::Uniform<oglplus::Mat4f> normalMatrix_uniform;
-	oglplus::Uniform<oglplus::Mat4f> modelViewProjectionMatrix_uniform;
-	oglplus::Uniform<oglplus::Vec4f> materialDiffuse_uniform;
-	oglplus::Uniform<oglplus::Vec4f> materialSpecular_uniform;
-	oglplus::Uniform<GLfloat> materialShininess_uniform;
-
 	Model::Model model;
 	glm::vec3 position;
 	glm::quat rotation;
 
-	void IDrawableObject::render(double t, double dt, glm::mat4 viewMatrix, glm::mat4 projectionMatrix) override;
+	void IDrawableObject::render(double t, double dt, glm::vec3 camera_position, glm::mat4 viewMatrix, glm::mat4 projectionMatrix) override;
 	void IDrawableObject::integrate(double t, double dt) override;
 private:
 	Ship(const Ship&) = delete;

@@ -1,19 +1,17 @@
 #pragma once
 
 //STL
-#include <stdlib.h>
-#include <stdio.h>
 #include <list>
 #include <vector>
 #include <memory>
 #include <string>
-#include <iostream>
 
 //GLM
 #include <glm/glm.hpp>
-#include <glm/gtc/quaternion.hpp>
 #include <glm/gtc/constants.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/quaternion.hpp>
+#include <glm/gtx/euler_angles.hpp>
 
 //OGLPLUS
 #include <oglplus.hpp>
@@ -31,9 +29,10 @@
 #include <interfaces.hpp>
 
 //UTILITIES
-#include <utilities/shaders.hpp>
+#include <utilities/ShaderManager/shaders.hpp>
 
 //GAME
+#include <model/mesh.hpp>
 #include <model/model.hpp>
 #include <world/world.hpp>
 #include <player/ship.hpp>

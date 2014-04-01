@@ -8,11 +8,14 @@
     <ClCompile Include="Source\world\world.cpp">
       <Filter>world</Filter>
     </ClCompile>
-    <ClCompile Include="Source\utilities\shaders.cpp">
-      <Filter>utilities\shaders</Filter>
-    </ClCompile>
     <ClCompile Include="Source\model\model.cpp">
       <Filter>model</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\model\mesh.cpp">
+      <Filter>model</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\utilities\ShaderManager\shaders.cpp">
+      <Filter>utilities\shaders</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -75,11 +78,14 @@
     <ClInclude Include="Source\include\interfaces\enemy.hpp">
       <Filter>include\interfaces</Filter>
     </ClInclude>
-    <ClInclude Include="Source\utilities\shaders.hpp">
-      <Filter>utilities\shaders</Filter>
-    </ClInclude>
     <ClInclude Include="Source\model\model.hpp">
       <Filter>model</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\model\mesh.hpp">
+      <Filter>model</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\utilities\ShaderManager\shaders.hpp">
+      <Filter>utilities\shaders</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -82,9 +82,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\main.cpp" />
+    <ClCompile Include="Source\model\mesh.cpp" />
     <ClCompile Include="Source\model\model.cpp" />
     <ClCompile Include="Source\player\ship.cpp" />
-    <ClCompile Include="Source\utilities\shaders.cpp" />
+    <ClCompile Include="Source\utilities\ShaderManager\shaders.cpp" />
     <ClCompile Include="Source\world\world.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -94,9 +95,10 @@
     <ClInclude Include="Source\include\interfaces\enemy.hpp" />
     <ClInclude Include="Source\include\oglplus.hpp" />
     <ClInclude Include="Source\include\typedefs.hpp" />
+    <ClInclude Include="Source\model\mesh.hpp" />
     <ClInclude Include="Source\model\model.hpp" />
     <ClInclude Include="Source\player\ship.hpp" />
-    <ClInclude Include="Source\utilities\shaders.hpp" />
+    <ClInclude Include="Source\utilities\ShaderManager\shaders.hpp" />
     <ClInclude Include="Source\world\world.hpp" />
   </ItemGroup>
   <ItemGroup>

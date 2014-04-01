@@ -18,8 +18,8 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
 
 static void window_size_callback(GLFWwindow* window, int width, int height)
 {
-	double aspect_ratio = (double)width / (double)height;
-	world->projectionMatrix = glm::infinitePerspective<double>(glm::radians(60.0f), aspect_ratio, 0.1);
+	auto aspect_ratio = glm::golden_ratio<double>();
+	world->projectionMatrix = glm::perspective<double>(glm::radians(60.0f), aspect_ratio, 0.1, 1000);
 }
 
 int main(void)
@@ -68,11 +68,11 @@ int main(void)
 	}
 
 	oglplus::Context::Enable(oglplus::Capability::DepthTest);
-	oglplus::Context::Enable(oglplus::Capability::CullFace);
+	//oglplus::Context::Enable(oglplus::Capability::CullFace);
 
 	while (!glfwWindowShouldClose(window))
 	{
-		oglplus::Context::ClearColor(0.5, 0, 1, 0.5);
+		oglplus::Context::ClearColor(1, 1, 1, 1);
 		oglplus::Context::Clear().ColorBuffer().DepthBuffer();
 		world->integrate(0, 0);
 		world->render(0, 0);
