@@ -11,6 +11,7 @@ class World
 {
 public:
 	World();
+	~World();
 
 	class PhysicsWorld
 	{

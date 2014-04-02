@@ -31,6 +31,16 @@ World::World()
 	physics_world.world->setInternalTickCallback(UpdateCallBackShim, static_cast<void *>(this));
 }
 
+World::~World()
+{
+	physics_world.world->removeRigidBody(ship.rigid_body.get());
+
+	for (auto& enemy : enemies)
+	{
+		physics_world.world->removeRigidBody(enemy->rigid_body.get());
+	}
+}
+
 void World::Update(double dt)
 {
 	//UPDATE THE WORLD!
