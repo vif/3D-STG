@@ -8,17 +8,21 @@ model("Resources/models/player/ship.dae", &Global::shader_manager->phong3d)
 {
 	model_pointer = &model;
 
-	pose = std::make_unique<btDefaultMotionState>();
+	pose = std::make_unique<btDefaultMotionState>(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, 0, 0)));
 	
 	auto shape = model.GetCollisionShape();
 
-	btVector3 inertia(1, 1, 1);
+	btVector3 inertia;
+	shape->calculateLocalInertia(weight, inertia);
 
 	btRigidBody::btRigidBodyConstructionInfo rigidBodyCI(weight, pose.get(), shape, inertia);
 
 	rigid_body = std::make_unique<btRigidBody>(rigidBodyCI);
+
+	rigid_body->activate(true);
 }
 
 void Ship::Update(double dt, World* world)
 {
+	rigid_body->applyCentralImpulse(btVector3(100, 0, 0));
 }

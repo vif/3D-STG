@@ -11,6 +11,7 @@ World::PhysicsWorld::PhysicsWorld()
 	_solver = std::make_unique<btSequentialImpulseConstraintSolver>();
 
 	world = std::make_unique<btDiscreteDynamicsWorld>(_dispatcher.get(), _broadphase.get(), _solver.get(),  _collision_configuration.get());
+	world->setGravity({ 0, 0, 0 });
 }
 
 void UpdateCallBackShim(btDynamicsWorld *world, btScalar timeStep)
