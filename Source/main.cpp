@@ -30,6 +30,10 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
 		world->ship.position += glm::vec3(0, 1, 0);
 	if (key == GLFW_KEY_F && action == GLFW_PRESS)
 		world->ship.position -= glm::vec3(0, 1, 0);
+	if (key == GLFW_KEY_Q && action == GLFW_PRESS)
+		world->ship.orientation = glm::rotate(world->ship.orientation, glm::pi<float>()/90.0f, glm::vec3(1, 0, 0));
+	if (key == GLFW_KEY_E && action == GLFW_PRESS)
+		world->ship.orientation = glm::rotate(world->ship.orientation, glm::pi<float>()/90.0f, glm::vec3(-1, 0, 0));
 }
 
 static void window_size_callback(GLFWwindow* window, int width, int height)

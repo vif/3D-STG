@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{2617B705-92CC-2FFB-1BC1-29D2877526FF}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>AppUnitTest</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\..\Test\bin\</OutDir>
+    <IntDir>obj\Release\AppUnitTest\</IntDir>
+    <TargetName>AppUnitTest</TargetName>
+    <TargetExt>.exe</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\..\Test\bin\</OutDir>
+    <IntDir>obj\Debug\AppUnitTest\</IntDir>
+    <TargetName>AppUnitTest</TargetName>
+    <TargetExt>.exe</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\src;..\..\Test\Source;..\..\Test\Source\Tests;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions</EnableEnhancedInstructionSet>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\src;..\..\Test\Source;..\..\Test\Source\Tests;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\src;..\..\Test\Source;..\..\Test\Source\Tests;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ProgramDataBaseFileName>$(OutDir)AppUnitTest.pdb</ProgramDataBaseFileName>
+      <Optimization>Disabled</Optimization>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <FloatingPointModel>Fast</FloatingPointModel>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\src;..\..\Test\Source;..\..\Test\Source\Tests;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Test\Source\TestList.h" />
+    <ClInclude Include="..\..\Test\Source\Tests\Test_3x3getRot.h" />
+    <ClInclude Include="..\..\Test\Source\Tests\Test_3x3mulM.h" />
+    <ClInclude Include="..\..\Test\Source\Tests\Test_3x3mulM1M2.h" />
+    <ClInclude Include="..\..\Test\Source\Tests\Test_3x3mulMV.h" />
+    <ClInclude Include="..\..\Test\Source\Tests\Test_3x3mulVM.h" />
+    <ClInclude Include="..\..\Test\Source\Tests\Test_3x3setRot.h" />
+    <ClInclude Include="..\..\Test\Source\Tests\Test_3x3timesTranspose.h" />
+    <ClInclude Include="..\..\Test\Source\Tests\Test_3x3transpose.h" />
+    <ClInclude Include="..\..\Test\Source\Tests\Test_3x3transposeTimes.h" />
+    <ClInclude Include="..\..\Test\Source\Tests\Test_btDbvt.h" />
+    <ClInclude Include="..\..\Test\Source\Tests\Test_dot3.h" />
+    <ClInclude Include="..\..\Test\Source\Tests\Test_maxdot.h" />
+    <ClInclude Include="..\..\Test\Source\Tests\Test_mindot.h" />
+    <ClInclude Include="..\..\Test\Source\Tests\Test_qtdot.h" />
+    <ClInclude Include="..\..\Test\Source\Tests\Test_qtmul.h" />
+    <ClInclude Include="..\..\Test\Source\Tests\Test_qtmulQV3.h" />
+    <ClInclude Include="..\..\Test\Source\Tests\Test_qtmulV3Q.h" />
+    <ClInclude Include="..\..\Test\Source\Tests\Test_qtnorm.h" />
+    <ClInclude Include="..\..\Test\Source\Tests\Test_quat_aos_neon.h" />
+    <ClInclude Include="..\..\Test\Source\Tests\Test_v3cross.h" />
+    <ClInclude Include="..\..\Test\Source\Tests\Test_v3div.h" />
+    <ClInclude Include="..\..\Test\Source\Tests\Test_v3dot.h" />
+    <ClInclude Include="..\..\Test\Source\Tests\Test_v3interp.h" />
+    <ClInclude Include="..\..\Test\Source\Tests\Test_v3lerp.h" />
+    <ClInclude Include="..\..\Test\Source\Tests\Test_v3norm.h" />
+    <ClInclude Include="..\..\Test\Source\Tests\Test_v3rotate.h" />
+    <ClInclude Include="..\..\Test\Source\Tests\Test_v3sdiv.h" />
+    <ClInclude Include="..\..\Test\Source\Tests\Test_v3skew.h" />
+    <ClInclude Include="..\..\Test\Source\Tests\Test_v3triple.h" />
+    <ClInclude Include="..\..\Test\Source\Utils.h" />
+    <ClInclude Include="..\..\Test\Source\btIntDefines.h" />
+    <ClInclude Include="..\..\Test\Source\main.h" />
+    <ClInclude Include="..\..\Test\Source\vector.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Test\Source\TestList.cpp" />
+    <ClCompile Include="..\..\Test\Source\Tests\Test_3x3getRot.cpp" />
+    <ClCompile Include="..\..\Test\Source\Tests\Test_3x3mulM.cpp" />
+    <ClCompile Include="..\..\Test\Source\Tests\Test_3x3mulM1M2.cpp" />
+    <ClCompile Include="..\..\Test\Source\Tests\Test_3x3mulMV.cpp" />
+    <ClCompile Include="..\..\Test\Source\Tests\Test_3x3mulVM.cpp" />
+    <ClCompile Include="..\..\Test\Source\Tests\Test_3x3setRot.cpp" />
+    <ClCompile Include="..\..\Test\Source\Tests\Test_3x3timesTranspose.cpp" />
+    <ClCompile Include="..\..\Test\Source\Tests\Test_3x3transpose.cpp" />
+    <ClCompile Include="..\..\Test\Source\Tests\Test_3x3transposeTimes.cpp" />
+    <ClCompile Include="..\..\Test\Source\Tests\Test_btDbvt.cpp" />
+    <ClCompile Include="..\..\Test\Source\Tests\Test_dot3.cpp" />
+    <ClCompile Include="..\..\Test\Source\Tests\Test_maxdot.cpp" />
+    <ClCompile Include="..\..\Test\Source\Tests\Test_mindot.cpp" />
+    <ClCompile Include="..\..\Test\Source\Tests\Test_qtdot.cpp" />
+    <ClCompile Include="..\..\Test\Source\Tests\Test_qtmul.cpp" />
+    <ClCompile Include="..\..\Test\Source\Tests\Test_qtmulQV3.cpp" />
+    <ClCompile Include="..\..\Test\Source\Tests\Test_qtmulV3Q.cpp" />
+    <ClCompile Include="..\..\Test\Source\Tests\Test_qtnorm.cpp" />
+    <ClCompile Include="..\..\Test\Source\Tests\Test_quat_aos_neon.cpp" />
+    <ClCompile Include="..\..\Test\Source\Tests\Test_v3cross.cpp" />
+    <ClCompile Include="..\..\Test\Source\Tests\Test_v3div.cpp" />
+    <ClCompile Include="..\..\Test\Source\Tests\Test_v3dot.cpp" />
+    <ClCompile Include="..\..\Test\Source\Tests\Test_v3interp.cpp" />
+    <ClCompile Include="..\..\Test\Source\Tests\Test_v3lerp.cpp" />
+    <ClCompile Include="..\..\Test\Source\Tests\Test_v3norm.cpp" />
+    <ClCompile Include="..\..\Test\Source\Tests\Test_v3rotate.cpp" />
+    <ClCompile Include="..\..\Test\Source\Tests\Test_v3sdiv.cpp" />
+    <ClCompile Include="..\..\Test\Source\Tests\Test_v3skew.cpp" />
+    <ClCompile Include="..\..\Test\Source\Tests\Test_v3triple.cpp" />
+    <ClCompile Include="..\..\Test\Source\Utils.cpp" />
+    <ClCompile Include="..\..\Test\Source\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="BulletDynamics.vcxproj">
+      <Project>{45122E0F-31E0-2115-1A74-923B06E1FD79}</Project>
+    </ProjectReference>
+    <ProjectReference Include="BulletCollision.vcxproj">
+      <Project>{B91153C5-259D-C089-2EAE-437E9AB81C8A}</Project>
+    </ProjectReference>
+    <ProjectReference Include="LinearMath.vcxproj">
+      <Project>{EAF25DFD-D6AA-9F4A-3FB2-78A62B893A3B}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

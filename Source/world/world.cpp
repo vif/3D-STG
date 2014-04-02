@@ -1,5 +1,15 @@
 #include "world.hpp"
 
+
+World::PhysicsWorld::PhysicsWorld()
+{
+	_broadphase = std::make_unique<btDbvtBroadphase>();
+	_collision_configuration = std::make_unique<btDefaultCollisionConfiguration>();
+	_dispatcher = std::make_unique<btCollisionDispatcher>(_collision_configuration.get());
+
+	world = std::make_unique<btCollisionWorld>(_dispatcher.get(), _broadphase.get(), _collision_configuration.get());
+}
+
 World::World()
 {
 }
@@ -24,7 +34,7 @@ void World::integrate(double t, double dt)
 
 void World::render(double t, double dt)
 {
-	auto camera_dir = camera.position +  glm::rotate(camera.orientation, glm::vec3(1, 0, 0));
+	auto camera_dir = camera.position + glm::rotate(camera.orientation, glm::vec3(1, 0, 0));
 	auto camera_up = glm::rotate(camera.orientation, glm::vec3(0, 1, 0));
 	auto viewMatrix = glm::lookAt(camera.position, camera_dir, camera_up);
 

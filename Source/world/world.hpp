@@ -4,11 +4,23 @@
 #include <player/ship.hpp>
 #include <glm.hpp>
 #include <stl.hpp>
+#include <btBulletDynamicsCommon.h>
 
 class World
 {
 public:
 	World();
+
+	class PhysicsWorld
+	{
+	public:
+		PhysicsWorld();
+		std::unique_ptr<btCollisionWorld> world;
+	private:
+		std::unique_ptr<btBroadphaseInterface> _broadphase;
+		std::unique_ptr<btDefaultCollisionConfiguration> _collision_configuration;
+		std::unique_ptr<btDispatcher> _dispatcher;
+	} physics_world;
 
 	Environment environment;
 	Ship ship;
