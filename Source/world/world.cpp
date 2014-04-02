@@ -17,8 +17,8 @@ void World::integrate(double t, double dt)
 		enemy->integrate(t, dt);
 	}
 
-	//set camera to be be 5 units behind, and 5 units above the ship
-	camera.position = ship.position + glm::rotate(ship.orientation, glm::vec3(-10, 0, 0));
+	//set camera to be behind and above the ship
+	camera.position = ship.position + glm::rotate(ship.orientation, glm::vec3(-21, 8, 0));
 	camera.orientation = ship.orientation;
 }
 

@@ -23,9 +23,9 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
 	if (key == GLFW_KEY_S && action == GLFW_PRESS)
 		world->ship.position -= glm::vec3(1, 0, 0);
 	if (key == GLFW_KEY_A && action == GLFW_PRESS)
-		world->ship.position += glm::vec3(0, 0, 1);
-	if (key == GLFW_KEY_D && action == GLFW_PRESS)
 		world->ship.position -= glm::vec3(0, 0, 1);
+	if (key == GLFW_KEY_D && action == GLFW_PRESS)
+		world->ship.position += glm::vec3(0, 0, 1);
 	if (key == GLFW_KEY_R && action == GLFW_PRESS)
 		world->ship.position += glm::vec3(0, 1, 0);
 	if (key == GLFW_KEY_F && action == GLFW_PRESS)
