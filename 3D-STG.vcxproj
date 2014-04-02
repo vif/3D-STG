@@ -81,29 +81,33 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\environment\cylinders.cpp" />
+    <ClCompile Include="Source\environment\environment.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\model\mesh.cpp" />
     <ClCompile Include="Source\model\model.cpp" />
     <ClCompile Include="Source\player\ship.cpp" />
-    <ClCompile Include="Source\utilities\ShaderManager\shaders.cpp" />
+    <ClCompile Include="Source\utilities\ShaderManager\shadermanager.cpp" />
     <ClCompile Include="Source\world\world.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\environment\tunnel.hpp" />
+    <ClInclude Include="Source\environment\cylinders.hpp" />
+    <ClInclude Include="Source\environment\environment.hpp" />
     <ClInclude Include="Source\include\interfaces.hpp" />
     <ClInclude Include="Source\include\interfaces\drawableobject.hpp" />
     <ClInclude Include="Source\include\interfaces\enemy.hpp" />
+    <ClInclude Include="Source\include\interfaces\pose.hpp" />
     <ClInclude Include="Source\include\oglplus.hpp" />
-    <ClInclude Include="Source\include\typedefs.hpp" />
+    <ClInclude Include="Source\include\stl.hpp" />
     <ClInclude Include="Source\model\mesh.hpp" />
     <ClInclude Include="Source\model\model.hpp" />
     <ClInclude Include="Source\player\ship.hpp" />
-    <ClInclude Include="Source\utilities\ShaderManager\shaders.hpp" />
+    <ClInclude Include="Source\utilities\ShaderManager\shadermanager.hpp" />
     <ClInclude Include="Source\world\world.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\shaders\regular.frag" />
-    <None Include="Resources\shaders\regular.vert" />
+    <None Include="Resources\shaders\3d.vert" />
+    <None Include="Resources\shaders\phong.frag" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

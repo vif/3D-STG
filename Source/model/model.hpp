@@ -1,9 +1,7 @@
 #pragma once
 
-#include <assimp/scene.h>
 #include <oglplus.hpp>
-#include <vector>
-#include <memory>
+#include <stl.hpp>
 #include "mesh.hpp"
 
 namespace Model

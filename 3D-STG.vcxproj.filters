@@ -14,8 +14,14 @@
     <ClCompile Include="Source\model\mesh.cpp">
       <Filter>model</Filter>
     </ClCompile>
-    <ClCompile Include="Source\utilities\ShaderManager\shaders.cpp">
-      <Filter>utilities\shaders</Filter>
+    <ClCompile Include="Source\environment\environment.cpp">
+      <Filter>environment</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\environment\cylinders.cpp">
+      <Filter>environment</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\utilities\ShaderManager\shadermanager.cpp">
+      <Filter>utilities\shadermanager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -40,30 +46,21 @@
     <Filter Include="utilities">
       <UniqueIdentifier>{94bb01b2-1539-4149-a901-6183b39a1120}</UniqueIdentifier>
     </Filter>
-    <Filter Include="utilities\shaders">
-      <UniqueIdentifier>{bfede476-b57e-447a-babd-632c8fcf96f0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="model">
       <UniqueIdentifier>{f36c7451-ea31-4d30-8e9c-fe26ac5970e4}</UniqueIdentifier>
     </Filter>
     <Filter Include="shaders">
       <UniqueIdentifier>{4fa90262-c684-44b3-881c-f5eb573085cf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="shaders\regular">
-      <UniqueIdentifier>{6fd509a7-4282-41c7-ab89-195427e5c6dd}</UniqueIdentifier>
+    <Filter Include="utilities\shadermanager">
+      <UniqueIdentifier>{bfede476-b57e-447a-babd-632c8fcf96f0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\player\ship.hpp">
       <Filter>player</Filter>
     </ClInclude>
-    <ClInclude Include="Source\environment\tunnel.hpp">
-      <Filter>environment</Filter>
-    </ClInclude>
     <ClInclude Include="Source\include\interfaces.hpp">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\include\typedefs.hpp">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="Source\include\interfaces\drawableobject.hpp">
@@ -84,16 +81,28 @@
     <ClInclude Include="Source\model\mesh.hpp">
       <Filter>model</Filter>
     </ClInclude>
-    <ClInclude Include="Source\utilities\ShaderManager\shaders.hpp">
-      <Filter>utilities\shaders</Filter>
+    <ClInclude Include="Source\environment\environment.hpp">
+      <Filter>environment</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\environment\cylinders.hpp">
+      <Filter>environment</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\include\interfaces\pose.hpp">
+      <Filter>include\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\utilities\ShaderManager\shadermanager.hpp">
+      <Filter>utilities\shadermanager</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\include\stl.hpp">
+      <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\shaders\regular.frag">
-      <Filter>shaders\regular</Filter>
+    <None Include="Resources\shaders\phong.frag">
+      <Filter>shaders</Filter>
     </None>
-    <None Include="Resources\shaders\regular.vert">
-      <Filter>shaders\regular</Filter>
+    <None Include="Resources\shaders\3d.vert">
+      <Filter>shaders</Filter>
     </None>
   </ItemGroup>
 </Project>

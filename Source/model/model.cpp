@@ -1,4 +1,8 @@
-#include <typedefs.hpp>
+#include "model.hpp"
+
+#include <assimp/importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
 
 namespace Model
 {
@@ -76,16 +80,16 @@ namespace Model
 
 				//position
 				auto position = mesh->mVertices[vertexIndex];
-				mv.position = { position.x, position.y, position.z };
+				mv.position = { position.x, position.y, position.z, 1.0 };
 
 				//normal
 				auto normal = mesh->mNormals[vertexIndex];
-				mv.normal = { normal.x, normal.y, normal.z };
+				mv.normal = { normal.x, normal.y, normal.z, 1.0 };
 
 				if (mesh->HasVertexColors(vertexIndex))
 				{
 					auto colour = mesh->mColors[vertexIndex];
-					mv.colour = { colour->r, colour->g, colour->b };
+					mv.colour = { colour->r, colour->g, colour->b, colour->a };
 				}
 
 				vertices[vertexIndex] = mv;

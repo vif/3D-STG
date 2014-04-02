@@ -1,5 +1,8 @@
 #pragma once
 
+#include <oglplus.hpp>
+#include <glm.hpp>
+#include <stl.hpp>
 
 namespace Model
 {
@@ -13,9 +16,9 @@ namespace Model
 
 	struct Vertex
 	{
-		glm::vec3 position;
-		glm::vec3 normal;
-		glm::vec3 colour = glm::vec3(1, 1, 1);
+		glm::vec4 position;
+		glm::vec4 normal;
+		glm::vec4 colour = glm::vec4(1, 1, 1, 1);
 	};
 
 	class Mesh

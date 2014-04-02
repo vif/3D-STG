@@ -1,9 +1,13 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-#include <typedefs.hpp>
+#include <stl.hpp>
+#include <glm.hpp>
+#include <oglplus.hpp>
+#include <world/world.hpp>
+#include <utilities/ShaderManager/shadermanager.hpp>
 
 std::unique_ptr<World> world;  //world can't be initialized here, must be initialized after glew
-std::unique_ptr<Shaders::SharedShaders> Shaders::shared_shaders; //again, must be initialized after glew
+std::unique_ptr<ShaderManager> Global::shader_manager; //again, must be initialized after glew
 
 static void error_callback(int error, const char* description)
 {
@@ -14,12 +18,24 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
 {
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, GL_TRUE);
+	if (key == GLFW_KEY_W && action == GLFW_PRESS)
+		world->ship.position += glm::vec3(1, 0, 0);
+	if (key == GLFW_KEY_S && action == GLFW_PRESS)
+		world->ship.position -= glm::vec3(1, 0, 0);
+	if (key == GLFW_KEY_A && action == GLFW_PRESS)
+		world->ship.position += glm::vec3(0, 0, 1);
+	if (key == GLFW_KEY_D && action == GLFW_PRESS)
+		world->ship.position -= glm::vec3(0, 0, 1);
+	if (key == GLFW_KEY_R && action == GLFW_PRESS)
+		world->ship.position += glm::vec3(0, 1, 0);
+	if (key == GLFW_KEY_F && action == GLFW_PRESS)
+		world->ship.position -= glm::vec3(0, 1, 0);
 }
 
 static void window_size_callback(GLFWwindow* window, int width, int height)
 {
 	auto aspect_ratio = glm::golden_ratio<double>();
-	world->projectionMatrix = glm::perspective<double>(glm::radians(60.0f), aspect_ratio, 0.1, 1000);
+	world->projectionMatrix = glm::infinitePerspective<double>(glm::radians(60.0f), aspect_ratio, 0.1);
 }
 
 int main(void)
@@ -36,7 +52,7 @@ int main(void)
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	//glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
+	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 	glfwWindowHint(GLFW_SAMPLES, 4);
 	window = glfwCreateWindow(800, 640, "3D-STG", NULL, NULL);
 	if (!window)
@@ -57,7 +73,7 @@ int main(void)
 	glfwSetWindowSizeCallback(window, window_size_callback);
 
 
-	Shaders::shared_shaders = std::make_unique<Shaders::SharedShaders>();
+	Global::shader_manager = std::make_unique<ShaderManager>();
 	world = std::make_unique<World>();
 
 	{   //do the window resize callback for the initial size
@@ -68,7 +84,7 @@ int main(void)
 	}
 
 	oglplus::Context::Enable(oglplus::Capability::DepthTest);
-	//oglplus::Context::Enable(oglplus::Capability::CullFace);
+	oglplus::Context::Enable(oglplus::Capability::CullFace);
 
 	while (!glfwWindowShouldClose(window))
 	{
@@ -82,7 +98,7 @@ int main(void)
 
 	//WORKAROUND for oglplus not cleaning up properly if context destroyed
 	delete world.release();
-	delete Shaders::shared_shaders.release();
+	delete Global::shader_manager.release();
 
 	glfwDestroyWindow(window);
 	glfwTerminate();

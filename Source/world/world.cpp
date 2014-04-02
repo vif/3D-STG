@@ -1,4 +1,4 @@
-#include <typedefs.hpp>
+#include "world.hpp"
 
 World::World()
 {
@@ -8,6 +8,8 @@ void World::integrate(double t, double dt)
 {
 	//UPDATE PHYSICS WORLD
 
+	environment.integrate(t, dt);
+
 	ship.integrate(t, dt);
 
 	for (auto& enemy : enemies)
@@ -15,15 +17,18 @@ void World::integrate(double t, double dt)
 		enemy->integrate(t, dt);
 	}
 
-	//set camera to be be 10 units behind, and 5 units above the ship
-	camera.position = ship.position + glm::rotate(ship.rotation, glm::vec3(-10, 5, 0));
-	camera.rotation = ship.rotation;
+	//set camera to be be 5 units behind, and 5 units above the ship
+	camera.position = ship.position + glm::rotate(ship.orientation, glm::vec3(-10, 0, 0));
+	camera.orientation = ship.orientation;
 }
 
 void World::render(double t, double dt)
 {
-	auto viewMatrix = glm::lookAt(camera.position, glm::rotate(camera.rotation, glm::vec3(1, 0, 0)), glm::rotate(camera.rotation, glm::vec3(0, 1, 0)));
+	auto camera_dir = camera.position +  glm::rotate(camera.orientation, glm::vec3(1, 0, 0));
+	auto camera_up = glm::rotate(camera.orientation, glm::vec3(0, 1, 0));
+	auto viewMatrix = glm::lookAt(camera.position, camera_dir, camera_up);
 
+	environment.render(t, dt, camera.position, viewMatrix, projectionMatrix);
 	ship.render(t, dt, camera.position, viewMatrix, projectionMatrix);
 	for (auto& enemy : enemies)
 	{
