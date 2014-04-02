@@ -1,7 +1,6 @@
 #pragma once
 
 #include <oglplus.hpp>
-#include <stl.hpp>
 
 struct ShaderManager
 {
@@ -11,5 +10,5 @@ struct ShaderManager
 
 namespace Global
 {
-	extern std::unique_ptr<ShaderManager> shader_manager;
+	extern ShaderManager* shader_manager;
 }

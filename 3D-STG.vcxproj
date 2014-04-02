@@ -81,26 +81,30 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Source\environment\cylinders.cpp" />
+    <ClCompile Include="Source\camera\camera.cpp" />
     <ClCompile Include="Source\environment\environment.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\model\mesh.cpp" />
     <ClCompile Include="Source\model\model.cpp" />
+    <ClCompile Include="Source\object_types\drawable.cpp" />
+    <ClCompile Include="Source\object_types\scriptableobject.cpp" />
+    <ClCompile Include="Source\object_types\scriptablephysicsobject.cpp" />
     <ClCompile Include="Source\player\ship.cpp" />
     <ClCompile Include="Source\utilities\ShaderManager\shadermanager.cpp" />
     <ClCompile Include="Source\world\world.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\environment\cylinders.hpp" />
+    <ClInclude Include="Source\camera\camera.hpp" />
     <ClInclude Include="Source\environment\environment.hpp" />
-    <ClInclude Include="Source\include\interfaces.hpp" />
-    <ClInclude Include="Source\include\interfaces\drawableobject.hpp" />
-    <ClInclude Include="Source\include\interfaces\enemy.hpp" />
-    <ClInclude Include="Source\include\interfaces\pose.hpp" />
     <ClInclude Include="Source\include\oglplus.hpp" />
-    <ClInclude Include="Source\include\stl.hpp" />
     <ClInclude Include="Source\model\mesh.hpp" />
     <ClInclude Include="Source\model\model.hpp" />
+    <ClInclude Include="Source\object_types\enemy.hpp" />
+    <ClInclude Include="Source\object_types\imodelrender.hpp" />
+    <ClInclude Include="Source\object_types\iupdatable.hpp" />
+    <ClInclude Include="Source\object_types\scriptablephysicsobject.hpp" />
+    <ClInclude Include="Source\object_types\drawable.hpp" />
+    <ClInclude Include="Source\object_types\scriptableobject.hpp" />
     <ClInclude Include="Source\player\ship.hpp" />
     <ClInclude Include="Source\utilities\ShaderManager\shadermanager.hpp" />
     <ClInclude Include="Source\world\world.hpp" />

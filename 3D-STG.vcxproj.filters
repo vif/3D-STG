@@ -17,11 +17,20 @@
     <ClCompile Include="Source\environment\environment.cpp">
       <Filter>environment</Filter>
     </ClCompile>
-    <ClCompile Include="Source\environment\cylinders.cpp">
-      <Filter>environment</Filter>
-    </ClCompile>
     <ClCompile Include="Source\utilities\ShaderManager\shadermanager.cpp">
       <Filter>utilities\shadermanager</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\object_types\scriptableobject.cpp">
+      <Filter>object_types</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\object_types\scriptablephysicsobject.cpp">
+      <Filter>object_types</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\object_types\drawable.cpp">
+      <Filter>object_types</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\camera\camera.cpp">
+      <Filter>camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -36,9 +45,6 @@
     </Filter>
     <Filter Include="include">
       <UniqueIdentifier>{60100b6c-5a4e-4fbe-95e6-7a0889c7861e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="include\interfaces">
-      <UniqueIdentifier>{f7e74bb4-db22-4803-97ce-268f846174ff}</UniqueIdentifier>
     </Filter>
     <Filter Include="world">
       <UniqueIdentifier>{46492a99-7153-49c0-8ff0-33b61525a2b6}</UniqueIdentifier>
@@ -55,25 +61,22 @@
     <Filter Include="utilities\shadermanager">
       <UniqueIdentifier>{bfede476-b57e-447a-babd-632c8fcf96f0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="object_types">
+      <UniqueIdentifier>{0f98bf88-eafa-49b3-a62c-09fee296bff1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="camera">
+      <UniqueIdentifier>{d4e596d1-51b0-4a34-b290-4b12692ab5e0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\player\ship.hpp">
       <Filter>player</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\include\interfaces.hpp">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\include\interfaces\drawableobject.hpp">
-      <Filter>include\interfaces</Filter>
     </ClInclude>
     <ClInclude Include="Source\include\oglplus.hpp">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="Source\world\world.hpp">
       <Filter>world</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\include\interfaces\enemy.hpp">
-      <Filter>include\interfaces</Filter>
     </ClInclude>
     <ClInclude Include="Source\model\model.hpp">
       <Filter>model</Filter>
@@ -84,17 +87,29 @@
     <ClInclude Include="Source\environment\environment.hpp">
       <Filter>environment</Filter>
     </ClInclude>
-    <ClInclude Include="Source\environment\cylinders.hpp">
-      <Filter>environment</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\include\interfaces\pose.hpp">
-      <Filter>include\interfaces</Filter>
-    </ClInclude>
     <ClInclude Include="Source\utilities\ShaderManager\shadermanager.hpp">
       <Filter>utilities\shadermanager</Filter>
     </ClInclude>
-    <ClInclude Include="Source\include\stl.hpp">
-      <Filter>include</Filter>
+    <ClInclude Include="Source\object_types\enemy.hpp">
+      <Filter>object_types</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\object_types\scriptablephysicsobject.hpp">
+      <Filter>object_types</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\object_types\scriptableobject.hpp">
+      <Filter>object_types</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\object_types\imodelrender.hpp">
+      <Filter>object_types</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\object_types\drawable.hpp">
+      <Filter>object_types</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\object_types\iupdatable.hpp">
+      <Filter>object_types</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\camera\camera.hpp">
+      <Filter>camera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

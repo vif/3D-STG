@@ -2,9 +2,10 @@
 
 #include <environment/environment.hpp>
 #include <player/ship.hpp>
-#include <glm.hpp>
-#include <stl.hpp>
+#include <camera/camera.hpp>
 #include <btBulletDynamicsCommon.h>
+#include <object_types/enemy.hpp>
+
 
 class World
 {
@@ -15,23 +16,24 @@ public:
 	{
 	public:
 		PhysicsWorld();
-		std::unique_ptr<btCollisionWorld> world;
+		std::unique_ptr<btDynamicsWorld> world;
 	private:
 		std::unique_ptr<btBroadphaseInterface> _broadphase;
 		std::unique_ptr<btDefaultCollisionConfiguration> _collision_configuration;
 		std::unique_ptr<btDispatcher> _dispatcher;
+		std::unique_ptr<btSequentialImpulseConstraintSolver> _solver;
 	} physics_world;
 
 	Environment environment;
 	Ship ship;
-	std::list<std::unique_ptr<IEnemy>> enemies;
+	std::list<std::unique_ptr<Enemy>> enemies;
 
 	glm::mat4 projectionMatrix;
 
-	class Camera : public IPose{} camera;
+	Camera camera;
 
-	void integrate(double t, double dt);
-	void render(double t, double dt);
+	void Update(double dt);
+	void Render();
 private:
 	World(const World&) = delete;
 };

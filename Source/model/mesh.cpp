@@ -4,8 +4,8 @@ namespace Model
 {
 	Mesh::Mesh(oglplus::Program* program, const std::vector<Vertex>& vertices, const std::vector<GLuint>& indices, Material* material) :
 		_program(program),
-		_vertices(vertices),
-		_indices(indices),
+		vertices(vertices),
+		indices(indices),
 		_material(material),
 		diffuse_colour_uniform(*program, "diffuse_colour"),
 		ambient_colour_uniform(*program, "ambient_colour"),
@@ -16,10 +16,10 @@ namespace Model
 		_vao.Bind();
 
 		_vertexBuffer.Bind(oglplus::BufferOps::Target::Array);
-		_vertexBuffer.Data(oglplus::BufferOps::Target::Array, _vertices);
+		_vertexBuffer.Data(oglplus::BufferOps::Target::Array, vertices);
 
 		_faceBuffer.Bind(oglplus::BufferOps::Target::ElementArray);
-		_faceBuffer.Data(oglplus::BufferOps::Target::ElementArray, _indices);
+		_faceBuffer.Data(oglplus::BufferOps::Target::ElementArray, indices);
 
 		//SETUP attributes
 #define make_vaa(name) \
@@ -49,7 +49,7 @@ namespace Model
 
 		_vao.Bind();
 
-		oglplus::Context::DrawElements(oglplus::PrimitiveType::Triangles, _indices.size(), oglplus::DataType::UnsignedInt);
+		oglplus::Context::DrawElements(oglplus::PrimitiveType::Triangles, indices.size(), oglplus::DataType::UnsignedInt);
 
 		oglplus::VertexArray::Unbind(); //unbind the VAOs
 	}

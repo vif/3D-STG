@@ -1,10 +1,10 @@
 #pragma once
 
-#include <interfaces.hpp>
+#include <object_types/scriptablephysicsobject.hpp>
 #include <oglplus.hpp>
 #include <model/model.hpp>
 
-class Ship : public IDrawableObject, public IPose
+class Ship : public ScriptablePhysicsObject
 {
 public:
 	Ship();
@@ -12,8 +12,9 @@ public:
 
 	Model::Model model;
 
-	void IDrawableObject::render(double t, double dt, glm::vec3 camera_position, glm::mat4 viewMatrix, glm::mat4 projectionMatrix) override;
-	void IDrawableObject::integrate(double t, double dt) override;
+	const float weight = 100;
+
+	void Update(double dt, World* world) override;
 private:
 	Ship(const Ship&) = delete;
 };
