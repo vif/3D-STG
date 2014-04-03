@@ -24,5 +24,5 @@ model("Resources/models/player/ship.dae", &Global::shader_manager->phong3d)
 
 void Ship::Update(double dt, World* world)
 {
-	rigid_body->applyCentralImpulse(btVector3(100, 0, 0));
+	rigid_body->applyCentralImpulse(btVector3(1, 0, 0));
 }
