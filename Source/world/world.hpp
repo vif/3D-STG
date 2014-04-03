@@ -1,11 +1,11 @@
 #pragma once
 
+#include <btBulletDynamicsCommon.h>
 #include <environment/environment.hpp>
 #include <player/ship.hpp>
 #include <camera/camera.hpp>
-#include <btBulletDynamicsCommon.h>
-#include <object_types/enemy.hpp>
-
+#include <enemies/enemymanager.hpp>
+#include <input_manager/input_manager.hpp>
 
 class World
 {
@@ -27,14 +27,19 @@ public:
 
 	Environment environment;
 	Ship ship;
-	std::list<std::unique_ptr<Enemy>> enemies;
+	EnemyManager enemy_manager;
 
 	glm::mat4 projectionMatrix;
 
 	Camera camera;
 
+	enum ObjetType{SHIP, BASIC_ENEMY};
 	void Update(double dt);
 	void Render();
+
+	void CollisionDetection();
+
+	InputManager input_manager;
 private:
 	World(const World&) = delete;
 };

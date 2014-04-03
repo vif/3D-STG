@@ -56,7 +56,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <PreprocessorDefinitions>GLM_FORCE_RADIANS;GLEW_STATIC;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>DEBUG;GLM_FORCE_RADIANS;GLEW_STATIC;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
     <Link>
@@ -83,6 +83,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\camera\camera.cpp" />
+    <ClCompile Include="Source\enemies\basic.cpp" />
+    <ClCompile Include="Source\enemies\enemymanager.cpp" />
     <ClCompile Include="Source\environment\environment.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\model\mesh.cpp" />
@@ -96,8 +98,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\camera\camera.hpp" />
+    <ClInclude Include="Source\enemies\basic.hpp" />
+    <ClInclude Include="Source\enemies\enemymanager.hpp" />
     <ClInclude Include="Source\environment\environment.hpp" />
     <ClInclude Include="Source\include\oglplus.hpp" />
+    <ClInclude Include="Source\input_manager\input_manager.hpp" />
     <ClInclude Include="Source\model\mesh.hpp" />
     <ClInclude Include="Source\model\model.hpp" />
     <ClInclude Include="Source\object_types\enemy.hpp" />

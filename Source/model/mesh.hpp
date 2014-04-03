@@ -23,13 +23,13 @@ namespace Model
 	class Mesh
 	{
 	public:
-		Mesh(oglplus::Program* program, const std::vector<Vertex>& vertices, const std::vector<GLuint>& indices, Material* material);
+		Mesh(oglplus::Program* program, const std::vector<Vertex>& vertices, const std::vector<GLint>& indices, Material* material);
 		void draw();
 		oglplus::Uniform<oglplus::Vec3f> diffuse_colour_uniform;
 		oglplus::Uniform<oglplus::Vec3f> ambient_colour_uniform;
 		oglplus::Uniform<oglplus::Vec3f> specular_colour_uniform;
 		oglplus::Uniform<GLfloat>		 specular_shininess_uniform;	
-		std::vector<GLuint> indices;
+		std::vector<GLint> indices;
 		std::vector<Vertex> vertices;
 	private:
 		Mesh(const Mesh&) = delete;

@@ -6,7 +6,11 @@ Environment::Environment() :
 cylider("Resources/models/environment/cylinders.obj", &Global::shader_manager->phong3d)
 {
 	const float max_distance = 1000.0;
-	const double num_cylinders = 100;
+	double num_cylinders = 1000;
+
+#ifdef DEBUG
+	num_cylinders /= 10; //reduces number of cylinders for debug builds
+#endif 
 
 	cylinders.resize(num_cylinders);
 	for (auto& c : cylinders)

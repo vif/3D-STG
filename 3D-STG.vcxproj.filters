@@ -32,6 +32,12 @@
     <ClCompile Include="Source\camera\camera.cpp">
       <Filter>camera</Filter>
     </ClCompile>
+    <ClCompile Include="Source\enemies\basic.cpp">
+      <Filter>enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\enemies\enemymanager.cpp">
+      <Filter>enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="environment">
@@ -66,6 +72,9 @@
     </Filter>
     <Filter Include="camera">
       <UniqueIdentifier>{d4e596d1-51b0-4a34-b290-4b12692ab5e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="input_manager">
+      <UniqueIdentifier>{e1d8e9cd-915b-4ad9-b4bd-9df75180f41e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -110,6 +119,15 @@
     </ClInclude>
     <ClInclude Include="Source\camera\camera.hpp">
       <Filter>camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\input_manager\input_manager.hpp">
+      <Filter>input_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\enemies\basic.hpp">
+      <Filter>enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\enemies\enemymanager.hpp">
+      <Filter>enemies</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

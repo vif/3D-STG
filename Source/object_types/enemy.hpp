@@ -5,5 +5,6 @@
 class Enemy : public ScriptablePhysicsObject
 {
 	public:
+		bool alive = true;
 	private:
 };

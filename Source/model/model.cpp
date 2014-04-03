@@ -69,7 +69,7 @@ namespace Model
 			assert(mesh->HasNormals());
 
 			std::vector<Vertex> vertices;
-			std::vector<GLuint> indices;
+			std::vector<GLint> indices;
 
 			//VERTICES
 			//reserve the space for an additional mesh->mNumVertices vertices.
@@ -141,17 +141,21 @@ namespace Model
 			for (auto& mesh : _meshes)
 			{
 				btIndexedMesh indexed_mesh;
+
 				indexed_mesh.m_numTriangles = mesh->indices.size() / 3;
 				indexed_mesh.m_triangleIndexBase = (const unsigned char *) &mesh->indices[0];
-				indexed_mesh.m_triangleIndexStride = 3 * sizeof(mesh->indices[0]);
+				indexed_mesh.m_triangleIndexStride = 3 * sizeof(GLint);
+				indexed_mesh.m_indexType = PHY_INTEGER;
+
 				indexed_mesh.m_numVertices = mesh->vertices.size();
-				indexed_mesh.m_vertexBase = (const unsigned char *) &mesh->vertices[0].position;
-				indexed_mesh.m_vertexStride = sizeof(&mesh->vertices[0]);
+				indexed_mesh.m_vertexBase = (const unsigned char *) (&mesh->vertices[0] + offsetof(Vertex, position));
+				indexed_mesh.m_vertexStride = sizeof(Vertex);
 				indexed_mesh.m_vertexType = PHY_FLOAT; //set that we are dealing with floats
+
 				_shape_indexed_vertex_array->addIndexedMesh(indexed_mesh);
 			}
-
-			_shape = std::make_unique<btBvhTriangleMeshShape>(_shape_indexed_vertex_array.get(), true);
+			//TODO Convex Decompositions.
+			_shape = std::make_unique<btConvexTriangleMeshShape>(_shape_indexed_vertex_array.get());
 		}
 
 		return _shape.get();

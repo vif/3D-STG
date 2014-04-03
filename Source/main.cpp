@@ -13,8 +13,36 @@ static void error_callback(int error, const char* description)
 	fputs(description, stderr);
 }
 
+static void mouse_callback(GLFWwindow* window, double x, double y)
+{
+	int width;
+	int height;
+	glfwGetWindowSize(window, &width, &height);
+	//calculate such that (0, 0) is the screen center, left is positive x, and up is positive y
+	world->input_manager.x_mouse = x - (double) width / 2.0;
+	world->input_manager.y_mouse = -1*(y - (double) height / 2.0);
+}
+
+
 static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
+#define handle_key(__key) \
+	if(key == GLFW_KEY_##__key && action == GLFW_PRESS) world->input_manager.__key##_key = true; \
+	if(key == GLFW_KEY_##__key && action == GLFW_RELEASE) world->input_manager.__key##_key = false;
+
+	handle_key(W);
+	handle_key(A);
+	handle_key(S);
+	handle_key(D);
+	handle_key(Q);
+	handle_key(E);
+	handle_key(C);
+	handle_key(UP);
+	handle_key(DOWN);
+	handle_key(LEFT);
+	handle_key(RIGHT);
+	handle_key(SPACE)
+#undef handle_key
 }
 
 static void window_size_callback(GLFWwindow* window, int width, int height)
@@ -55,6 +83,7 @@ int main(void)
 	glGetError(); //clears the errors that glewInit() might have accumulated
 
 	glfwSetKeyCallback(window, key_callback);
+	glfwSetCursorPosCallback(window, mouse_callback);
 	glfwSetWindowSizeCallback(window, window_size_callback);
 
 

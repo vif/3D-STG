@@ -6,6 +6,6 @@ class Camera : public SciptableObject
 {
 public:
 	void Update(double dt, World* world) override;
-	bool attachedToShip = false;
+	bool attachedToShip = true;
 private:
 };

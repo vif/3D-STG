@@ -2,7 +2,7 @@
 
 namespace Model
 {
-	Mesh::Mesh(oglplus::Program* program, const std::vector<Vertex>& vertices, const std::vector<GLuint>& indices, Material* material) :
+	Mesh::Mesh(oglplus::Program* program, const std::vector<Vertex>& vertices, const std::vector<GLint>& indices, Material* material) :
 		_program(program),
 		vertices(vertices),
 		indices(indices),

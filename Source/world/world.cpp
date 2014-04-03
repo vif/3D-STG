@@ -20,14 +20,10 @@ void UpdateCallBackShim(btDynamicsWorld *world, btScalar timeStep)
 	w->Update(timeStep);
 }
 
-World::World()
+World::World() :
+enemy_manager(physics_world.world.get())
 {
-	physics_world.world->addRigidBody(ship.rigid_body.get());
-
-	for (auto& enemy : enemies)
-	{
-		physics_world.world->addRigidBody(enemy->rigid_body.get());
-	}
+	physics_world.world->addRigidBody(ship.rigid_body.get(), 0, 0);
 
 	physics_world.world->setInternalTickCallback(UpdateCallBackShim, static_cast<void *>(this));
 }
@@ -35,11 +31,7 @@ World::World()
 World::~World()
 {
 	physics_world.world->removeRigidBody(ship.rigid_body.get());
-
-	for (auto& enemy : enemies)
-	{
-		physics_world.world->removeRigidBody(enemy->rigid_body.get());
-	}
+	enemy_manager.RemoveRigidBodiesFromWorld(physics_world.world.get());
 }
 
 void World::Update(double dt)
@@ -49,12 +41,11 @@ void World::Update(double dt)
 
 	ship.Update(dt, this);
 
-	for (auto& enemy : enemies)
-	{
-		enemy->Update(dt, this);
-	}
+	enemy_manager.Update(dt, this);
 
 	camera.Update(dt, this);
+
+	CollisionDetection();
 }
 
 void World::Render()
@@ -65,10 +56,18 @@ void World::Render()
 
 	environment.Render(camera.position, viewMatrix, projectionMatrix);
 
-	for (auto& enemy : enemies)
-	{
-		enemy->Render(camera.position, viewMatrix, projectionMatrix);
-	}
+	enemy_manager.Render(camera.position, viewMatrix, projectionMatrix);
 
 	ship.Render(camera.position, viewMatrix, projectionMatrix);
+}
+
+void World::CollisionDetection()
+{
+	int numManifolds = physics_world.world->getDispatcher()->getNumManifolds();
+	for (int i = 0; i < numManifolds; i++)
+	{
+		btPersistentManifold* contactManifold = physics_world.world->getDispatcher()->getManifoldByIndexInternal(i);
+		auto obA = static_cast<const btCollisionObject*>(contactManifold->getBody0());
+		auto obB = static_cast<const btCollisionObject*>(contactManifold->getBody1());
+	}
 }
