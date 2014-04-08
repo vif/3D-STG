@@ -6,6 +6,7 @@
 #include <camera/camera.hpp>
 #include <enemies/enemymanager.hpp>
 #include <input_manager/input_manager.hpp>
+#include <utilities/BulletDebugDrawer/debug_drawer.hpp>
 
 class World
 {
@@ -18,6 +19,7 @@ public:
 	public:
 		PhysicsWorld();
 		std::unique_ptr<btDynamicsWorld> world;
+		btOGLDebugDrawer debug_drawer;
 	private:
 		std::unique_ptr<btBroadphaseInterface> _broadphase;
 		std::unique_ptr<btDefaultCollisionConfiguration> _collision_configuration;

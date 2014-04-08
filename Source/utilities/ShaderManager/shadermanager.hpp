@@ -6,6 +6,7 @@ struct ShaderManager
 {
 	ShaderManager();
 	oglplus::Program phong3d;
+	oglplus::Program simple;
 };
 
 namespace Global

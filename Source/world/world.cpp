@@ -1,9 +1,11 @@
 #include "world.hpp"
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/quaternion.hpp>
+#include <utilities/ShaderManager/shadermanager.hpp>
 
 
-World::PhysicsWorld::PhysicsWorld()
+World::PhysicsWorld::PhysicsWorld() :
+debug_drawer(&Global::shader_manager->simple)
 {
 	_broadphase = std::make_unique<btDbvtBroadphase>();
 	_collision_configuration = std::make_unique<btDefaultCollisionConfiguration>();
@@ -12,6 +14,7 @@ World::PhysicsWorld::PhysicsWorld()
 
 	world = std::make_unique<btDiscreteDynamicsWorld>(_dispatcher.get(), _broadphase.get(), _solver.get(),  _collision_configuration.get());
 	world->setGravity({ 0, 0, 0 });
+	world->setDebugDrawer(&debug_drawer);
 }
 
 void UpdateCallBackShim(btDynamicsWorld *world, btScalar timeStep)
@@ -59,6 +62,12 @@ void World::Render()
 	enemy_manager.Render(camera.position, viewMatrix, projectionMatrix);
 
 	ship.Render(camera.position, viewMatrix, projectionMatrix);
+
+	if (true)
+	{
+		physics_world.world->debugDrawWorld(); //setups up the data to draw
+		physics_world.debug_drawer.drawAndClear(viewMatrix, projectionMatrix);
+	}
 }
 
 void World::CollisionDetection()

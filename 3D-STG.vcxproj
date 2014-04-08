@@ -93,6 +93,7 @@
     <ClCompile Include="Source\object_types\scriptableobject.cpp" />
     <ClCompile Include="Source\object_types\scriptablephysicsobject.cpp" />
     <ClCompile Include="Source\player\ship.cpp" />
+    <ClCompile Include="Source\utilities\BulletDebugDrawer\debug_drawer.cpp" />
     <ClCompile Include="Source\utilities\ShaderManager\shadermanager.cpp" />
     <ClCompile Include="Source\world\world.cpp" />
   </ItemGroup>
@@ -112,12 +113,14 @@
     <ClInclude Include="Source\object_types\drawable.hpp" />
     <ClInclude Include="Source\object_types\scriptableobject.hpp" />
     <ClInclude Include="Source\player\ship.hpp" />
+    <ClInclude Include="Source\utilities\BulletDebugDrawer\debug_drawer.hpp" />
     <ClInclude Include="Source\utilities\ShaderManager\shadermanager.hpp" />
     <ClInclude Include="Source\world\world.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\shaders\3d.vert" />
     <None Include="Resources\shaders\phong.frag" />
+    <None Include="Resources\shaders\simple.frag" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

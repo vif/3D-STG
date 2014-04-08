@@ -34,5 +34,6 @@ oglplus::Program CreateShader(std::string vertexShaderFilePath, std::string frag
 
 ShaderManager::ShaderManager()
 {
+	simple = CreateShader("Resources/shaders/3d.vert", "Resources/shaders/simple.frag");
 	phong3d = CreateShader("Resources/shaders/3d.vert", "Resources/shaders/phong.frag");
 }

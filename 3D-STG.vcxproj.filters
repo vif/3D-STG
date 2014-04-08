@@ -38,6 +38,9 @@
     <ClCompile Include="Source\enemies\enemymanager.cpp">
       <Filter>enemies</Filter>
     </ClCompile>
+    <ClCompile Include="Source\utilities\BulletDebugDrawer\debug_drawer.cpp">
+      <Filter>utilities\bulletdebugdrawer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="environment">
@@ -75,6 +78,9 @@
     </Filter>
     <Filter Include="input_manager">
       <UniqueIdentifier>{e1d8e9cd-915b-4ad9-b4bd-9df75180f41e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utilities\bulletdebugdrawer">
+      <UniqueIdentifier>{dbac5a9a-4ca3-454d-bb19-0395921cc431}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -129,12 +135,18 @@
     <ClInclude Include="Source\enemies\enemymanager.hpp">
       <Filter>enemies</Filter>
     </ClInclude>
+    <ClInclude Include="Source\utilities\BulletDebugDrawer\debug_drawer.hpp">
+      <Filter>utilities\bulletdebugdrawer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\shaders\phong.frag">
       <Filter>shaders</Filter>
     </None>
     <None Include="Resources\shaders\3d.vert">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="Resources\shaders\simple.frag">
       <Filter>shaders</Filter>
     </None>
   </ItemGroup>
