@@ -16,7 +16,7 @@ public:
 
 	void Update(double dt) override;
 
-	struct Input
+	struct
 	{
 		bool follow_ship = false;
 

@@ -44,7 +44,7 @@ public:
 	InputManager input_manager;
 	DisplayInfo display_info;
 
-	struct Input
+	struct
 	{
 		bool draw_physics_debug = false;
 	} input;

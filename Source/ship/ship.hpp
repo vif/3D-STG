@@ -13,7 +13,7 @@ public:
 
 	void Update(double dt) override;
 
-	struct Input
+	struct
 	{
 		bool 
 			propel_forward,
