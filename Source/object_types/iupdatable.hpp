@@ -1,10 +1,8 @@
 #pragma once
 
-class World;
-
 class IUpdatable
 {
 public:
-	virtual void Update(double dt, World* world) = 0;
+	virtual void Update(double dt) = 0;
 private:
 };

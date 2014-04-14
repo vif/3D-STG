@@ -15,11 +15,11 @@ namespace Model
 		//UPLOAD the data onto the GPU
 		_vao.Bind();
 
-		_vertexBuffer.Bind(oglplus::BufferOps::Target::Array);
-		_vertexBuffer.Data(oglplus::BufferOps::Target::Array, vertices);
+		_vertex_buffer.Bind(oglplus::BufferOps::Target::Array);
+		_vertex_buffer.Data(oglplus::BufferOps::Target::Array, vertices);
 
-		_faceBuffer.Bind(oglplus::BufferOps::Target::ElementArray);
-		_faceBuffer.Data(oglplus::BufferOps::Target::ElementArray, indices);
+		_face_buffer.Bind(oglplus::BufferOps::Target::ElementArray);
+		_face_buffer.Data(oglplus::BufferOps::Target::ElementArray, indices);
 
 		//SETUP attributes
 #define make_vaa(name) \

@@ -2,9 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="Source\main.cpp" />
-    <ClCompile Include="Source\player\ship.cpp">
-      <Filter>player</Filter>
-    </ClCompile>
     <ClCompile Include="Source\world\world.cpp">
       <Filter>world</Filter>
     </ClCompile>
@@ -38,16 +35,22 @@
     <ClCompile Include="Source\enemies\enemymanager.cpp">
       <Filter>enemies</Filter>
     </ClCompile>
-    <ClCompile Include="Source\utilities\BulletDebugDrawer\debug_drawer.cpp">
+    <ClCompile Include="Source\input_manager\input_manager.cpp">
+      <Filter>input_manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ship\ship.cpp">
+      <Filter>ship</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\display_info\display_info.cpp">
+      <Filter>display_info</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\utilities\BulletDebugDrawer\bullet_debug_drawer.cpp">
       <Filter>utilities\bulletdebugdrawer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="environment">
       <UniqueIdentifier>{71c978b9-b48e-4330-8e55-d2e02ecbf6b1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="player">
-      <UniqueIdentifier>{de3bdf07-c171-465d-a945-0e4e184234a2}</UniqueIdentifier>
     </Filter>
     <Filter Include="enemies">
       <UniqueIdentifier>{2334ee23-6d6a-4118-bf17-5a4019a8669b}</UniqueIdentifier>
@@ -82,11 +85,14 @@
     <Filter Include="utilities\bulletdebugdrawer">
       <UniqueIdentifier>{dbac5a9a-4ca3-454d-bb19-0395921cc431}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ship">
+      <UniqueIdentifier>{f70b3bfe-a3a9-472a-b48e-c8419e21223a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="display_info">
+      <UniqueIdentifier>{5c31286d-13cb-42ea-88db-761208fef280}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\player\ship.hpp">
-      <Filter>player</Filter>
-    </ClInclude>
     <ClInclude Include="Source\include\oglplus.hpp">
       <Filter>include</Filter>
     </ClInclude>
@@ -135,7 +141,13 @@
     <ClInclude Include="Source\enemies\enemymanager.hpp">
       <Filter>enemies</Filter>
     </ClInclude>
-    <ClInclude Include="Source\utilities\BulletDebugDrawer\debug_drawer.hpp">
+    <ClInclude Include="Source\ship\ship.hpp">
+      <Filter>ship</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\display_info\display_info.hpp">
+      <Filter>display_info</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\utilities\BulletDebugDrawer\bullet_debug_drawer.hpp">
       <Filter>utilities\bulletdebugdrawer</Filter>
     </ClInclude>
   </ItemGroup>

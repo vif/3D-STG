@@ -12,11 +12,11 @@ namespace Model
 	{
 	public:
 		Model(std::string filename, oglplus::Program* program);
-		void draw(glm::vec3 camera_position, glm::mat4 modelMatrix, glm::mat4 viewMatrix, glm::mat4 projectionMatrix);
+		void draw(glm::vec3 camera_position, glm::mat4 model_matrix, glm::mat4 view_matrix, glm::mat4 projection_matrix);
 		btCollisionShape* GetCollisionShape();
 		oglplus::Uniform<oglplus::Vec3f> camera_position_uniform;
-		oglplus::Uniform<oglplus::Mat4f> normalMatrix_uniform;
-		oglplus::Uniform<oglplus::Mat4f> modelViewProjectionMatrix_uniform;
+		oglplus::Uniform<oglplus::Mat4f> normal_matrix_uniform;
+		oglplus::Uniform<oglplus::Mat4f> model_view_projection_matrix_uniform;
 	private:
 		Model(const Model&) = delete;
 		const oglplus::Program* _program;

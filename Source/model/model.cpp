@@ -10,8 +10,8 @@ namespace Model
 	Model::Model(std::string filename, oglplus::Program* program) :
 		_program(program),
 		camera_position_uniform(*program, "camera_position"),
-		normalMatrix_uniform(*program, "NormalMatrix"),
-		modelViewProjectionMatrix_uniform(*program, "ModelViewProjectionMatrix")
+		normal_matrix_uniform(*program, "NormalMatrix"),
+		model_view_projection_matrix_uniform(*program, "ModelViewProjectionMatrix")
 	{
 		Assimp::Importer imp;
 
@@ -112,17 +112,17 @@ namespace Model
 		}
 	}
 
-	void Model::draw(glm::vec3 camera_position, glm::mat4 modelMatrix, glm::mat4 viewMatrix, glm::mat4 projectionMatrix)
+	void Model::draw(glm::vec3 camera_position, glm::mat4 model_matrix, glm::mat4 view_matrix, glm::mat4 projection_matrix)
 	{
 		_program->Use();
 
-		auto modelViewMatrix = viewMatrix * modelMatrix;
-		auto normalMatrix = glm::transpose(glm::inverse(modelViewMatrix));
-		auto modelViewProjectionMatrix = projectionMatrix * modelViewMatrix;
+		auto model_view_matrix = view_matrix * model_matrix;
+		auto normal_matrix = glm::transpose(glm::inverse(model_view_matrix));
+		auto model_view_projection_matrix = projection_matrix * model_view_matrix;
 
 		camera_position_uniform.Set(camera_position);
-		normalMatrix_uniform.Set(normalMatrix);
-		modelViewProjectionMatrix_uniform.Set(modelViewProjectionMatrix);
+		normal_matrix_uniform.Set(normal_matrix);
+		model_view_projection_matrix_uniform.Set(model_view_projection_matrix);
 
 		for (auto& mesh : _meshes)
 		{

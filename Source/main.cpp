@@ -1,6 +1,5 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-#include <glm/gtc/matrix_transform.hpp>
 #include <oglplus.hpp>
 #include <world/world.hpp>
 #include <utilities/ShaderManager/shadermanager.hpp>
@@ -15,40 +14,19 @@ static void error_callback(int error, const char* description)
 
 static void mouse_callback(GLFWwindow* window, double x, double y)
 {
-	int width;
-	int height;
-	glfwGetWindowSize(window, &width, &height);
-	//calculate such that (0, 0) is the screen center, left is positive x, and up is positive y
-	world->input_manager.x_mouse = x - (double) width / 2.0;
-	world->input_manager.y_mouse = -1*(y - (double) height / 2.0);
+	world->input_manager.mouse(x, -y);
+	glfwSetCursorPos(window, 0, 0); //we are only handling delta offsets so reset to (0,0) after we done
 }
-
 
 static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
-#define handle_key(__key) \
-	if(key == GLFW_KEY_##__key && action == GLFW_PRESS) world->input_manager.__key##_key = true; \
-	if(key == GLFW_KEY_##__key && action == GLFW_RELEASE) world->input_manager.__key##_key = false;
-
-	handle_key(W);
-	handle_key(A);
-	handle_key(S);
-	handle_key(D);
-	handle_key(Q);
-	handle_key(E);
-	handle_key(C);
-	handle_key(UP);
-	handle_key(DOWN);
-	handle_key(LEFT);
-	handle_key(RIGHT);
-	handle_key(SPACE)
-#undef handle_key
+	if (key == GLFW_KEY_ESCAPE) glfwSetWindowShouldClose(window, true);
+	world->input_manager.keyboard(key, action, mods);
 }
 
 static void window_size_callback(GLFWwindow* window, int width, int height)
 {
-	auto aspect_ratio = glm::golden_ratio<double>();
-	world->projectionMatrix = glm::infinitePerspective<double>(glm::radians(60.0f), aspect_ratio, 0.1);
+	world->display_info.SetScreenSize(width, height);
 }
 
 int main(void)
@@ -67,7 +45,7 @@ int main(void)
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 	glfwWindowHint(GLFW_SAMPLES, 4);
-	window = glfwCreateWindow(800, 640, "3D-STG", NULL, NULL);
+	window = glfwCreateWindow(800, 600, "3D-STG", NULL, NULL);
 	if (!window)
 	{
 		glfwTerminate();
@@ -86,6 +64,9 @@ int main(void)
 	glfwSetCursorPosCallback(window, mouse_callback);
 	glfwSetWindowSizeCallback(window, window_size_callback);
 
+	//disable the mouse and set it initially to 0,0
+	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	glfwSetCursorPos(window, 0, 0);
 
 	Global::shader_manager = new ShaderManager();
 	world = new World();

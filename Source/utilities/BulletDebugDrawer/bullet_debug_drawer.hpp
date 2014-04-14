@@ -27,10 +27,10 @@ public:
 	};
 
 	//draws the lines we have accumulated and discards them
-	void drawAndClear(glm::mat4 viewMatrix, glm::mat4 projectionMatrix);
+	void drawAndClear(glm::mat4 view_matrix, glm::mat4 projection_matrix);
 private:
 	oglplus::Program* _program;
-	oglplus::Uniform<oglplus::Mat4f> modelViewProjectionMatrix_uniform;
+	oglplus::Uniform<oglplus::Mat4f> model_view_projection_matrix_uniform;
 	std::list<Vertex> _lines;
 	oglplus::VertexArray _vao;
 	oglplus::Buffer _vbo;

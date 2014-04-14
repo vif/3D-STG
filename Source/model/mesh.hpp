@@ -35,8 +35,8 @@ namespace Model
 		Mesh(const Mesh&) = delete;
 		const oglplus::Program* _program;
 		oglplus::VertexArray _vao;
-		oglplus::Buffer _faceBuffer;
-		oglplus::Buffer _vertexBuffer;
+		oglplus::Buffer _face_buffer;
+		oglplus::Buffer _vertex_buffer;
 		Material* _material;
 	};
 }

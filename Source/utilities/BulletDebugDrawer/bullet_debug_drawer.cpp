@@ -1,8 +1,8 @@
-#include "debug_drawer.hpp"
+#include "bullet_debug_drawer.hpp"
 
 btOGLDebugDrawer::btOGLDebugDrawer(oglplus::Program* program) :
 _program(program),
-modelViewProjectionMatrix_uniform(*program, "ModelViewProjectionMatrix")
+model_view_projection_matrix_uniform(*program, "ModelViewProjectionMatrix")
 {
 	_vao.Bind();
 	_vbo.Bind(oglplus::BufferOps::Target::Array);
@@ -37,12 +37,12 @@ void btOGLDebugDrawer::drawLine(const btVector3& from, const btVector3& to, cons
 	_lines.push_back(vertex_to);
 }
 
-void btOGLDebugDrawer::drawAndClear(glm::mat4 viewMatrix, glm::mat4 projectionMatrix)
+void btOGLDebugDrawer::drawAndClear(glm::mat4 view_matrix, glm::mat4 projection_matrix)
 {
 	_program->Use();
 
 	//model projection is identity so we can ignore it
-	modelViewProjectionMatrix_uniform.Set(projectionMatrix * viewMatrix);
+	model_view_projection_matrix_uniform.Set(projection_matrix * view_matrix);
 
 	//copy the list into a vector so we can draw it
 	std::vector<Vertex> vl;

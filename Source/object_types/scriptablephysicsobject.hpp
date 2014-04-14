@@ -12,6 +12,6 @@ public:
 	std::unique_ptr<btDefaultMotionState> pose;
 	std::unique_ptr<btRigidBody> rigid_body;
 	virtual void IModelRender::Render(glm::vec3 camera_position, glm::mat4 viewMatrix, glm::mat4 projectionMatrix) override;
-	virtual void IUpdatable::Update(double dt, World* world) = 0;
+	virtual void IUpdatable::Update(double dt) = 0;
 private:
 };

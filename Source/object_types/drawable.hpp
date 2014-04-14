@@ -6,7 +6,7 @@
 class Drawable
 {
 public:
-	void Render(glm::vec3 camera_position, glm::mat4 modelMatrix, glm::mat4 viewMatrix, glm::mat4 projectionMatrix);
+	void Render(glm::vec3 camera_position, glm::mat4 model_matrix, glm::mat4 view_matrix, glm::mat4 projection_matrix);
 	Model::Model* model_pointer;
 private:
 };

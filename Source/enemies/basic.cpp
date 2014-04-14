@@ -1,14 +1,12 @@
 #include "basic.hpp"
+#include <ship/ship.hpp>
 
-#include <world/world.hpp>
-
-
-void BasicEnemy::Update(double dt, World* world)
+void BasicEnemy::Update(double dt)
 {
 	rigid_body->activate(true);
 
 	btTransform ship_transform;
-	world->ship.pose->getWorldTransform(ship_transform);
+	_ship->pose->getWorldTransform(ship_transform);
 	auto ship_position = ship_transform.getOrigin();
 
 	btTransform transform;

@@ -1,13 +1,14 @@
 #pragma once
 
+#include <object_types/imodelrender.hpp>
 #include <object_types/scriptableobject.hpp>
 
 class Cylinder : public SciptableObject
 {
-	void SciptableObject::Update(double dt, World* world) override {};
+	void IUpdatable::Update(double dt) override {};
 };
 
-class Environment : public SciptableObject
+class Environment : public IModelRender
 {
 public:
 	Environment();
@@ -16,7 +17,7 @@ public:
 
 	std::vector<Cylinder> cylinders;
 
-	void Update(double dt, World* world) override {};
-	void Render(glm::vec3 camera_position, glm::mat4 viewMatrix, glm::mat4 projectionMatrix) override;
+	void Render(glm::vec3 camera_position, glm::mat4 view_matrix, glm::mat4 projection_matrix) override;
 private:
+
 };

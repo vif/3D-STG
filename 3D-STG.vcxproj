@@ -83,22 +83,25 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\camera\camera.cpp" />
+    <ClCompile Include="Source\display_info\display_info.cpp" />
     <ClCompile Include="Source\enemies\basic.cpp" />
     <ClCompile Include="Source\enemies\enemymanager.cpp" />
     <ClCompile Include="Source\environment\environment.cpp" />
+    <ClCompile Include="Source\input_manager\input_manager.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\model\mesh.cpp" />
     <ClCompile Include="Source\model\model.cpp" />
     <ClCompile Include="Source\object_types\drawable.cpp" />
     <ClCompile Include="Source\object_types\scriptableobject.cpp" />
     <ClCompile Include="Source\object_types\scriptablephysicsobject.cpp" />
-    <ClCompile Include="Source\player\ship.cpp" />
-    <ClCompile Include="Source\utilities\BulletDebugDrawer\debug_drawer.cpp" />
+    <ClCompile Include="Source\ship\ship.cpp" />
+    <ClCompile Include="Source\utilities\BulletDebugDrawer\bullet_debug_drawer.cpp" />
     <ClCompile Include="Source\utilities\ShaderManager\shadermanager.cpp" />
     <ClCompile Include="Source\world\world.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\camera\camera.hpp" />
+    <ClInclude Include="Source\display_info\display_info.hpp" />
     <ClInclude Include="Source\enemies\basic.hpp" />
     <ClInclude Include="Source\enemies\enemymanager.hpp" />
     <ClInclude Include="Source\environment\environment.hpp" />
@@ -112,8 +115,8 @@
     <ClInclude Include="Source\object_types\scriptablephysicsobject.hpp" />
     <ClInclude Include="Source\object_types\drawable.hpp" />
     <ClInclude Include="Source\object_types\scriptableobject.hpp" />
-    <ClInclude Include="Source\player\ship.hpp" />
-    <ClInclude Include="Source\utilities\BulletDebugDrawer\debug_drawer.hpp" />
+    <ClInclude Include="Source\ship\ship.hpp" />
+    <ClInclude Include="Source\utilities\BulletDebugDrawer\bullet_debug_drawer.hpp" />
     <ClInclude Include="Source\utilities\ShaderManager\shadermanager.hpp" />
     <ClInclude Include="Source\world\world.hpp" />
   </ItemGroup>

@@ -25,7 +25,7 @@ model("Resources/models/player/ship.dae", &Global::shader_manager->phong3d)
 
 #include <iostream>
 
-void Ship::Update(double dt, World* world)
+void Ship::Update(double dt)
 {
 	rigid_body->activate(true);
 
@@ -34,32 +34,32 @@ void Ship::Update(double dt, World* world)
 
 	const float max_speed = 100;
 
-	if (world->input_manager.W_key == true)
+	if (input.propel_forward)
 	{
 		rigid_body->applyCentralForce(quatRotate(rotation, btVector3(max_speed, 0, 0) * dt));
 	}
-	if (world->input_manager.S_key == true)
+	if (input.propel_backward)
 	{
 		rigid_body->applyCentralForce(quatRotate(rotation, btVector3(-max_speed, 0, 0) * dt));
 	}
 
 	const float max_rotation_speed = glm::pi<float>();
 
-	if (world->input_manager.RIGHT_key == true)
+	if (input.roll_right)
 	{
 		rigid_body->applyTorque(quatRotate(rotation, btVector3(max_rotation_speed, 0, 0)) * dt);
 	}
-	if (world->input_manager.LEFT_key == true)
+	if (input.roll_left)
 	{
 		rigid_body->applyTorque(quatRotate(rotation, btVector3(-max_rotation_speed, 0, 0)) * dt);
 	}
 
-	if (world->input_manager.UP_key)
+	if (input.pitch_up)
 	{
 		rigid_body->applyTorque(quatRotate(rotation, btVector3(0, 0, max_rotation_speed)) * dt);
 	}
 
-	if (world->input_manager.DOWN_key)
+	if (input.pitch_down)
 	{
 		rigid_body->applyTorque(quatRotate(rotation, btVector3(0, 0, -max_rotation_speed)) * dt);
 	}

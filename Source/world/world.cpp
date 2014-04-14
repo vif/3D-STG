@@ -4,6 +4,30 @@
 #include <utilities/ShaderManager/shadermanager.hpp>
 
 
+void UpdateCallBackShim(btDynamicsWorld *world, btScalar timeStep)
+{
+	World *w = static_cast<World *>(world->getWorldUserInfo());
+	w->Update(timeStep);
+}
+
+World::World() :
+input_manager(this)
+{
+	camera = std::make_unique<Camera>(&ship);
+	enemy_manager = std::make_unique<EnemyManager>(physics_world.world.get(), &ship);
+
+	physics_world.world->addRigidBody(ship.rigid_body.get(), 0, 0);
+
+	physics_world.world->setInternalTickCallback(UpdateCallBackShim, static_cast<void *>(this));
+}
+
+World::~World()
+{
+	physics_world.world->removeRigidBody(ship.rigid_body.get());
+	enemy_manager->RemoveRigidBodiesFromWorld();
+}
+
+
 World::PhysicsWorld::PhysicsWorld() :
 debug_drawer(&Global::shader_manager->simple)
 {
@@ -17,56 +41,36 @@ debug_drawer(&Global::shader_manager->simple)
 	world->setDebugDrawer(&debug_drawer);
 }
 
-void UpdateCallBackShim(btDynamicsWorld *world, btScalar timeStep)
-{
-	World *w = static_cast<World *>(world->getWorldUserInfo());
-	w->Update(timeStep);
-}
-
-World::World() :
-enemy_manager(physics_world.world.get())
-{
-	physics_world.world->addRigidBody(ship.rigid_body.get(), 0, 0);
-
-	physics_world.world->setInternalTickCallback(UpdateCallBackShim, static_cast<void *>(this));
-}
-
-World::~World()
-{
-	physics_world.world->removeRigidBody(ship.rigid_body.get());
-	enemy_manager.RemoveRigidBodiesFromWorld(physics_world.world.get());
-}
-
 void World::Update(double dt)
 {
 	//UPDATE THE WORLD!
-	environment.Update(dt, this);
+	ship.Update(dt);
 
-	ship.Update(dt, this);
+	enemy_manager->Update(dt);
 
-	enemy_manager.Update(dt, this);
-
-	camera.Update(dt, this);
+	camera->Update(dt);
 
 	CollisionDetection();
 }
 
 void World::Render()
 {
-	auto camera_dir = camera.position + glm::rotate(camera.orientation, glm::vec3(1, 0, 0));
-	auto camera_up = glm::rotate(camera.orientation, glm::vec3(0, 1, 0));
-	auto viewMatrix = glm::lookAt(camera.position, camera_dir, camera_up);
+	auto camera_dir = camera->position + glm::rotate(camera->orientation, glm::vec3(1, 0, 0));
+	auto camera_up = glm::rotate(camera->orientation, glm::vec3(0, 1, 0));
+	auto view_matrix = glm::lookAt(camera->position, camera_dir, camera_up);
 
-	environment.Render(camera.position, viewMatrix, projectionMatrix);
+	auto projection_matrix = display_info.getProjectionMatrix();
 
-	enemy_manager.Render(camera.position, viewMatrix, projectionMatrix);
+	environment.Render(camera->position, view_matrix, projection_matrix);
 
-	ship.Render(camera.position, viewMatrix, projectionMatrix);
+	enemy_manager->Render(camera->position, view_matrix, projection_matrix);
 
-	if (true)
+	ship.Render(camera->position, view_matrix, projection_matrix);
+
+	if (input.draw_physics_debug)
 	{
 		physics_world.world->debugDrawWorld(); //setups up the data to draw
-		physics_world.debug_drawer.drawAndClear(viewMatrix, projectionMatrix);
+		physics_world.debug_drawer.drawAndClear(view_matrix, projection_matrix);
 	}
 }
 

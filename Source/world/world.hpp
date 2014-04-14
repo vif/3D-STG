@@ -2,11 +2,12 @@
 
 #include <btBulletDynamicsCommon.h>
 #include <environment/environment.hpp>
-#include <player/ship.hpp>
+#include <ship/ship.hpp>
 #include <camera/camera.hpp>
 #include <enemies/enemymanager.hpp>
 #include <input_manager/input_manager.hpp>
-#include <utilities/BulletDebugDrawer/debug_drawer.hpp>
+#include <display_info/display_info.hpp>
+#include <utilities/BulletDebugDrawer/bullet_debug_drawer.hpp>
 
 class World
 {
@@ -27,13 +28,12 @@ public:
 		std::unique_ptr<btSequentialImpulseConstraintSolver> _solver;
 	} physics_world;
 
+
 	Environment environment;
 	Ship ship;
-	EnemyManager enemy_manager;
-
-	glm::mat4 projectionMatrix;
-
-	Camera camera;
+	//camera & input manager need reference to ship, so forward declare them
+	std::unique_ptr<Camera> camera;
+	std::unique_ptr<EnemyManager> enemy_manager;
 
 	enum ObjetType{SHIP, BASIC_ENEMY};
 	void Update(double dt);
@@ -42,6 +42,12 @@ public:
 	void CollisionDetection();
 
 	InputManager input_manager;
+	DisplayInfo display_info;
+
+	struct Input
+	{
+		bool draw_physics_debug = false;
+	} input;
 private:
 	World(const World&) = delete;
 };
