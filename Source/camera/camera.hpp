@@ -18,7 +18,7 @@ public:
 
 	struct
 	{
-		bool follow_ship = false;
+		bool toggle_ship_follow = false;
 
 		double mouse_delta_x = 0;
 		double mouse_delta_y = 0;
@@ -30,4 +30,5 @@ public:
 	} input;
 private:
 	Ship* _ship;
+	bool _follow_ship = false;
 };

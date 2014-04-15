@@ -6,7 +6,29 @@ void Camera::Update(double dt)
 {
 	double mouse_sensitivity = 20.0;
 
-	if (input.follow_ship)
+	//handle toggling between free move and following the ship
+	if (input.toggle_ship_follow)
+	{
+		if (_follow_ship == true)
+		{
+			//sets free move pose & position to current one
+			free_move_orientation = orientation;
+			free_move_position = position;
+		}
+		else //_follow_ship == false
+		{
+			//sets cameras own rotation to nothing
+			camera_follow_orientation = glm::quat();
+		}
+
+		//toggle whether we follow or not
+		_follow_ship = !_follow_ship;
+
+		//set the input to indicate we have handled the toggle
+		input.toggle_ship_follow = false;
+	}
+
+	if (_follow_ship) //attached to ship
 	{
 		btTransform transform;
 		_ship->pose->getWorldTransform(transform);
@@ -22,7 +44,7 @@ void Camera::Update(double dt)
 		//compose the ship orientation with the camera orientation
 		orientation = glm::quat(ship_rot.w(), ship_rot.x(), ship_rot.y(), ship_rot.z()) * camera_follow_orientation;
 	}
-	else
+	else //free move
 	{
 		free_move_orientation = glm::rotate(free_move_orientation, (float)(input.mouse_delta_x * dt / mouse_sensitivity), glm::vec3(0, -1, 0));
 		free_move_orientation = glm::rotate(free_move_orientation, (float)(input.mouse_delta_y * dt / mouse_sensitivity), glm::vec3(0, 0, 1));
