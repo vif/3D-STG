@@ -9,11 +9,6 @@ class Camera : public SciptableObject
 public:
 	Camera(Ship* ship) : _ship(ship){}
 
-	glm::vec3 free_move_position;
-	glm::quat free_move_orientation;
-
-	glm::quat camera_follow_orientation;
-
 	void Update(double dt) override;
 
 	struct
@@ -28,7 +23,15 @@ public:
 		bool strafe_left = false;
 		bool strafe_right = false;
 	} input;
+
+	//clamps the pitch (up and down viewing)
+	const float pitch_clamp = glm::radians(80.0f);
 private:
 	Ship* _ship;
+
 	bool _follow_ship = false;
+
+	//rotations stored separately to avoid loss of significance
+	glm::quat _pitch;
+	glm::quat _yaw;
 };

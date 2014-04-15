@@ -4,21 +4,14 @@
 
 void Camera::Update(double dt)
 {
-	double mouse_sensitivity = 20.0;
-
 	//handle toggling between free move and following the ship
 	if (input.toggle_ship_follow)
 	{
-		if (_follow_ship == true)
+		if (!_follow_ship)
 		{
-			//sets free move pose & position to current one
-			free_move_orientation = orientation;
-			free_move_position = position;
-		}
-		else //_follow_ship == false
-		{
-			//sets cameras own rotation to nothing
-			camera_follow_orientation = glm::quat();
+			//resets the rotations
+			_pitch = glm::quat();
+			_yaw = glm::quat();
 		}
 
 		//toggle whether we follow or not
@@ -27,6 +20,21 @@ void Camera::Update(double dt)
 		//set the input to indicate we have handled the toggle
 		input.toggle_ship_follow = false;
 	}
+
+	double mouse_sensitivity = 200.0;
+
+	//keep pitch and yaw separate so we don't experience loss of significance.
+	_yaw = glm::rotate(_yaw, (float)(input.mouse_delta_x / mouse_sensitivity), glm::vec3(0, -1, 0));
+	//TODO: make clamping less ugly
+	auto proposed_pitch = glm::rotate(_pitch, (float)(input.mouse_delta_y / mouse_sensitivity), glm::vec3(0, 0, 1));
+	if (glm::abs(glm::eulerAngles(proposed_pitch)).z < pitch_clamp)
+	{
+		_pitch = proposed_pitch;
+	}
+
+	//since the deltas are cumulative reset them
+	input.mouse_delta_x = 0;
+	input.mouse_delta_y = 0;
 
 	if (_follow_ship) //attached to ship
 	{
@@ -38,44 +46,33 @@ void Camera::Update(double dt)
 
 		position = { ship_pos.x(), ship_pos.y(), ship_pos.z() };
 
-		camera_follow_orientation = glm::rotate(camera_follow_orientation, (float)(input.mouse_delta_x * dt / mouse_sensitivity), glm::vec3(0, -1, 0));
-		camera_follow_orientation = glm::rotate(camera_follow_orientation, (float)(input.mouse_delta_y * dt / mouse_sensitivity), glm::vec3(0, 0, 1));
-
 		//compose the ship orientation with the camera orientation
-		orientation = glm::quat(ship_rot.w(), ship_rot.x(), ship_rot.y(), ship_rot.z()) * camera_follow_orientation;
+		orientation = _yaw * glm::quat(ship_rot.w(), ship_rot.x(), ship_rot.y(), ship_rot.z()) * _pitch;
 	}
 	else //free move
 	{
-		free_move_orientation = glm::rotate(free_move_orientation, (float)(input.mouse_delta_x * dt / mouse_sensitivity), glm::vec3(0, -1, 0));
-		free_move_orientation = glm::rotate(free_move_orientation, (float)(input.mouse_delta_y * dt / mouse_sensitivity), glm::vec3(0, 0, 1));
-
 		double movementspeed = 50;
 
 		if (input.move_forward)
 		{
-			free_move_position += glm::rotate(free_move_orientation, glm::vec3(movementspeed, 0, 0) * (float)dt);
+			position += glm::rotate(orientation, glm::vec3(movementspeed, 0, 0) * (float)dt);
 		}
 
 		if (input.move_backward)
 		{
-			free_move_position += glm::rotate(free_move_orientation, glm::vec3(-movementspeed, 0, 0) * (float)dt);
+			position += glm::rotate(orientation, glm::vec3(-movementspeed, 0, 0) * (float)dt);
 		}
 
 		if (input.strafe_left)
 		{
-			free_move_position += glm::rotate(free_move_orientation, glm::vec3(0, 0, -movementspeed) * (float)dt);
+			position += glm::rotate(orientation, glm::vec3(0, 0, -movementspeed) * (float)dt);
 		}
 
 		if (input.strafe_right)
 		{
-			free_move_position += glm::rotate(free_move_orientation, glm::vec3(0, 0, movementspeed) * (float)dt);
+			position += glm::rotate(orientation, glm::vec3(0, 0, movementspeed) * (float)dt);
 		}
 
-		position = free_move_position;
-		orientation = free_move_orientation;
+		orientation = _yaw * _pitch;
 	}
-
-	//reset any changes in the mouse positions we might have accumulated
-	input.mouse_delta_x = 0;
-	input.mouse_delta_y = 0;
 }
