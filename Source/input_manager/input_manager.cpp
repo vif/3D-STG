@@ -38,6 +38,8 @@ void InputManager::keyboard(int key, int action, int mods)
 	manage_held_key(GLFW_KEY_K, _world->camera->input.move_backward);
 	manage_held_key(GLFW_KEY_J, _world->camera->input.strafe_left);
 	manage_held_key(GLFW_KEY_L, _world->camera->input.strafe_right);
+	manage_held_key(GLFW_KEY_O, _world->camera->input.move_up);
+	manage_held_key(GLFW_KEY_U, _world->camera->input.move_down);
 	manage_pressed_key(GLFW_KEY_C, _world->camera->input.toggle_ship_follow);
 
 	//WORLD Inputs

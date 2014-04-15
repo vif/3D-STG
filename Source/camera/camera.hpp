@@ -22,6 +22,8 @@ public:
 		bool move_backward = false;
 		bool strafe_left = false;
 		bool strafe_right = false;
+		bool move_up = false;
+		bool move_down = false;
 	} input;
 
 	//clamps the pitch (up and down viewing)

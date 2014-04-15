@@ -51,7 +51,7 @@ void Camera::Update(double dt)
 	}
 	else //free move
 	{
-		double movementspeed = 50;
+		double movementspeed = 10;
 
 		if (input.move_forward)
 		{
@@ -71,6 +71,16 @@ void Camera::Update(double dt)
 		if (input.strafe_right)
 		{
 			position += glm::rotate(orientation, glm::vec3(0, 0, movementspeed) * (float)dt);
+		}
+
+		if (input.move_up)
+		{
+			position += glm::rotate(orientation, glm::vec3(0, movementspeed, 0) * (float)dt);
+		}
+
+		if (input.move_down)
+		{
+			position += glm::rotate(orientation, glm::vec3(0, -movementspeed, 0) * (float)dt);
 		}
 
 		orientation = _yaw * _pitch;
