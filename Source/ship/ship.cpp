@@ -4,8 +4,8 @@
 #include <world/world.hpp>
 
 Ship::Ship() :
-model("Resources/models/player/ship.dae", &Global::shader_manager->phong3d),
-ScriptableObject(ScriptableObject::ObjectType::SIMULATED, glm::vec3(10, 0, 0), glm::quat(), &model, 100)
+Model("Resources/models/player/ship.dae", &Global::shader_manager->phong3d),
+ScriptableObject(ScriptableObject::ObjectType::SIMULATED, glm::vec3(10, 0, 0), glm::quat(), static_cast<Model*>(this), 100)
 {
 	rigid_body->setUserIndex(World::ObjetType::SHIP);
 	rigid_body->setUserPointer(static_cast<void *>(this));
@@ -32,7 +32,7 @@ void Ship::Update(double dt)
 		rigid_body->applyCentralForce(quatRotate(rotation, btVector3(-max_speed, 0, 0) * dt));
 	}
 
-	const float max_rotation_speed = glm::pi<float>();
+	const float max_rotation_speed = 20*glm::pi<float>();
 
 	if (input.roll_right)
 	{

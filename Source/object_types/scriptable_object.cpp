@@ -12,10 +12,8 @@ DrawableObject(init_pos, init_orientation, model)
 	if (type == ObjectType::SIMULATED)
 	{
 		shape = model->GetCollisionShape();
-
-		//TODO:fix
-		//shape->calculateLocalInertia(weight, inertia);
-		inertia = btVector3(10, 10, 10);
+		shape->calculateLocalInertia(weight, inertia);
+		assert(inertia != btVector3(0, 0, 0));
 	}
 	else
 	{

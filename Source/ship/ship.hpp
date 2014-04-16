@@ -2,12 +2,10 @@
 
 #include <object_types/scriptable_object.hpp>
 
-class Ship : public ScriptableObject
+class Ship : private Model::Model, public ScriptableObject //crappy multiple inheritance because base class get initialized (in order) before non-static members, so couldn't have Model as a member
 {
 public:
 	Ship();
-
-	Model::Model model;
 
 	void Update(double dt) override;
 
