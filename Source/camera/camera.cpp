@@ -54,7 +54,7 @@ void Camera::Update(double dt)
 		auto ship_pos = transform.getOrigin() + quatRotate(ship_rot, btVector3(5, 0, 0));
 
 		//compose the ship orientation with the camera orientation
-		auto orientation = _yaw * toQuat(ship_rot) * _pitch;
+		auto orientation = toQuat(ship_rot) * _yaw  * _pitch;
 		pose->setWorldTransform(btTransform(toQuat(orientation), ship_pos));
 	}
 	else //free move
