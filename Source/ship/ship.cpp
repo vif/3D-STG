@@ -4,20 +4,9 @@
 #include <world/world.hpp>
 
 Ship::Ship() :
-model("Resources/models/player/ship.dae", &Global::shader_manager->phong3d)
+model("Resources/models/player/ship.dae", &Global::shader_manager->phong3d),
+ScriptableObject(ScriptableObject::ObjectType::SIMULATED, glm::vec3(10, 0, 0), glm::quat(), &model, 100)
 {
-	model_pointer = &model;
-
-	pose = std::make_unique<btDefaultMotionState>(btTransform(btQuaternion(0, 0, 0, 1), btVector3(10, 0, 0)));
-
-	//auto shape = model.GetCollisionShape();
-	auto shape = new btBoxShape(btVector3(10, 10, 10));
-
-	btVector3 inertia = btVector3(10, 10, 10);
-
-	btRigidBody::btRigidBodyConstructionInfo rigidBodyCI(weight, pose.get(), shape, inertia);
-
-	rigid_body = std::make_unique<btRigidBody>(rigidBodyCI);
 	rigid_body->setUserIndex(World::ObjetType::SHIP);
 	rigid_body->setUserPointer(static_cast<void *>(this));
 	rigid_body->setCollisionFlags(rigid_body->getCollisionFlags() | btCollisionObject::CF_CUSTOM_MATERIAL_CALLBACK);

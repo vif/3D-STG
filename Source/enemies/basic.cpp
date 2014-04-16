@@ -1,5 +1,4 @@
 #include "basic.hpp"
-#include <ship/ship.hpp>
 
 void BasicEnemy::Update(double dt)
 {
@@ -12,6 +11,8 @@ void BasicEnemy::Update(double dt)
 	btTransform transform;
 	pose->getWorldTransform(transform);
 	auto position = transform.getOrigin();
+
+	auto movementspeed = 10;
 
 	rigid_body->applyCentralForce((ship_position - position).normalize() * movementspeed * dt);
 }

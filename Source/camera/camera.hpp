@@ -1,13 +1,12 @@
 #pragma once
 
-#include <object_types/scriptableobject.hpp>
+#include <object_types/scriptable_object.hpp>
+#include <ship/ship.hpp>
 
-class Ship;
-
-class Camera : public SciptableObject
+class Camera : public ScriptableObject
 {
 public:
-	Camera(Ship* ship) : _ship(ship){}
+	Camera(Ship* ship);
 
 	void Update(double dt) override;
 
@@ -27,8 +26,10 @@ public:
 	} input;
 
 	//clamps the pitch (up and down viewing)
-	const float pitch_clamp = glm::radians(80.0f);
+	const float pitch_clamp = glm::radians(89.0f);
 private:
+	Camera(const Camera&) = delete;
+
 	Ship* _ship;
 
 	bool _follow_ship = false;

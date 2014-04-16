@@ -17,15 +17,6 @@
     <ClCompile Include="Source\utilities\ShaderManager\shadermanager.cpp">
       <Filter>utilities\shadermanager</Filter>
     </ClCompile>
-    <ClCompile Include="Source\object_types\scriptableobject.cpp">
-      <Filter>object_types</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\object_types\scriptablephysicsobject.cpp">
-      <Filter>object_types</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\object_types\drawable.cpp">
-      <Filter>object_types</Filter>
-    </ClCompile>
     <ClCompile Include="Source\camera\camera.cpp">
       <Filter>camera</Filter>
     </ClCompile>
@@ -47,6 +38,15 @@
     <ClCompile Include="Source\utilities\BulletDebugDrawer\bullet_debug_drawer.cpp">
       <Filter>utilities\bulletdebugdrawer</Filter>
     </ClCompile>
+    <ClCompile Include="Source\object_types\scriptable_object.cpp">
+      <Filter>object_types</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\utilities\MathConversions\math_conversions.cpp">
+      <Filter>utilities\mathconversions</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\object_types\drawable_object.cpp">
+      <Filter>object_types</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="environment">
@@ -54,9 +54,6 @@
     </Filter>
     <Filter Include="enemies">
       <UniqueIdentifier>{2334ee23-6d6a-4118-bf17-5a4019a8669b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="include">
-      <UniqueIdentifier>{60100b6c-5a4e-4fbe-95e6-7a0889c7861e}</UniqueIdentifier>
     </Filter>
     <Filter Include="world">
       <UniqueIdentifier>{46492a99-7153-49c0-8ff0-33b61525a2b6}</UniqueIdentifier>
@@ -91,11 +88,14 @@
     <Filter Include="display_info">
       <UniqueIdentifier>{5c31286d-13cb-42ea-88db-761208fef280}</UniqueIdentifier>
     </Filter>
+    <Filter Include="includes">
+      <UniqueIdentifier>{60100b6c-5a4e-4fbe-95e6-7a0889c7861e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utilities\mathconversions">
+      <UniqueIdentifier>{9ac40500-4fa2-4d44-ab39-66ad6ff58c00}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\include\oglplus.hpp">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="Source\world\world.hpp">
       <Filter>world</Filter>
     </ClInclude>
@@ -114,16 +114,7 @@
     <ClInclude Include="Source\object_types\enemy.hpp">
       <Filter>object_types</Filter>
     </ClInclude>
-    <ClInclude Include="Source\object_types\scriptablephysicsobject.hpp">
-      <Filter>object_types</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\object_types\scriptableobject.hpp">
-      <Filter>object_types</Filter>
-    </ClInclude>
     <ClInclude Include="Source\object_types\imodelrender.hpp">
-      <Filter>object_types</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\object_types\drawable.hpp">
       <Filter>object_types</Filter>
     </ClInclude>
     <ClInclude Include="Source\object_types\iupdatable.hpp">
@@ -149,6 +140,18 @@
     </ClInclude>
     <ClInclude Include="Source\utilities\BulletDebugDrawer\bullet_debug_drawer.hpp">
       <Filter>utilities\bulletdebugdrawer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\object_types\scriptable_object.hpp">
+      <Filter>object_types</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\includes\oglplus.hpp">
+      <Filter>includes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\utilities\MathConversions\math_conversions.hpp">
+      <Filter>utilities\mathconversions</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\object_types\drawable_object.hpp">
+      <Filter>object_types</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

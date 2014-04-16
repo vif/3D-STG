@@ -1,6 +1,7 @@
 #include "environment.hpp"
 #include <utilities/ShaderManager/shadermanager.hpp>
 #include <glm/gtc/random.hpp>
+#include <utilities/MathConversions/math_conversions.hpp>
 
 Environment::Environment() :
 cylider("Resources/models/environment/cylinders.obj", &Global::shader_manager->phong3d)
@@ -15,9 +16,9 @@ cylider("Resources/models/environment/cylinders.obj", &Global::shader_manager->p
 	cylinders.resize(num_cylinders);
 	for (auto& c : cylinders)
 	{
-		c.model_pointer = &cylider;
-		c.position = glm::ballRand(max_distance);
-		c.orientation = { glm::linearRand(0.0f, 1.0f), glm::linearRand(0.0f, 1.0f), glm::linearRand(0.0f, 1.0f), glm::linearRand(0.0f, 1.0f) };
+		auto pos = glm::ballRand(max_distance);
+		auto orientation = glm::quat(glm::linearRand(0.0f, 1.0f), glm::linearRand(0.0f, 1.0f), glm::linearRand(0.0f, 1.0f), glm::linearRand(0.0f, 1.0f));
+		c = std::make_unique<Cylinder>(&cylider, pos, orientation);
 	}
 }
 
@@ -25,6 +26,6 @@ void Environment::Render(glm::vec3 camera_position, glm::mat4 view_matrix, glm::
 {
 	for (auto& c : cylinders)
 	{
-		c.Render(camera_position, view_matrix, projection_matrix);
+		c->Render(camera_position, view_matrix, projection_matrix);
 	}
 }

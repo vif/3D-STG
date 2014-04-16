@@ -2,6 +2,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/quaternion.hpp>
 #include <utilities/ShaderManager/shadermanager.hpp>
+#include <utilities/MathConversions/math_conversions.hpp>
 
 
 void UpdateCallBackShim(btDynamicsWorld *world, btScalar timeStep)
@@ -17,6 +18,7 @@ input_manager(this)
 	enemy_manager = std::make_unique<EnemyManager>(physics_world.world.get(), &ship);
 
 	physics_world.world->addRigidBody(ship.rigid_body.get(), 0, 0);
+	physics_world.world->addRigidBody(camera->rigid_body.get(), 0, 0);
 
 	physics_world.world->setInternalTickCallback(UpdateCallBackShim, static_cast<void *>(this));
 }
@@ -24,6 +26,7 @@ input_manager(this)
 World::~World()
 {
 	physics_world.world->removeRigidBody(ship.rigid_body.get());
+	physics_world.world->removeRigidBody(camera->rigid_body.get());
 	enemy_manager->RemoveRigidBodiesFromWorld();
 }
 
@@ -55,17 +58,21 @@ void World::Update(double dt)
 
 void World::Render()
 {
-	auto camera_dir = camera->position + glm::rotate(camera->orientation, glm::vec3(1, 0, 0));
-	auto camera_up = glm::rotate(camera->orientation, glm::vec3(0, 1, 0));
-	auto view_matrix = glm::lookAt(camera->position, camera_dir, camera_up);
+	btTransform camera_world_position;
+	camera->pose->getWorldTransform(camera_world_position);
+	auto camera_position = toVec3(camera_world_position.getOrigin());
+	auto camera_orientation = toQuat(camera_world_position.getRotation());
+	auto camera_dir = camera_position + glm::rotate(camera_orientation, glm::vec3(1, 0, 0));
+	auto camera_up = glm::rotate(camera_orientation, glm::vec3(0, 1, 0));
+	auto view_matrix = glm::lookAt(camera_position, camera_dir, camera_up);
 
 	auto projection_matrix = display_info.getProjectionMatrix();
 
-	environment.Render(camera->position, view_matrix, projection_matrix);
+	environment.Render(camera_position, view_matrix, projection_matrix);
 
-	enemy_manager->Render(camera->position, view_matrix, projection_matrix);
+	enemy_manager->Render(camera_position, view_matrix, projection_matrix);
 
-	ship.Render(camera->position, view_matrix, projection_matrix);
+	ship.Render(camera_position, view_matrix, projection_matrix);
 
 	if (input.draw_physics_debug)
 	{

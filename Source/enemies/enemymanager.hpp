@@ -1,12 +1,12 @@
 #pragma once
 
-#include <object_types/scriptablephysicsobject.hpp>
+#include <object_types/imodelrender.hpp>
+#include <object_types/iupdatable.hpp>
 #include <list>
 #include "basic.hpp"
+#include <ship/ship.hpp>
 
-class Ship;
-
-class EnemyManager : public ScriptablePhysicsObject
+class EnemyManager : public IModelRender, public IUpdatable
 {
 public:
 	EnemyManager(btDynamicsWorld* physics_world, Ship* ship);

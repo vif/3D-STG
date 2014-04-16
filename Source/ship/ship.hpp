@@ -1,15 +1,13 @@
 #pragma once
 
-#include <object_types/scriptablephysicsobject.hpp>
+#include <object_types/scriptable_object.hpp>
 
-class Ship : public ScriptablePhysicsObject
+class Ship : public ScriptableObject
 {
 public:
 	Ship();
 
 	Model::Model model;
-
-	const float weight = 100;
 
 	void Update(double dt) override;
 

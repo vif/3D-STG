@@ -1,6 +1,6 @@
 #pragma once
 
-#include <LinearMath/btIDebugDraw.h>
+#include <btBulletDynamicsCommon.h>
 #include <oglplus.hpp>
 #include <list>
 

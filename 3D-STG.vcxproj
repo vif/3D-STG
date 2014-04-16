@@ -39,13 +39,13 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDirectory)ThirdParty\oglplus-develop\etc\msvc11\OGLplus;$(SolutionDirectory)ThirdParty\oglplus-develop\include;$(SolutionDirectory)ThirdParty\oglplus-develop\implement;$(SolutionDirectory)ThirdParty\assimp-3.0.1270\include;$(SolutionDirectory)ThirdParty\bullet-2.82-r2704\src;$(SolutionDirectory)ThirdParty\glm;$(SolutionDirectory)ThirdParty\glew-1.10.0\include;$(SolutionDirectory)ThirdParty\glfw-3.0.4\include;$(SolutionDirectory)Source\include;$(SolutionDirectory)Source;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDirectory)ThirdParty\oglplus-develop\etc\msvc11\OGLplus;$(SolutionDirectory)ThirdParty\oglplus-develop\include;$(SolutionDirectory)ThirdParty\oglplus-develop\implement;$(SolutionDirectory)ThirdParty\assimp-3.0.1270\include;$(SolutionDirectory)ThirdParty\bullet-2.82-r2704\src;$(SolutionDirectory)ThirdParty\glm;$(SolutionDirectory)ThirdParty\glew-1.10.0\include;$(SolutionDirectory)ThirdParty\glfw-3.0.4\include;$(SolutionDirectory)Source\includes;$(SolutionDirectory)Source;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDirectory)ThirdParty\assimp-3.0.1270\lib;$(SolutionDirectory)ThirdParty\bullet-2.82-r2704\lib;$(SolutionDirectory)ThirdParty\glew-1.10.0\lib;$(SolutionDirectory)ThirdParty\glfw-3.0.4\lib;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)bin\</OutDir>
     <IntDir>$(SolutionDir)bin\obj\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDirectory)ThirdParty\oglplus-develop\etc\msvc11\OGLplus;$(SolutionDirectory)ThirdParty\oglplus-develop\include;$(SolutionDirectory)ThirdParty\oglplus-develop\implement;$(SolutionDirectory)ThirdParty\assimp-3.0.1270\include;$(SolutionDirectory)ThirdParty\bullet-2.82-r2704\src;$(SolutionDirectory)ThirdParty\glm;$(SolutionDirectory)ThirdParty\glew-1.10.0\include;$(SolutionDirectory)ThirdParty\glfw-3.0.4\include;$(SolutionDirectory)Source\include;$(SolutionDirectory)Source;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDirectory)ThirdParty\oglplus-develop\etc\msvc11\OGLplus;$(SolutionDirectory)ThirdParty\oglplus-develop\include;$(SolutionDirectory)ThirdParty\oglplus-develop\implement;$(SolutionDirectory)ThirdParty\assimp-3.0.1270\include;$(SolutionDirectory)ThirdParty\bullet-2.82-r2704\src;$(SolutionDirectory)ThirdParty\glm;$(SolutionDirectory)ThirdParty\glew-1.10.0\include;$(SolutionDirectory)ThirdParty\glfw-3.0.4\include;$(SolutionDirectory)Source\includes;$(SolutionDirectory)Source;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDirectory)ThirdParty\assimp-3.0.1270\lib;$(SolutionDirectory)ThirdParty\bullet-2.82-r2704\lib;$(SolutionDirectory)ThirdParty\glew-1.10.0\lib;$(SolutionDirectory)ThirdParty\glfw-3.0.4\lib;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)bin\</OutDir>
     <IntDir>$(SolutionDir)bin\obj\</IntDir>
@@ -91,11 +91,11 @@
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\model\mesh.cpp" />
     <ClCompile Include="Source\model\model.cpp" />
-    <ClCompile Include="Source\object_types\drawable.cpp" />
-    <ClCompile Include="Source\object_types\scriptableobject.cpp" />
-    <ClCompile Include="Source\object_types\scriptablephysicsobject.cpp" />
+    <ClCompile Include="Source\object_types\drawable_object.cpp" />
+    <ClCompile Include="Source\object_types\scriptable_object.cpp" />
     <ClCompile Include="Source\ship\ship.cpp" />
     <ClCompile Include="Source\utilities\BulletDebugDrawer\bullet_debug_drawer.cpp" />
+    <ClCompile Include="Source\utilities\MathConversions\math_conversions.cpp" />
     <ClCompile Include="Source\utilities\ShaderManager\shadermanager.cpp" />
     <ClCompile Include="Source\world\world.cpp" />
   </ItemGroup>
@@ -105,18 +105,18 @@
     <ClInclude Include="Source\enemies\basic.hpp" />
     <ClInclude Include="Source\enemies\enemymanager.hpp" />
     <ClInclude Include="Source\environment\environment.hpp" />
-    <ClInclude Include="Source\include\oglplus.hpp" />
+    <ClInclude Include="Source\includes\oglplus.hpp" />
     <ClInclude Include="Source\input_manager\input_manager.hpp" />
     <ClInclude Include="Source\model\mesh.hpp" />
     <ClInclude Include="Source\model\model.hpp" />
     <ClInclude Include="Source\object_types\enemy.hpp" />
     <ClInclude Include="Source\object_types\imodelrender.hpp" />
     <ClInclude Include="Source\object_types\iupdatable.hpp" />
-    <ClInclude Include="Source\object_types\scriptablephysicsobject.hpp" />
-    <ClInclude Include="Source\object_types\drawable.hpp" />
-    <ClInclude Include="Source\object_types\scriptableobject.hpp" />
+    <ClInclude Include="Source\object_types\scriptable_object.hpp" />
+    <ClInclude Include="Source\object_types\drawable_object.hpp" />
     <ClInclude Include="Source\ship\ship.hpp" />
     <ClInclude Include="Source\utilities\BulletDebugDrawer\bullet_debug_drawer.hpp" />
+    <ClInclude Include="Source\utilities\MathConversions\math_conversions.hpp" />
     <ClInclude Include="Source\utilities\ShaderManager\shadermanager.hpp" />
     <ClInclude Include="Source\world\world.hpp" />
   </ItemGroup>

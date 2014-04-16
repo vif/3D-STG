@@ -1,6 +1,15 @@
 #include "camera.hpp"
 #include <glm/gtx/quaternion.hpp>
 #include <ship/ship.hpp>
+#include <utilities/MathConversions/math_conversions.hpp>
+
+
+Camera::Camera(Ship* ship) :
+_ship(ship), 
+ScriptableObject(ScriptableObject::ObjectType::UNSIMULATED, glm::vec3(), glm::quat(), nullptr)
+{
+
+}
 
 void Camera::Update(double dt)
 {
@@ -44,13 +53,17 @@ void Camera::Update(double dt)
 		auto ship_rot = transform.getRotation();
 		auto ship_pos = transform.getOrigin() + quatRotate(ship_rot, btVector3(5, 0, 0));
 
-		position = { ship_pos.x(), ship_pos.y(), ship_pos.z() };
-
 		//compose the ship orientation with the camera orientation
-		orientation = _yaw * glm::quat(ship_rot.w(), ship_rot.x(), ship_rot.y(), ship_rot.z()) * _pitch;
+		auto orientation = _yaw * toQuat(ship_rot) * _pitch;
+		pose->setWorldTransform(btTransform(toQuat(orientation), ship_pos));
 	}
 	else //free move
 	{
+		btTransform transform;
+		pose->getWorldTransform(transform);
+		auto position = toVec3(transform.getOrigin());
+		auto orientation = toQuat(transform.getRotation());
+
 		double movementspeed = 10;
 
 		if (input.move_forward)
@@ -83,6 +96,6 @@ void Camera::Update(double dt)
 			position += glm::rotate(orientation, glm::vec3(0, -movementspeed, 0) * (float)dt);
 		}
 
-		orientation = _yaw * _pitch;
+		pose->setWorldTransform(btTransform(toQuat(_yaw * _pitch), toVec3(position)));
 	}
 }
