@@ -33,10 +33,10 @@ void EnemyManager::Update(double dt)
 	}
 }
 
-void EnemyManager::Render(glm::vec3 camera_position, glm::mat4 view_matrix, glm::mat4 projection_matrix)
+void EnemyManager::Render(glm::vec4 view_light_direction, glm::mat4 view_matrix, glm::mat4 projection_matrix)
 {
 	for (auto& b : basic_enemies)
 	{
-		b->Render(camera_position, view_matrix, projection_matrix);
+		b->Render(view_light_direction, view_matrix, projection_matrix);
 	}
 }

@@ -21,7 +21,7 @@ public:
 
 	std::vector<std::unique_ptr<Cylinder>> cylinders;
 
-	void Render(glm::vec3 camera_position, glm::mat4 view_matrix, glm::mat4 projection_matrix) override;
+	void Render(glm::vec4 view_light_direction, glm::mat4 view_matrix, glm::mat4 projection_matrix) override;
 private:
 	Environment(const Environment&) = delete;
 };

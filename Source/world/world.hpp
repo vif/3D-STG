@@ -44,6 +44,8 @@ public:
 	InputManager input_manager;
 	DisplayInfo display_info;
 
+	glm::vec4 light_origin = glm::vec4(-1, 0, 0, 0);
+
 	struct
 	{
 		bool draw_physics_debug = false;

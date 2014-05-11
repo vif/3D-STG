@@ -22,10 +22,10 @@ cylider("Resources/models/environment/cylinders.obj", &Global::shader_manager->p
 	}
 }
 
-void Environment::Render(glm::vec3 camera_position, glm::mat4 view_matrix, glm::mat4 projection_matrix)
+void Environment::Render(glm::vec4 view_light_direction, glm::mat4 view_matrix, glm::mat4 projection_matrix)
 {
 	for (auto& c : cylinders)
 	{
-		c->Render(camera_position, view_matrix, projection_matrix);
+		c->Render(view_light_direction, view_matrix, projection_matrix);
 	}
 }

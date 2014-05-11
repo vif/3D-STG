@@ -66,13 +66,15 @@ void World::Render()
 	auto camera_up = glm::rotate(camera_orientation, glm::vec3(0, 1, 0));
 	auto view_matrix = glm::lookAt(camera_position, camera_dir, camera_up);
 
+	auto view_light_direction = glm::normalize(view_matrix * light_origin);
+
 	auto projection_matrix = display_info.getProjectionMatrix();
 
-	environment.Render(camera_position, view_matrix, projection_matrix);
+	environment.Render(view_light_direction, view_matrix, projection_matrix);
 
-	enemy_manager->Render(camera_position, view_matrix, projection_matrix);
+	enemy_manager->Render(view_light_direction, view_matrix, projection_matrix);
 
-	ship.Render(camera_position, view_matrix, projection_matrix);
+	ship.Render(view_light_direction, view_matrix, projection_matrix);
 
 	if (input.draw_physics_debug)
 	{

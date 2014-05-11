@@ -9,7 +9,7 @@ namespace Model
 
 	Model::Model(std::string filename, oglplus::Program* program) :
 		_program(program),
-		camera_position_uniform(*program, "camera_position"),
+		view_light_direction_uniform(*program, "ViewLightDirection"),
 		normal_matrix_uniform(*program, "NormalMatrix"),
 		model_view_projection_matrix_uniform(*program, "ModelViewProjectionMatrix")
 	{
@@ -43,10 +43,10 @@ namespace Model
 			{
 				_materials[matIndex]->diffuse_colour = { colour.r, colour.g, colour.b };
 			}
-			//if (material->Get(AI_MATKEY_COLOR_AMBIENT, colour) == AI_SUCCESS)
-			//{
-			//	_materials[matIndex]->ambient_colour = { colour.r, colour.g, colour.b };
-			//}
+			if (material->Get(AI_MATKEY_COLOR_AMBIENT, colour) == AI_SUCCESS)
+			{
+				_materials[matIndex]->ambient_colour = { colour.r, colour.g, colour.b };
+			}
 			if (material->Get(AI_MATKEY_COLOR_SPECULAR, colour) == AI_SUCCESS)
 			{
 				_materials[matIndex]->specular_colour = { colour.r, colour.g, colour.b };
@@ -80,11 +80,11 @@ namespace Model
 
 				//position
 				auto position = mesh->mVertices[vertexIndex];
-				mv.position = { position.x, position.y, position.z, 1.0 };
+				mv.position = { position.x, position.y, position.z, 1 };
 
 				//normal
 				auto normal = mesh->mNormals[vertexIndex];
-				mv.normal = { normal.x, normal.y, normal.z, 1.0 };
+				mv.normal = { normal.x, normal.y, normal.z, 0 };
 
 				if (mesh->HasVertexColors(vertexIndex))
 				{
@@ -112,7 +112,7 @@ namespace Model
 		}
 	}
 
-	void Model::draw(glm::vec3 camera_position, glm::mat4 model_matrix, glm::mat4 view_matrix, glm::mat4 projection_matrix)
+	void Model::draw(glm::vec4 view_light_direction, glm::mat4 model_matrix, glm::mat4 view_matrix, glm::mat4 projection_matrix)
 	{
 		_program->Use();
 
@@ -120,7 +120,7 @@ namespace Model
 		auto normal_matrix = glm::transpose(glm::inverse(model_view_matrix));
 		auto model_view_projection_matrix = projection_matrix * model_view_matrix;
 
-		camera_position_uniform.Set(camera_position);
+		view_light_direction_uniform.Set(view_light_direction);
 		normal_matrix_uniform.Set(normal_matrix);
 		model_view_projection_matrix_uniform.Set(model_view_projection_matrix);
 
@@ -134,7 +134,7 @@ namespace Model
 
 	btCollisionShape* Model::GetCollisionShape()
 	{
-		if(!_shape) //if shape has not been previously generated, generate it
+		if (!_shape) //if shape has not been previously generated, generate it
 		{
 			_shape_indexed_vertex_array = std::make_unique<btTriangleIndexVertexArray>();
 
@@ -143,12 +143,12 @@ namespace Model
 				btIndexedMesh indexed_mesh;
 
 				indexed_mesh.m_numTriangles = mesh->indices.size() / 3;
-				indexed_mesh.m_triangleIndexBase = (const unsigned char *) &mesh->indices[0];
+				indexed_mesh.m_triangleIndexBase = (const unsigned char *)&mesh->indices[0];
 				indexed_mesh.m_triangleIndexStride = 3 * sizeof(GLint);
 				indexed_mesh.m_indexType = PHY_INTEGER;
 
 				indexed_mesh.m_numVertices = mesh->vertices.size();
-				indexed_mesh.m_vertexBase = (const unsigned char *) (&mesh->vertices[0] + offsetof(Vertex, position));
+				indexed_mesh.m_vertexBase = (const unsigned char *)(&mesh->vertices[0] + offsetof(Vertex, position));
 				indexed_mesh.m_vertexStride = sizeof(Vertex);
 				indexed_mesh.m_vertexType = PHY_FLOAT; //set that we are dealing with floats
 
