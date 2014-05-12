@@ -90,6 +90,7 @@ int main(void)
 
 		auto current_time = glfwGetTime();
 		world->physics_world.world->stepSimulation(current_time - previous_time, 10);
+		previous_time = current_time;
 		world->Render();
 
 		glfwSwapBuffers(window);
