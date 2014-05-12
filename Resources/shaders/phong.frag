@@ -24,14 +24,13 @@ void main()
 	vec4 ambient_component = vec4(ambient_colour, 1);
 
 	//diffuse
-	float diffuse_percent = dot (ViewLightDirection.xyz, normalized_transformed_normal);
+	float diffuse_percent = dot(ViewLightDirection.xyz, normalized_transformed_normal);
 	vec4 diffuse_component = vec4(diffuse_colour * light_colour * clamp( diffuse_percent, 0, 1), 1);
 
 	//specular
-	vec3 reflected_light_direction = normalize(reflect(ViewLightDirection.xyz, normalized_transformed_normal));
-	float angle = clamp( dot(reflected_light_direction, normalize(-out_position.xyz)), 0, 1);
-	float specular_percentage = pow(angle, specular_shininess);
-	vec4 specular_component = vec4(specular_colour * specular_percentage, 1);
+	vec3 refl_light = normalize(reflect(ViewLightDirection.xyz, normalized_transformed_normal));
+	float specular_percent = pow(dot(refl_light, normalize(out_position.xyz)), specular_shininess);
+	vec4 specular_component = vec4(specular_colour * light_colour * clamp( specular_percent, 0, 1), 1);
 
-    colour = out_colour*(ambient_component + diffuse_component + specular_component);
+	colour = out_colour*(ambient_component + diffuse_component + specular_component);
 }

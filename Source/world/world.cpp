@@ -66,7 +66,7 @@ void World::Render()
 	auto camera_up = glm::rotate(camera_orientation, glm::vec3(0, 1, 0));
 	auto view_matrix = glm::lookAt(camera_position, camera_dir, camera_up);
 
-	auto view_light_direction = glm::normalize(view_matrix * light_origin);
+	auto view_light_direction = -glm::normalize(view_matrix * light_origin);
 
 	auto projection_matrix = display_info.getProjectionMatrix();
 

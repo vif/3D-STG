@@ -11,6 +11,7 @@ namespace Model
 		_program(program),
 		view_light_direction_uniform(*program, "ViewLightDirection"),
 		normal_matrix_uniform(*program, "NormalMatrix"),
+		model_view_matrix_uniform(*program, "ModelViewMatrix"),
 		model_view_projection_matrix_uniform(*program, "ModelViewProjectionMatrix")
 	{
 		Assimp::Importer imp;
@@ -122,6 +123,7 @@ namespace Model
 
 		view_light_direction_uniform.Set(view_light_direction);
 		normal_matrix_uniform.Set(normal_matrix);
+		model_view_matrix_uniform.Set(model_view_matrix);
 		model_view_projection_matrix_uniform.Set(model_view_projection_matrix);
 
 		for (auto& mesh : _meshes)

@@ -16,6 +16,7 @@ namespace Model
 		btCollisionShape* GetCollisionShape();
 		oglplus::Uniform<oglplus::Vec4f> view_light_direction_uniform;
 		oglplus::Uniform<oglplus::Mat4f> normal_matrix_uniform;
+		oglplus::Uniform<oglplus::Mat4f> model_view_matrix_uniform;
 		oglplus::Uniform<oglplus::Mat4f> model_view_projection_matrix_uniform;
 	private:
 		Model(const Model&) = delete;
