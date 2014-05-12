@@ -64,7 +64,7 @@ void Camera::Update(double dt)
 		auto position = toVec3(transform.getOrigin());
 		auto orientation = toQuat(transform.getRotation());
 
-		double movementspeed = 1;
+		double movementspeed = 10;
 
 		if (input.move_forward)
 		{
