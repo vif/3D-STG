@@ -14,5 +14,5 @@ void BasicEnemy::Update(double dt)
 
 	auto movementspeed = 10;
 
-	rigid_body->applyCentralForce((ship_position - position).normalize() * movementspeed * dt);
+	rigid_body->applyCentralImpulse((ship_position - position).normalize() * movementspeed * dt);
 }

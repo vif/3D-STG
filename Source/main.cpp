@@ -81,16 +81,17 @@ int main(void)
 	oglplus::Context::Enable(oglplus::Capability::DepthTest);
 	oglplus::Context::Enable(oglplus::Capability::CullFace);
 
-	double previous_time = glfwGetTime();
+	double current_time, previous_time = glfwGetTime();
 
 	while (!glfwWindowShouldClose(window))
 	{
 		oglplus::Context::ClearColor(1, 1, 1, 1);
 		oglplus::Context::Clear().ColorBuffer().DepthBuffer();
 
-		auto current_time = glfwGetTime();
-		world->physics_world.world->stepSimulation(current_time - previous_time, 10);
+		current_time = glfwGetTime();
+		int times = world->physics_world.world->stepSimulation(current_time - previous_time, 10);
 		previous_time = current_time;
+
 		world->Render();
 
 		glfwSwapBuffers(window);
