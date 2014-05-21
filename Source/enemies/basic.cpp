@@ -11,8 +11,18 @@ void BasicEnemy::Update(double dt)
 	btTransform transform;
 	pose->getWorldTransform(transform);
 	auto position = transform.getOrigin();
+	auto rotation = transform.getRotation();
 
-	auto movementspeed = 10;
+	auto movementspeed = 1000;
+	auto follow_distance = 50;
 
-	rigid_body->applyCentralImpulse((ship_position - position).normalize() * movementspeed * dt);
+	auto dir_ship = ship_position - position;
+
+	//get direction to ship, rotate by 90 degrees, make it's length the follow_distance and add it to the ship's position
+	auto dest = ship_position + quatRotate(btQuaternion(90.0f, 0.0f, 0.0f), dir_ship).normalize() * follow_distance;
+
+	//head towards the destination
+	rigid_body->setLinearVelocity((dest - position).normalize() * movementspeed * dt);
+
+	//TODO: rotation
 }
