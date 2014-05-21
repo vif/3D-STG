@@ -51,7 +51,8 @@ void Camera::Update(double dt)
 		_ship->pose->getWorldTransform(transform);
 
 		auto ship_rot = transform.getRotation();
-		auto ship_pos = transform.getOrigin() + quatRotate(ship_rot, btVector3(5, 0, 0));
+		auto ship_offset = btVector3(-5, 5, 0);
+		auto ship_pos = transform.getOrigin() + quatRotate(ship_rot, ship_offset);
 
 		//compose the ship orientation with the camera orientation
 		auto orientation = toQuat(ship_rot) * _yaw  * _pitch;
