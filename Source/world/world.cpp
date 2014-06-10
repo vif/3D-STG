@@ -17,8 +17,8 @@ input_manager(this)
 	camera = std::make_unique<Camera>(&ship);
 	enemy_manager = std::make_unique<EnemyManager>(physics_world.world.get(), &ship);
 
-	physics_world.world->addRigidBody(ship.rigid_body.get(), 0, 0);
-	physics_world.world->addRigidBody(camera->rigid_body.get(), 0, 0);
+	physics_world.world->addRigidBody(ship.rigid_body.get());
+	physics_world.world->addRigidBody(camera->rigid_body.get());
 
 	physics_world.world->setInternalTickCallback(UpdateCallBackShim, static_cast<void *>(this));
 }
