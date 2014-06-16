@@ -110,6 +110,7 @@
     <ClInclude Include="Source\model\mesh.hpp" />
     <ClInclude Include="Source\model\model.hpp" />
     <ClInclude Include="Source\object_types\enemy.hpp" />
+    <ClInclude Include="Source\object_types\icollidable.hpp" />
     <ClInclude Include="Source\object_types\imodelrender.hpp" />
     <ClInclude Include="Source\object_types\iupdatable.hpp" />
     <ClInclude Include="Source\object_types\scriptable_object.hpp" />

@@ -30,3 +30,8 @@ void BasicEnemy::Update(double dt)
 
 	//TODO: always face ship
 }
+
+void BasicEnemy::Collision(ICollidable* obj)
+{
+	//do nothing
+}

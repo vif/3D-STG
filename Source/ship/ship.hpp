@@ -1,13 +1,16 @@
 #pragma once
 
 #include <object_types/scriptable_object.hpp>
+#include <object_types/icollidable.hpp>
 
-class Ship : private Model::Model, public ScriptableObject //crappy multiple inheritance because base class get initialized (in order) before non-static members, so couldn't have Model as a member
+class Ship : private Model::Model, public ScriptableObject, public ICollidable //crappy multiple inheritance because base class get initialized (in order) before non-static members, so couldn't have Model as a member
 {
 public:
 	Ship();
 
 	void Update(double dt) override;
+
+	void Collision(ICollidable*) override;
 
 	struct
 	{

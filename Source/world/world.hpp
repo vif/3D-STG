@@ -35,7 +35,6 @@ public:
 	std::unique_ptr<Camera> camera;
 	std::unique_ptr<EnemyManager> enemy_manager;
 
-	enum ObjetType{SHIP, BASIC_ENEMY};
 	void Update(double dt);
 	void Render();
 

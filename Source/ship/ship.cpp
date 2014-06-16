@@ -7,8 +7,7 @@ Ship::Ship() :
 Model("Resources/models/player/ship.dae", &Global::shader_manager->phong3d),
 ScriptableObject(ScriptableObject::ObjectType::SIMULATED, glm::vec3(10, 0, 0), glm::quat(), static_cast<Model*>(this), 100)
 {
-	rigid_body->setUserIndex(World::ObjetType::SHIP);
-	rigid_body->setUserPointer(static_cast<void*>(this));
+	rigid_body->setUserPointer(static_cast<ICollidable*>(this));
 	rigid_body->setCollisionFlags(rigid_body->getCollisionFlags() | btCollisionObject::CF_CUSTOM_MATERIAL_CALLBACK);
 }
 
@@ -50,4 +49,9 @@ void Ship::Update(double dt)
 	{
 		rigid_body->applyTorqueImpulse(quatRotate(rotation, btVector3(0, 0, -max_rotation_speed)) * dt);
 	}
+}
+
+void Ship::Collision(ICollidable* obj)
+{
+	//do nothing
 }

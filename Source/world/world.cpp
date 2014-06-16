@@ -3,6 +3,7 @@
 #include <glm/gtx/quaternion.hpp>
 #include <utilities/ShaderManager/shadermanager.hpp>
 #include <utilities/MathConversions/math_conversions.hpp>
+#include <object_types/icollidable.hpp>
 
 
 void UpdateCallBackShim(btDynamicsWorld *world, btScalar timeStep)
@@ -89,7 +90,14 @@ void World::CollisionDetection()
 	for (int i = 0; i < numManifolds; i++)
 	{
 		btPersistentManifold* contactManifold = physics_world.world->getDispatcher()->getManifoldByIndexInternal(i);
-		auto obA = static_cast<const btCollisionObject*>(contactManifold->getBody0());
-		auto obB = static_cast<const btCollisionObject*>(contactManifold->getBody1());
+
+		auto obA = static_cast<ICollidable*>(contactManifold->getBody0()->getUserPointer());
+		auto obB = static_cast<ICollidable*>(contactManifold->getBody1()->getUserPointer());
+		
+		if (obA != nullptr && obB != nullptr)
+		{
+			obA->Collision(obB);
+			obB->Collision(obA);
+		}
 	}
 }

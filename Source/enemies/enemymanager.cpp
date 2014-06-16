@@ -8,10 +8,12 @@ _physics_world(physics_world),
 basic_enemy_model("Resources/models/enemies/basic.dae", &Global::shader_manager->phong3d)
 {
 	basic_enemies.emplace_back(std::make_unique<BasicEnemy>(_ship, &basic_enemy_model, glm::vec3(100, 0, 0), glm::quat()));
-	auto be = basic_enemies.front().get();
-	be->rigid_body->setUserPointer(static_cast<void*>(this));
-	be->rigid_body->setUserIndex(World::ObjetType::BASIC_ENEMY);
-	be->rigid_body->setCollisionFlags(be->rigid_body->getCollisionFlags() | btCollisionObject::CF_CUSTOM_MATERIAL_CALLBACK); 
+	auto be = basic_enemies.back().get();
+	be->rigid_body->setUserPointer(static_cast<ICollidable*>(be));
+	be->rigid_body->setCollisionFlags(be->rigid_body->getCollisionFlags() | btCollisionObject::CF_CUSTOM_MATERIAL_CALLBACK);
+
+
+	void* a = be->rigid_body->getUserPointer();
 
 	physics_world->addRigidBody(be->rigid_body.get());
 }
