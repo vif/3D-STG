@@ -47,6 +47,12 @@
     <ClCompile Include="Source\object_types\drawable_object.cpp">
       <Filter>object_types</Filter>
     </ClCompile>
+    <ClCompile Include="Source\object_types\killable.cpp">
+      <Filter>object_types</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\attacks\basic_attack.cpp">
+      <Filter>attacks</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="environment">
@@ -94,6 +100,9 @@
     <Filter Include="utilities\mathconversions">
       <UniqueIdentifier>{9ac40500-4fa2-4d44-ab39-66ad6ff58c00}</UniqueIdentifier>
     </Filter>
+    <Filter Include="attacks">
+      <UniqueIdentifier>{4ca06fe1-f47a-46ef-81b0-9dd0294141ee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\world\world.hpp">
@@ -110,9 +119,6 @@
     </ClInclude>
     <ClInclude Include="Source\utilities\ShaderManager\shadermanager.hpp">
       <Filter>utilities\shadermanager</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\object_types\enemy.hpp">
-      <Filter>object_types</Filter>
     </ClInclude>
     <ClInclude Include="Source\object_types\imodelrender.hpp">
       <Filter>object_types</Filter>
@@ -155,6 +161,12 @@
     </ClInclude>
     <ClInclude Include="Source\ship\ship.hpp">
       <Filter>ship</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\object_types\killable.hpp">
+      <Filter>object_types</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\attacks\basic_attack.hpp">
+      <Filter>attacks</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

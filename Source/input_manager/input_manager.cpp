@@ -26,12 +26,13 @@ if (key == keyname && action == GLFW_RELEASE) mapname = false;
 void InputManager::keyboard(int key, int action, int mods)
 {
 	//SHIP Inputs
-	manage_held_key(GLFW_KEY_W, _world->ship.input.propel_forward);
-	manage_held_key(GLFW_KEY_S, _world->ship.input.propel_backward);
-	manage_held_key(GLFW_KEY_RIGHT, _world->ship.input.roll_right);
-	manage_held_key(GLFW_KEY_LEFT, _world->ship.input.roll_left);
-	manage_held_key(GLFW_KEY_UP, _world->ship.input.pitch_up);
-	manage_held_key(GLFW_KEY_DOWN, _world->ship.input.pitch_down);
+	manage_held_key(GLFW_KEY_W, _world->ship->input.propel_forward);
+	manage_held_key(GLFW_KEY_S, _world->ship->input.propel_backward);
+	manage_held_key(GLFW_KEY_RIGHT, _world->ship->input.roll_right);
+	manage_held_key(GLFW_KEY_LEFT, _world->ship->input.roll_left);
+	manage_held_key(GLFW_KEY_UP, _world->ship->input.pitch_up);
+	manage_held_key(GLFW_KEY_DOWN, _world->ship->input.pitch_down);
+	manage_pressed_key(GLFW_KEY_SPACE, _world->ship->input.shoot);
 
 	//CAMERA Inputs
 	manage_held_key(GLFW_KEY_I, _world->camera->input.move_forward);

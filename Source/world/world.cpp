@@ -15,10 +15,12 @@ void UpdateCallBackShim(btDynamicsWorld *world, btScalar timeStep)
 World::World() :
 input_manager(this)
 {
-	camera = std::make_unique<Camera>(&ship);
-	enemy_manager = std::make_unique<EnemyManager>(physics_world.world.get(), &ship);
+	ship = std::make_unique<Ship>(physics_world.world.get());
 
-	physics_world.world->addRigidBody(ship.rigid_body.get());
+	camera = std::make_unique<Camera>(ship.get());
+
+	enemy_manager = std::make_unique<EnemyManager>(physics_world.world.get(), ship.get());
+
 	physics_world.world->addRigidBody(camera->rigid_body.get());
 
 	physics_world.world->setInternalTickCallback(UpdateCallBackShim, static_cast<void *>(this));
@@ -26,7 +28,7 @@ input_manager(this)
 
 World::~World()
 {
-	physics_world.world->removeRigidBody(ship.rigid_body.get());
+	ship.reset();
 	physics_world.world->removeRigidBody(camera->rigid_body.get());
 	enemy_manager->RemoveRigidBodiesFromWorld();
 }
@@ -48,7 +50,7 @@ debug_drawer(&Global::shader_manager->simple)
 void World::Update(double dt)
 {
 	//UPDATE THE WORLD!
-	ship.Update(dt);
+	ship->Update(dt);
 
 	enemy_manager->Update(dt);
 
@@ -75,7 +77,7 @@ void World::Render()
 
 	enemy_manager->Render(view_light_direction, view_matrix, projection_matrix);
 
-	ship.Render(view_light_direction, view_matrix, projection_matrix);
+	ship->Render(view_light_direction, view_matrix, projection_matrix);
 
 	if (input.draw_physics_debug)
 	{

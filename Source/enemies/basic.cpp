@@ -1,37 +1,47 @@
 #include "basic.hpp"
 
+#include <attacks/basic_attack.hpp>
+
 void BasicEnemy::Update(double dt)
 {
-	rigid_body->activate(true);
+	if (alive)
+	{
+		rigid_body->activate(true);
 
-	btTransform ship_transform;
-	_ship->pose->getWorldTransform(ship_transform);
-	auto ship_position = ship_transform.getOrigin();
+		btTransform ship_transform;
+		_ship->pose->getWorldTransform(ship_transform);
+		auto ship_position = ship_transform.getOrigin();
 
-	btTransform transform;
-	pose->getWorldTransform(transform);
-	auto position = transform.getOrigin();
+		btTransform transform;
+		pose->getWorldTransform(transform);
+		auto position = transform.getOrigin();
 
-	auto movementspeed = 1000;
-	auto follow_distance = 50;
+		auto movementspeed = 1000;
+		auto follow_distance = 50;
 
 
-	//pose->setWorldTransform(glm::, position));
+		//pose->setWorldTransform(glm::, position));
 
-	auto dir_ship = ship_position - position;
+		auto dir_ship = ship_position - position;
 
-	//VELOCITY
+		//VELOCITY
 
-	//get direction to ship, rotate by 90 degrees, make it's length the follow_distance and add it to the ship's position
-	auto dest = ship_position + quatRotate(btQuaternion(90.0f, 0.0f, 0.0f), dir_ship).normalize() * follow_distance;
+		//get direction to ship, rotate by 90 degrees, make it's length the follow_distance and add it to the ship's position
+		auto dest = ship_position + quatRotate(btQuaternion(90.0f, 0.0f, 0.0f), dir_ship).normalize() * follow_distance;
 
-	//head towards the destination
-	rigid_body->setLinearVelocity((dest - position).normalize() * movementspeed * dt);
+		//head towards the destination
+		rigid_body->setLinearVelocity((dest - position).normalize() * movementspeed * dt);
 
-	//TODO: always face ship
+		//TODO: always face ship
+	}
 }
 
 void BasicEnemy::Collision(ICollidable* obj)
 {
-	//do nothing
+	auto attack = dynamic_cast<BasicAttack*>(obj);
+	if (attack != nullptr && attack->active)
+	{
+		ReceiveHealthOffset(-attack->damage);
+		attack->active = false;
+	}
 }

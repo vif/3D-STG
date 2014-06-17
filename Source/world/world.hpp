@@ -30,8 +30,8 @@ public:
 
 
 	Environment environment;
-	Ship ship;
-	//camera & input manager need reference to ship, so forward declare them
+
+	std::unique_ptr<Ship> ship;
 	std::unique_ptr<Camera> camera;
 	std::unique_ptr<EnemyManager> enemy_manager;
 

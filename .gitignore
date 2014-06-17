@@ -154,3 +154,4 @@ $RECYCLE.BIN/
 
 # Other
 !ThirdParty/bullet-2.82-r2704/build/
+*.blend1

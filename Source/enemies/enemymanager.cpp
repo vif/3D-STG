@@ -28,10 +28,19 @@ void EnemyManager::RemoveRigidBodiesFromWorld()
 
 void EnemyManager::Update(double dt)
 {
-	//TODO: need to remove rigid bodies when no longer alive
-	for (auto& b : basic_enemies)
+	auto b = basic_enemies.begin();
+	while (b != basic_enemies.end())
 	{
-		b->Update(dt);
+		if ((*b)->alive)
+		{
+			(*b)->Update(dt);
+			++b;
+		}
+		else
+		{
+			_physics_world->removeRigidBody((*b)->rigid_body.get());
+			b = basic_enemies.erase(b);
+		}
 	}
 }
 

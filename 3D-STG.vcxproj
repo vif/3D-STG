@@ -82,6 +82,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\attacks\basic_attack.cpp" />
     <ClCompile Include="Source\camera\camera.cpp" />
     <ClCompile Include="Source\display_info\display_info.cpp" />
     <ClCompile Include="Source\enemies\basic.cpp" />
@@ -92,6 +93,7 @@
     <ClCompile Include="Source\model\mesh.cpp" />
     <ClCompile Include="Source\model\model.cpp" />
     <ClCompile Include="Source\object_types\drawable_object.cpp" />
+    <ClCompile Include="Source\object_types\killable.cpp" />
     <ClCompile Include="Source\object_types\scriptable_object.cpp" />
     <ClCompile Include="Source\ship\ship.cpp" />
     <ClCompile Include="Source\utilities\BulletDebugDrawer\bullet_debug_drawer.cpp" />
@@ -100,6 +102,7 @@
     <ClCompile Include="Source\world\world.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\attacks\basic_attack.hpp" />
     <ClInclude Include="Source\camera\camera.hpp" />
     <ClInclude Include="Source\display_info\display_info.hpp" />
     <ClInclude Include="Source\enemies\basic.hpp" />
@@ -109,10 +112,10 @@
     <ClInclude Include="Source\input_manager\input_manager.hpp" />
     <ClInclude Include="Source\model\mesh.hpp" />
     <ClInclude Include="Source\model\model.hpp" />
-    <ClInclude Include="Source\object_types\enemy.hpp" />
     <ClInclude Include="Source\object_types\icollidable.hpp" />
     <ClInclude Include="Source\object_types\imodelrender.hpp" />
     <ClInclude Include="Source\object_types\iupdatable.hpp" />
+    <ClInclude Include="Source\object_types\killable.hpp" />
     <ClInclude Include="Source\object_types\scriptable_object.hpp" />
     <ClInclude Include="Source\object_types\drawable_object.hpp" />
     <ClInclude Include="Source\ship\ship.hpp" />
