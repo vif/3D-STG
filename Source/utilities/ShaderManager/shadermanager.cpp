@@ -1,39 +1,51 @@
 #include "shadermanager.hpp"
 
-oglplus::Program CreateShader(std::string vertexShaderFilePath, std::string fragmentShaderFilePath, std::string geomentryShaderFilePath = "")
+oglplus::Program CreateShader(oglplus::GLSLSource vertexShaderSource, oglplus::GLSLSource fragmentShaderSource)
 {
 	oglplus::Program ret;
 
-	oglplus::VertexShader vs(oglplus::GLSLSource::FromFile(vertexShaderFilePath));
-	vs.Compile();
-	ret.AttachShader(vs);
-	fputs(vs.GetInfoLog().c_str(), stderr);
-
-	if (geomentryShaderFilePath != "")
+	oglplus::VertexShader vs;
+	try
 	{
-		oglplus::GeometryShader gm(oglplus::GLSLSource::FromFile(geomentryShaderFilePath));
-		gm.Compile();
-		ret.AttachShader(gm);
-		fputs(gm.GetInfoLog().c_str(), stderr);
+		vs.Source(vertexShaderSource).Compile();
+	}
+	catch (...)
+	{
+		fputs(vs.GetInfoLog().c_str(), stderr);
+	}
+	ret.AttachShader(vs);
+
+
+	oglplus::FragmentShader fs;
+	try
+	{
+		fs.Source(fragmentShaderSource).Compile();
+	}
+	catch (...)
+	{
+		fputs(fs.GetInfoLog().c_str(), stderr);
 	}
 
-	oglplus::FragmentShader fs(oglplus::GLSLSource::FromFile(fragmentShaderFilePath));
-	fs.Compile();
 	ret.AttachShader(fs);
-	fputs(fs.GetInfoLog().c_str(), stderr);
 
-	ret.Link();
+	try
+	{
+		ret.Link();
+	}
+	catch (...)
+	{
+		fputs(ret.GetInfoLog().c_str(), stderr);
+	}
 
-	fputs(ret.GetInfoLog().c_str(), stderr);
-
-	assert(ret.IsLinked());
-	assert(ret.IsValid());
-
+	if (!ret.IsLinked() || !ret.IsValid())
+	{
+		exit(1);
+	}
 	return ret;
 }
 
 ShaderManager::ShaderManager()
 {
-	simple = CreateShader("Resources/shaders/3d.vert", "Resources/shaders/simple.frag");
-	phong3d = CreateShader("Resources/shaders/3d.vert", "Resources/shaders/phong.frag");
+	simple = CreateShader(oglplus::GLSLSource::FromFile("Resources/shaders/3d.vert"), oglplus::GLSLSource::FromFile("Resources/shaders/simple.frag"));
+	phong3d = CreateShader(oglplus::GLSLSource::FromFile("Resources/shaders/3d.vert"), oglplus::GLSLSource::FromFile("Resources/shaders/phong.frag"));
 }

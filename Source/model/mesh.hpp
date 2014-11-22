@@ -24,19 +24,25 @@ namespace Model
 	{
 	public:
 		Mesh(oglplus::Program* program, const std::vector<Vertex>& vertices, const std::vector<GLint>& indices, Material* material);
-		void draw();
+		virtual void draw();
+		virtual void draw_instanced(unsigned int num);
 		oglplus::Uniform<oglplus::Vec3f> diffuse_colour_uniform;
 		oglplus::Uniform<oglplus::Vec3f> ambient_colour_uniform;
 		oglplus::Uniform<oglplus::Vec3f> specular_colour_uniform;
-		oglplus::Uniform<GLfloat>		 specular_shininess_uniform;	
+		oglplus::Uniform<GLfloat>		 specular_shininess_uniform;
 		std::vector<GLint> indices;
 		std::vector<Vertex> vertices;
+
+		void bindVAO();
+		void unbindVAO();
+
+		oglplus::Buffer face_buffer;
+		oglplus::Buffer vertex_buffer;
 	private:
 		Mesh(const Mesh&) = delete;
 		const oglplus::Program* _program;
 		oglplus::VertexArray _vao;
-		oglplus::Buffer _face_buffer;
-		oglplus::Buffer _vertex_buffer;
 		Material* _material;
+		void _bind_uniforms();
 	};
 }

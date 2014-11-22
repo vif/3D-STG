@@ -7,9 +7,15 @@
 class DrawableObject : public IModelRender
 {
 public:
-	DrawableObject(glm::vec3 init_pos, glm::quat init_orientation, Model::Model* model);
-	Model::Model* model_pointer;
-	std::unique_ptr<btMotionState> pose;
+	DrawableObject(btMotionState* pose, Model::Model* model);
+
 	void Render(glm::vec4 view_light_direction, glm::mat4 view_matrix, glm::mat4 projection_matrix) override;
 private:
+	btMotionState* _pose;
+	Model::Model* _model;
+
+	oglplus::Uniform<oglplus::Vec4f> view_light_direction_uniform;
+	oglplus::Uniform<oglplus::Mat4f> normal_matrix_uniform;
+	oglplus::Uniform<oglplus::Mat4f> model_view_matrix_uniform;
+	oglplus::Uniform<oglplus::Mat4f> model_view_projection_matrix_uniform;
 };

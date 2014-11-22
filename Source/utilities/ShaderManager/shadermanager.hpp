@@ -2,6 +2,8 @@
 
 #include <oglplus.hpp>
 
+oglplus::Program CreateShader(oglplus::GLSLSource vertexShaderSource, oglplus::GLSLSource fragmentShaderSource);
+
 struct ShaderManager
 {
 	ShaderManager();

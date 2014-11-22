@@ -38,9 +38,6 @@
     <ClCompile Include="Source\utilities\BulletDebugDrawer\bullet_debug_drawer.cpp">
       <Filter>utilities\bulletdebugdrawer</Filter>
     </ClCompile>
-    <ClCompile Include="Source\object_types\scriptable_object.cpp">
-      <Filter>object_types</Filter>
-    </ClCompile>
     <ClCompile Include="Source\utilities\MathConversions\math_conversions.cpp">
       <Filter>utilities\mathconversions</Filter>
     </ClCompile>
@@ -52,6 +49,10 @@
     </ClCompile>
     <ClCompile Include="Source\attacks\basic_attack.cpp">
       <Filter>attacks</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\environment\cylinder_grid.cpp" />
+    <ClCompile Include="Source\object_types\moveable_object.cpp">
+      <Filter>object_types</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -144,9 +145,6 @@
     <ClInclude Include="Source\utilities\BulletDebugDrawer\bullet_debug_drawer.hpp">
       <Filter>utilities\bulletdebugdrawer</Filter>
     </ClInclude>
-    <ClInclude Include="Source\object_types\scriptable_object.hpp">
-      <Filter>object_types</Filter>
-    </ClInclude>
     <ClInclude Include="Source\includes\oglplus.hpp">
       <Filter>includes</Filter>
     </ClInclude>
@@ -168,6 +166,11 @@
     <ClInclude Include="Source\attacks\basic_attack.hpp">
       <Filter>attacks</Filter>
     </ClInclude>
+    <ClInclude Include="Source\object_types\iscriptable.hpp" />
+    <ClInclude Include="Source\environment\cylinder_grid.hpp" />
+    <ClInclude Include="Source\object_types\moveable_object.hpp">
+      <Filter>object_types</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\shaders\phong.frag">
@@ -179,5 +182,6 @@
     <None Include="Resources\shaders\simple.frag">
       <Filter>shaders</Filter>
     </None>
+    <None Include="Resources\shaders\cylinder_grid.vert" />
   </ItemGroup>
 </Project>

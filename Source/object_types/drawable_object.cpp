@@ -1,18 +1,35 @@
 #include "drawable_object.hpp"
 #include <utilities/MathConversions/math_conversions.hpp>
 
-DrawableObject::DrawableObject(glm::vec3 init_pos, glm::quat init_orientation, Model::Model* model)
+DrawableObject::DrawableObject(btMotionState* pose, Model::Model* model) :
+view_light_direction_uniform(*model->program, "ViewLightDirection"),
+normal_matrix_uniform(*model->program, "NormalMatrix"),
+model_view_matrix_uniform(*model->program, "ModelViewMatrix"),
+model_view_projection_matrix_uniform(*model->program, "ModelViewProjectionMatrix"),
+_pose(pose),
+_model(model)
 {
-	model_pointer = model;
-	pose = std::make_unique<btDefaultMotionState>(btTransform(toQuat(init_orientation), toVec3(init_pos)));
 }
 
 void DrawableObject::Render(glm::vec4 view_light_direction, glm::mat4 view_matrix, glm::mat4 projection_matrix)
 {
 	btTransform transform;
-	pose->getWorldTransform(transform);
+	_pose->getWorldTransform(transform);
 
 	auto model_matrix = toMat4(transform);
 
-	model_pointer->draw(view_light_direction, model_matrix, view_matrix, projection_matrix);
+	auto model_view_matrix = view_matrix * model_matrix;
+	auto normal_matrix = glm::transpose(glm::inverse(model_view_matrix));
+	auto model_view_projection_matrix = projection_matrix * model_view_matrix;
+
+	_model->program->Use();
+
+	view_light_direction_uniform.Set(view_light_direction);
+	normal_matrix_uniform.Set(normal_matrix);
+	model_view_matrix_uniform.Set(model_view_matrix);
+	model_view_projection_matrix_uniform.Set(model_view_projection_matrix);
+
+	_model->draw();
+
+	oglplus::Program::UseNone();
 }

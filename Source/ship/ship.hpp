@@ -1,11 +1,12 @@
 #pragma once
 
-#include <object_types/scriptable_object.hpp>
 #include <object_types/icollidable.hpp>
 #include <object_types/killable.hpp>
+#include <object_types/iscriptable.hpp>
+#include <object_types/moveable_object.hpp>
 #include <attacks/basic_attack.hpp>
 
-class Ship : private Model::Model, public ScriptableObject, public ICollidable, public Killable //crappy multiple inheritance because base class get initialized (in order) before non-static members, so couldn't have Model as a member
+class Ship : public IScriptable, public ICollidable, public Killable
 {
 public:
 	Ship(btDynamicsWorld* physics_world);
@@ -29,8 +30,21 @@ public:
 			shoot
 			= false;
 	} input;
+
+	std::unique_ptr<btMotionState> pose;
 private:
-	Ship(const Ship&) = delete;
+	const glm::vec3 _init_pos = glm::vec3(10, 0, 0);
+	const glm::quat _init_orientation = glm::quat();
+	const double _init_weight = 100;
+
+	Model::Model _model;
+	Model::Model _basic_attack_model;
+
+	std::unique_ptr<DrawableObject> _drawable;
+	std::unique_ptr<MoveableObject> _moveable;
+
 	std::list<std::unique_ptr<BasicAttack>> _basic_attacks;
+
+	Ship(const Ship&) = delete;
 	btDynamicsWorld* _physics_world;
 };

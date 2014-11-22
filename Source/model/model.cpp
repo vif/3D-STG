@@ -8,11 +8,7 @@ namespace Model
 {
 
 	Model::Model(std::string filename, oglplus::Program* program) :
-		_program(program),
-		view_light_direction_uniform(*program, "ViewLightDirection"),
-		normal_matrix_uniform(*program, "NormalMatrix"),
-		model_view_matrix_uniform(*program, "ModelViewMatrix"),
-		model_view_projection_matrix_uniform(*program, "ModelViewProjectionMatrix")
+		program(program)
 	{
 		Assimp::Importer imp;
 
@@ -109,29 +105,28 @@ namespace Model
 				indices[faceIndex * 3 + 2] = face.mIndices[2];
 			}
 
-			_meshes.emplace_back(std::make_unique<Mesh>(program, vertices, indices, _materials[mesh->mMaterialIndex].get()));
+			meshes.emplace_back(std::make_unique<Mesh>(program, vertices, indices, _materials[mesh->mMaterialIndex].get()));
 		}
 	}
 
-	void Model::draw(glm::vec4 view_light_direction, glm::mat4 model_matrix, glm::mat4 view_matrix, glm::mat4 projection_matrix)
+	void Model::draw()
 	{
-		_program->Use();
+		//EXPECTS the program to already be in use
 
-		auto model_view_matrix = view_matrix * model_matrix;
-		auto normal_matrix = glm::transpose(glm::inverse(model_view_matrix));
-		auto model_view_projection_matrix = projection_matrix * model_view_matrix;
-
-		view_light_direction_uniform.Set(view_light_direction);
-		normal_matrix_uniform.Set(normal_matrix);
-		model_view_matrix_uniform.Set(model_view_matrix);
-		model_view_projection_matrix_uniform.Set(model_view_projection_matrix);
-
-		for (auto& mesh : _meshes)
+		for (auto& mesh : meshes)
 		{
 			mesh->draw();
 		}
+	}
 
-		oglplus::Program::UseNone();
+	void Model::draw_instanced(unsigned int num)
+	{
+		//EXPECTS the program to already be in use
+
+		for (auto& mesh : meshes)
+		{
+			mesh->draw_instanced(num);
+		}
 	}
 
 	btCollisionShape* Model::GetCollisionShape()
@@ -140,7 +135,7 @@ namespace Model
 		{
 			_shape_indexed_vertex_array = std::make_unique<btTriangleIndexVertexArray>();
 
-			for (auto& mesh : _meshes)
+			for (auto& mesh : meshes)
 			{
 				btIndexedMesh indexed_mesh;
 

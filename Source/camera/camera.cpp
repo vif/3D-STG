@@ -4,11 +4,12 @@
 #include <utilities/MathConversions/math_conversions.hpp>
 
 
-Camera::Camera(Ship* ship) :
-_ship(ship), 
-ScriptableObject(ScriptableObject::ObjectType::UNSIMULATED, glm::vec3(), glm::quat(), nullptr)
+Camera::Camera(Ship* ship)
 {
-
+	_ship = ship;
+	_empty_shape = std::make_unique<btEmptyShape>();
+	pose = std::make_unique<btDefaultMotionState>();
+	moveable = std::make_unique<MoveableObject>(MoveableObject::ObjectType::SIMULATED, pose.get(), _empty_shape.get());
 }
 
 void Camera::Update(double dt)
@@ -65,7 +66,7 @@ void Camera::Update(double dt)
 		auto position = toVec3(transform.getOrigin());
 		auto orientation = toQuat(transform.getRotation());
 
-		double movementspeed = 10;
+		double movementspeed = 100;
 
 		if (input.move_forward)
 		{

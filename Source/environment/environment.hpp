@@ -1,27 +1,15 @@
 #pragma once
 
-#include <memory>
 #include <object_types/imodelrender.hpp>
-#include <object_types/drawable_object.hpp>
-
-class Cylinder : public DrawableObject
-{
-public:
-	Cylinder(Model::Model* model, glm::vec3 init_pos, glm::quat init_orientation) : DrawableObject(init_pos, init_orientation, model){};
-private:
-	Cylinder(const Cylinder&) = delete;
-};
+#include "cylinder_grid.hpp"
 
 class Environment : public IModelRender
 {
 public:
 	Environment();
 
-	Model::Model cylider;
-
-	std::vector<std::unique_ptr<Cylinder>> cylinders;
-
 	void Render(glm::vec4 view_light_direction, glm::mat4 view_matrix, glm::mat4 projection_matrix) override;
 private:
 	Environment(const Environment&) = delete;
+	CylinderGrid cylinderGrid;
 };

@@ -58,6 +58,7 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <PreprocessorDefinitions>DEBUG;GLM_FORCE_RADIANS;GLEW_STATIC;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -73,6 +74,7 @@
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <PreprocessorDefinitions>GLM_FORCE_RADIANS;GLEW_STATIC;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -87,6 +89,7 @@
     <ClCompile Include="Source\display_info\display_info.cpp" />
     <ClCompile Include="Source\enemies\basic.cpp" />
     <ClCompile Include="Source\enemies\enemymanager.cpp" />
+    <ClCompile Include="Source\environment\cylinder_grid.cpp" />
     <ClCompile Include="Source\environment\environment.cpp" />
     <ClCompile Include="Source\input_manager\input_manager.cpp" />
     <ClCompile Include="Source\main.cpp" />
@@ -94,7 +97,7 @@
     <ClCompile Include="Source\model\model.cpp" />
     <ClCompile Include="Source\object_types\drawable_object.cpp" />
     <ClCompile Include="Source\object_types\killable.cpp" />
-    <ClCompile Include="Source\object_types\scriptable_object.cpp" />
+    <ClCompile Include="Source\object_types\moveable_object.cpp" />
     <ClCompile Include="Source\ship\ship.cpp" />
     <ClCompile Include="Source\utilities\BulletDebugDrawer\bullet_debug_drawer.cpp" />
     <ClCompile Include="Source\utilities\MathConversions\math_conversions.cpp" />
@@ -107,6 +110,7 @@
     <ClInclude Include="Source\display_info\display_info.hpp" />
     <ClInclude Include="Source\enemies\basic.hpp" />
     <ClInclude Include="Source\enemies\enemymanager.hpp" />
+    <ClInclude Include="Source\environment\cylinder_grid.hpp" />
     <ClInclude Include="Source\environment\environment.hpp" />
     <ClInclude Include="Source\includes\oglplus.hpp" />
     <ClInclude Include="Source\input_manager\input_manager.hpp" />
@@ -114,9 +118,10 @@
     <ClInclude Include="Source\model\model.hpp" />
     <ClInclude Include="Source\object_types\icollidable.hpp" />
     <ClInclude Include="Source\object_types\imodelrender.hpp" />
+    <ClInclude Include="Source\object_types\iscriptable.hpp" />
     <ClInclude Include="Source\object_types\iupdatable.hpp" />
     <ClInclude Include="Source\object_types\killable.hpp" />
-    <ClInclude Include="Source\object_types\scriptable_object.hpp" />
+    <ClInclude Include="Source\object_types\moveable_object.hpp" />
     <ClInclude Include="Source\object_types\drawable_object.hpp" />
     <ClInclude Include="Source\ship\ship.hpp" />
     <ClInclude Include="Source\utilities\BulletDebugDrawer\bullet_debug_drawer.hpp" />
@@ -126,6 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\shaders\3d.vert" />
+    <None Include="Resources\shaders\cylinder_grid.vert" />
     <None Include="Resources\shaders\phong.frag" />
     <None Include="Resources\shaders\simple.frag" />
   </ItemGroup>
