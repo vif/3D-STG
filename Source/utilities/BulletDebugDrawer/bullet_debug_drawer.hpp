@@ -31,7 +31,7 @@ public:
 private:
 	oglplus::Program* _program;
 	oglplus::Uniform<oglplus::Mat4f> model_view_projection_matrix_uniform;
-	std::list<Vertex> _lines;
+	std::vector<Vertex> _lines;
 	oglplus::VertexArray _vao;
 	oglplus::Buffer _vbo;
 };

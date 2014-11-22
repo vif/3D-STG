@@ -44,24 +44,17 @@ void btOGLDebugDrawer::drawAndClear(glm::mat4 view_matrix, glm::mat4 projection_
 	//model projection is identity so we can ignore it
 	model_view_projection_matrix_uniform.Set(projection_matrix * view_matrix);
 
-	//copy the list into a vector so we can draw it
-	std::vector<Vertex> vl;
-	vl.reserve(_lines.size());
-	//WARNING: uses the move iterator so origin list no longer valid
-	vl.insert(vl.end(), std::make_move_iterator(std::begin(_lines)), std::make_move_iterator(std::end(_lines)));
-	//resets all the points we accumulated
-	_lines.clear();
-
-
 	//do the draw call
 	_vao.Bind();
 	_vbo.Bind(oglplus::BufferOps::Target::Array);
 
-	_vbo.Data(oglplus::BufferOps::Target::Array, vl);
-	oglplus::Context::DrawArrays(oglplus::PrimitiveType::Lines, 0, vl.size());
+	_vbo.Data(oglplus::BufferOps::Target::Array, _lines);
+	oglplus::Context::DrawArrays(oglplus::PrimitiveType::Lines, 0, _lines.size());
 
 	oglplus::Buffer::Unbind(oglplus::BufferOps::Target::Array);
 	oglplus::VertexArray::Unbind();
 
 	oglplus::Program::UseNone();
+
+	_lines.clear();
 }

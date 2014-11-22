@@ -2,7 +2,6 @@
 
 #include <object_types/imodelrender.hpp>
 #include <object_types/iupdatable.hpp>
-#include <list>
 #include "basic.hpp"
 #include <ship/ship.hpp>
 
@@ -13,7 +12,7 @@ public:
 
 	Model::Model basic_enemy_model;
 
-	std::list<std::unique_ptr<BasicEnemy>> basic_enemies;
+	std::vector<std::unique_ptr<BasicEnemy>> basic_enemies;
 
 	void RemoveRigidBodiesFromWorld();
 
