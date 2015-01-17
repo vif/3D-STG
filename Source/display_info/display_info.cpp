@@ -7,7 +7,7 @@ void DisplayInfo::SetScreenSize(int width, int height)
 	_screen_width = width;
 	_screen_height = height;
 
-	auto aspect_ratio = glm::golden_ratio<double>();
+	double aspect_ratio = (double) width / (double)height;
 	_projection_matrix = glm::infinitePerspective<double>(glm::radians(45.0f), aspect_ratio, 0.1);
 
 	//TODO: setup viewport

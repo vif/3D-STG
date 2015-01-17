@@ -45,7 +45,7 @@ int main(void)
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 	glfwWindowHint(GLFW_SAMPLES, 4);
-	window = glfwCreateWindow(800, 600, "3D-STG", NULL, NULL);
+	window = glfwCreateWindow(1280, 720, "3D-STG", NULL, NULL);
 	if (!window)
 	{
 		glfwTerminate();
