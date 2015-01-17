@@ -17,6 +17,7 @@ Killable(1000.0)
 
 	_moveable->rigid_body->setUserPointer(static_cast<ICollidable*>(this));
 	_moveable->rigid_body->setCollisionFlags(_moveable->rigid_body->getCollisionFlags() | btCollisionObject::CF_CUSTOM_MATERIAL_CALLBACK);
+	_moveable->rigid_body->setDamping(0.5, 0.5);
 	
 	_physics_world = physics_world;
 
@@ -50,32 +51,31 @@ void Ship::Update(double dt)
 
 		if (input.propel_forward)
 		{
-			rigid_body->applyCentralImpulse(quatRotate(rotation, btVector3(max_speed, 0, 0) * dt));
+			rigid_body->applyCentralImpulse(quatRotate(rotation, btVector3(max_speed, 0, 0)));
 		}
 		if (input.propel_backward)
 		{
-			rigid_body->applyCentralImpulse(quatRotate(rotation, btVector3(-max_speed, 0, 0) * dt));
+			rigid_body->applyCentralImpulse(quatRotate(rotation, btVector3(-max_speed, 0, 0)));
 		}
 
 		const float max_rotation_speed = 20 * glm::pi<float>();
 
 		if (input.roll_right)
 		{
-			rigid_body->applyTorqueImpulse(quatRotate(rotation, btVector3(max_rotation_speed, 0, 0)) * dt);
+			rigid_body->applyTorqueImpulse(quatRotate(rotation, btVector3(max_rotation_speed, 0, 0)));
 		}
 		if (input.roll_left)
 		{
-			rigid_body->applyTorqueImpulse(quatRotate(rotation, btVector3(-max_rotation_speed, 0, 0)) * dt);
+			rigid_body->applyTorqueImpulse(quatRotate(rotation, btVector3(-max_rotation_speed, 0, 0)));
 		}
 
 		if (input.pitch_up)
 		{
-			rigid_body->applyTorqueImpulse(quatRotate(rotation, btVector3(0, 0, max_rotation_speed)) * dt);
+			rigid_body->applyTorqueImpulse(quatRotate(rotation, btVector3(0, 0, max_rotation_speed)));
 		}
-
 		if (input.pitch_down)
 		{
-			rigid_body->applyTorqueImpulse(quatRotate(rotation, btVector3(0, 0, -max_rotation_speed)) * dt);
+			rigid_body->applyTorqueImpulse(quatRotate(rotation, btVector3(0, 0, -max_rotation_speed)));
 		}
 
 		if (input.shoot)
