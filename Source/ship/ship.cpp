@@ -85,7 +85,8 @@ void Ship::Update(double dt)
 				1, 
 				toVec3(position + quatRotate(rotation, btVector3(15, 0, 0))),
 				toQuat(rotation), 
-				toVec3(quatRotate(rotation, btVector3(100, 0, 0))), &_basic_attack_model));
+				toVec3(rigid_body->getLinearVelocity() + quatRotate(rotation, btVector3(100, 0, 0))),
+				&_basic_attack_model));
 			_physics_world->addRigidBody(_basic_attacks.back()->moveable->rigid_body.get());
 
 			input.shoot = false;
