@@ -5,9 +5,17 @@
       <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -21,7 +29,20 @@
     <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
@@ -34,21 +55,39 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>$(SolutionDirectory)ThirdParty\oglplus-develop\etc\msvc11\OGLplus;$(SolutionDirectory)ThirdParty\oglplus-develop\include;$(SolutionDirectory)ThirdParty\oglplus-develop\implement;$(SolutionDirectory)ThirdParty\assimp-3.0.1270\include;$(SolutionDirectory)ThirdParty\bullet-2.82-r2704\src;$(SolutionDirectory)ThirdParty\glm;$(SolutionDirectory)ThirdParty\glew-1.10.0\include;$(SolutionDirectory)ThirdParty\glfw-3.0.4\include;$(SolutionDirectory)Source\includes;$(SolutionDirectory)Source;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDirectory)ThirdParty\assimp-3.0.1270\lib;$(SolutionDirectory)ThirdParty\bullet-2.82-r2704\lib;$(SolutionDirectory)ThirdParty\glew-1.10.0\lib;$(SolutionDirectory)ThirdParty\glfw-3.0.4\lib;$(LibraryPath)</LibraryPath>
-    <OutDir>$(SolutionDir)bin\</OutDir>
-    <IntDir>$(SolutionDir)bin\obj\</IntDir>
+    <OutDir>$(SolutionDir)build/$(ProjectName)/bin/$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)build/$(ProjectName)/obj/$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(SolutionDirectory)ThirdParty\oglplus-develop\etc\msvc11\OGLplus;$(SolutionDirectory)ThirdParty\oglplus-develop\include;$(SolutionDirectory)ThirdParty\oglplus-develop\implement;$(SolutionDirectory)ThirdParty\assimp-3.0.1270\include;$(SolutionDirectory)ThirdParty\bullet-2.82-r2704\src;$(SolutionDirectory)ThirdParty\glm;$(SolutionDirectory)ThirdParty\glew-1.10.0\include;$(SolutionDirectory)ThirdParty\glfw-3.0.4\include;$(SolutionDirectory)Source\includes;$(SolutionDirectory)Source;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDirectory)ThirdParty\assimp-3.0.1270\lib;$(SolutionDirectory)ThirdParty\bullet-2.82-r2704\lib;$(SolutionDirectory)ThirdParty\glew-1.10.0\lib;$(SolutionDirectory)ThirdParty\glfw-3.0.4\lib;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)build/$(ProjectName)/bin/$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)build/$(ProjectName)/obj/$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>$(SolutionDirectory)ThirdParty\oglplus-develop\etc\msvc11\OGLplus;$(SolutionDirectory)ThirdParty\oglplus-develop\include;$(SolutionDirectory)ThirdParty\oglplus-develop\implement;$(SolutionDirectory)ThirdParty\assimp-3.0.1270\include;$(SolutionDirectory)ThirdParty\bullet-2.82-r2704\src;$(SolutionDirectory)ThirdParty\glm;$(SolutionDirectory)ThirdParty\glew-1.10.0\include;$(SolutionDirectory)ThirdParty\glfw-3.0.4\include;$(SolutionDirectory)Source\includes;$(SolutionDirectory)Source;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDirectory)ThirdParty\assimp-3.0.1270\lib;$(SolutionDirectory)ThirdParty\bullet-2.82-r2704\lib;$(SolutionDirectory)ThirdParty\glew-1.10.0\lib;$(SolutionDirectory)ThirdParty\glfw-3.0.4\lib;$(LibraryPath)</LibraryPath>
-    <OutDir>$(SolutionDir)bin\</OutDir>
-    <IntDir>$(SolutionDir)bin\obj\</IntDir>
+    <OutDir>$(SolutionDir)build/$(ProjectName)/bin/$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)build/$(ProjectName)/obj/$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>$(SolutionDirectory)ThirdParty\oglplus-develop\etc\msvc11\OGLplus;$(SolutionDirectory)ThirdParty\oglplus-develop\include;$(SolutionDirectory)ThirdParty\oglplus-develop\implement;$(SolutionDirectory)ThirdParty\assimp-3.0.1270\include;$(SolutionDirectory)ThirdParty\bullet-2.82-r2704\src;$(SolutionDirectory)ThirdParty\glm;$(SolutionDirectory)ThirdParty\glew-1.10.0\include;$(SolutionDirectory)ThirdParty\glfw-3.0.4\include;$(SolutionDirectory)Source\includes;$(SolutionDirectory)Source;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDirectory)ThirdParty\assimp-3.0.1270\lib;$(SolutionDirectory)ThirdParty\bullet-2.82-r2704\lib;$(SolutionDirectory)ThirdParty\glew-1.10.0\lib;$(SolutionDirectory)ThirdParty\glfw-3.0.4\lib;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)build/$(ProjectName)/bin/$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)build/$(ProjectName)/obj/$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -59,10 +98,27 @@
       <PreprocessorDefinitions>DEBUG;GLM_FORCE_RADIANS;GLEW_STATIC;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <TreatWarningAsError>false</TreatWarningAsError>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>LinearMath.lib;assimp.lib;BulletDynamics.lib;BulletCollision.lib;glew32s.lib;glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)build/LinearMath/bin/$(Platform)\$(Configuration)\LinearMath.lib;$(SolutionDir)build/assimp/bin/$(Platform)\$(Configuration)\assimp.lib;$(SolutionDir)build/BulletDynamics/bin/$(Platform)\$(Configuration)\BulletDynamics.lib;$(SolutionDir)build/BulletCollision/bin/$(Platform)\$(Configuration)\BulletCollision.lib;$(SolutionDir)build/glew/bin/$(Platform)\$(Configuration)\glew.lib;$(SolutionDir)build/glfw/bin/$(Platform)\$(Configuration)\glfw.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PreprocessorDefinitions>DEBUG;GLM_FORCE_RADIANS;GLEW_STATIC;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <TreatWarningAsError>false</TreatWarningAsError>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>$(SolutionDir)build/LinearMath/bin/$(Platform)\$(Configuration)\LinearMath.lib;$(SolutionDir)build/assimp/bin/$(Platform)\$(Configuration)\assimp.lib;$(SolutionDir)build/BulletDynamics/bin/$(Platform)\$(Configuration)\BulletDynamics.lib;$(SolutionDir)build/BulletCollision/bin/$(Platform)\$(Configuration)\BulletCollision.lib;$(SolutionDir)build/glew/bin/$(Platform)\$(Configuration)\glew.lib;$(SolutionDir)build/glfw/bin/$(Platform)\$(Configuration)\glfw.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -75,12 +131,32 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <PreprocessorDefinitions>GLM_FORCE_RADIANS;GLEW_STATIC;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <TreatWarningAsError>false</TreatWarningAsError>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>LinearMath.lib;assimp.lib;BulletDynamics.lib;BulletCollision.lib;glew32s.lib;glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)build/LinearMath/bin/$(Platform)\$(Configuration)\LinearMath.lib;$(SolutionDir)build/assimp/bin/$(Platform)\$(Configuration)\assimp.lib;$(SolutionDir)build/BulletDynamics/bin/$(Platform)\$(Configuration)\BulletDynamics.lib;$(SolutionDir)build/BulletCollision/bin/$(Platform)\$(Configuration)\BulletCollision.lib;$(SolutionDir)build/glew/bin/$(Platform)\$(Configuration)\glew.lib;$(SolutionDir)build/glfw/bin/$(Platform)\$(Configuration)\glfw.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PreprocessorDefinitions>GLM_FORCE_RADIANS;GLEW_STATIC;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <TreatWarningAsError>false</TreatWarningAsError>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>$(SolutionDir)build/LinearMath/bin/$(Platform)\$(Configuration)\LinearMath.lib;$(SolutionDir)build/assimp/bin/$(Platform)\$(Configuration)\assimp.lib;$(SolutionDir)build/BulletDynamics/bin/$(Platform)\$(Configuration)\BulletDynamics.lib;$(SolutionDir)build/BulletCollision/bin/$(Platform)\$(Configuration)\BulletCollision.lib;$(SolutionDir)build/glew/bin/$(Platform)\$(Configuration)\glew.lib;$(SolutionDir)build/glfw/bin/$(Platform)\$(Configuration)\glfw.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

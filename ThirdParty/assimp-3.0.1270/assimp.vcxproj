@@ -49,14 +49,24 @@
     <_ProjectFileVersion>12.0.21005.1</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>lib/</OutDir>
-    <IntDir>obj/</IntDir>
+    <OutDir>$(SolutionDir)build/$(ProjectName)/bin/$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)build/$(ProjectName)/obj/$(Platform)\$(Configuration)\</IntDir>
     <IncludePath>$(ProjectDir)code\BoostWorkaround;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>lib/</OutDir>
-    <IntDir>obj/</IntDir>
+    <OutDir>$(SolutionDir)build/$(ProjectName)/bin/$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)build/$(ProjectName)/obj/$(Platform)\$(Configuration)\</IntDir>
     <IncludePath>$(ProjectDir)code\BoostWorkaround;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)build/$(ProjectName)/bin/$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)build/$(ProjectName)/obj/$(Platform)\$(Configuration)\</IntDir>
+    <IncludePath>$(ProjectDir)code\BoostWorkaround;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'">
+    <OutDir>$(SolutionDir)build/$(ProjectName)/bin/$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)build/$(ProjectName)/obj/$(Platform)\$(Configuration)\</IntDir>
+    <IncludePath>$(ProjectDir)code\BoostWorkaround;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -98,9 +108,11 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>AssimpPCH.h</PrecompiledHeaderFile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeaderOutputFile />
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -137,10 +149,12 @@
       <PreprocessorDefinitions>Debug;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;WIN32;ASSIMP_BUILD_BOOST_WORKAROUND;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <SmallerTypeCheck>true</SmallerTypeCheck>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <PrecompiledHeaderFile />
+      <PrecompiledHeaderOutputFile />
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
