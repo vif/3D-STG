@@ -6,9 +6,9 @@
 #include <world/world.hpp>
 
 Ship::Ship(btDynamicsWorld* physics_world) :
-_model("Resources/models/player/ship.dae", &Global::shader_manager->phong3d),
-_basic_attack_model("Resources/models/projectile/basic_attack.dae", &Global::shader_manager->phong3d),
-Killable(1000.0)
+	_model("Resources/models/player/ship.dae", &Global::shader_manager->phong3d),
+	_basic_attack_model("Resources/models/projectile/basic_attack.dae", &Global::shader_manager->phong3d),
+	Killable(1000.0)
 {
 	pose = std::make_unique<btDefaultMotionState>(btTransform(toQuat(_init_orientation), toVec3(_init_pos)));
 	_drawable = std::make_unique<DrawableObject>(pose.get(), &_model);
@@ -30,7 +30,7 @@ Ship::~Ship()
 	_physics_world->removeRigidBody(_moveable->rigid_body.get());
 	for (auto& a : _basic_attacks)
 	{
-		_physics_world->removeRigidBody(a->moveable->rigid_body.get());
+		_physics_world->removeRigidBody(a.moveable->rigid_body.get());
 	}
 }
 
@@ -80,14 +80,14 @@ void Ship::Update(double dt)
 
 		if (input.shoot)
 		{
-			_basic_attacks.emplace_back(std::make_unique<BasicAttack>(
+			_basic_attacks.emplace_back(
 				50.0,
 				1, 
 				toVec3(position + quatRotate(rotation, btVector3(15, 0, 0))),
 				toQuat(rotation), 
 				toVec3(rigid_body->getLinearVelocity() + quatRotate(rotation, btVector3(100, 0, 0))),
-				&_basic_attack_model));
-			_physics_world->addRigidBody(_basic_attacks.back()->moveable->rigid_body.get());
+				&_basic_attack_model);
+			_physics_world->addRigidBody(_basic_attacks.back().moveable->rigid_body.get());
 
 			input.shoot = false;
 		}
@@ -96,14 +96,14 @@ void Ship::Update(double dt)
 		auto a = _basic_attacks.begin();
 		while (a != _basic_attacks.end())
 		{
-			if ((*a)->active)
+			if ((*a).active)
 			{
-				(*a)->Update(dt);
+				(*a).Update(dt);
 				++a;
 			}
 			else
 			{
-				_physics_world->removeRigidBody((*a)->moveable->rigid_body.get());
+				_physics_world->removeRigidBody((*a).moveable->rigid_body.get());
 				a = _basic_attacks.erase(a);
 			}
 		}
@@ -123,7 +123,7 @@ void Ship::Render(glm::vec4 view_light_direction, glm::mat4 view_matrix, glm::ma
 
 		for (auto& a : _basic_attacks)
 		{
-			a->Render(view_light_direction, view_matrix, projection_matrix);
+			a.Render(view_light_direction, view_matrix, projection_matrix);
 		}
 	}
 }

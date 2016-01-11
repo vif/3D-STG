@@ -43,7 +43,7 @@ private:
 	std::unique_ptr<DrawableObject> _drawable;
 	std::unique_ptr<MoveableObject> _moveable;
 
-	std::vector<std::unique_ptr<BasicAttack>> _basic_attacks;
+	std::vector<BasicAttack> _basic_attacks;
 
 	Ship(const Ship&) = delete;
 	btDynamicsWorld* _physics_world;
