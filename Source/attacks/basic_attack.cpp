@@ -18,7 +18,7 @@ BasicAttack::BasicAttack(double damage, double expiration_time_delta, glm::vec3 
 	moveable->rigid_body->setCollisionFlags(moveable->rigid_body->getCollisionFlags() | btCollisionObject::CF_CUSTOM_MATERIAL_CALLBACK);
 }
 
-void BasicAttack::Render(glm::vec4 view_light_direction, glm::mat4 view_matrix, glm::mat4 projection_matrix)
+void BasicAttack::Render(const glm::vec4& view_light_direction, const glm::mat4& view_matrix, const glm::mat4& projection_matrix)
 {
 	_drawable->Render(view_light_direction, view_matrix, projection_matrix);
 }

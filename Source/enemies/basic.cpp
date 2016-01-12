@@ -43,7 +43,7 @@ void BasicEnemy::Update(double dt)
 	}
 }
 
-void BasicEnemy::Render(glm::vec4 view_light_direction, glm::mat4 view_matrix, glm::mat4 projection_matrix)
+void BasicEnemy::Render(const glm::vec4& view_light_direction, const glm::mat4& view_matrix, const glm::mat4& projection_matrix)
 {
 	_drawable->Render(view_light_direction, view_matrix, projection_matrix);
 }

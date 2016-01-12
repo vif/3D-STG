@@ -11,7 +11,7 @@ _model(model)
 {
 }
 
-void DrawableObject::Render(glm::vec4 view_light_direction, glm::mat4 view_matrix, glm::mat4 projection_matrix)
+void DrawableObject::Render(const glm::vec4& view_light_direction, const glm::mat4& view_matrix, const glm::mat4& projection_matrix)
 {
 	btTransform transform;
 	_pose->getWorldTransform(transform);

@@ -49,7 +49,7 @@ _view_projection_matrix_uniform(_program, "ViewProjectionMatrix")
 	}
 }
 
-void CylinderGrid::Render(glm::vec4 view_light_direction, glm::mat4 view_matrix, glm::mat4 projection_matrix)
+void CylinderGrid::Render(const glm::vec4& view_light_direction, const glm::mat4& view_matrix, const glm::mat4& projection_matrix)
 {
 	auto view_projection_matrix = projection_matrix * view_matrix;
 
